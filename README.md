@@ -1,5 +1,18 @@
 The API can be included into your maven/gradle/sbt config via the wonderful [Jitpack](https://jitpack.io/#sillelien/dollar-core):
 
+You'll need this repository:
+
+```
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+And the maven co-ordinates are:
+
 ```
         <dependency>
             <groupId>com.github.sillelien</groupId>
@@ -7,6 +20,8 @@ The API can be included into your maven/gradle/sbt config via the wonderful [Jit
             <version>0.1.7</version>
         </dependency>
 ```
+
+An example of a project using this is [Tutum API](https://github.com/Sillelien/tutum-api) which is very much a work in progress.
 
 ## FAQ
 
