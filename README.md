@@ -4,7 +4,7 @@ The API can be included into your maven/gradle/sbt config via the wonderful [Jit
         <dependency>
             <groupId>com.github.sillelien</groupId>
             <artifactId>dollar-core</artifactId>
-            <version>0.1.6</version>
+            <version>0.1.7</version>
         </dependency>
 ```
 
