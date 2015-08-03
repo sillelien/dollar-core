@@ -9,7 +9,7 @@ The main API dollar-core can be used with:
 ```
 
 
-Build Status: [![Circle CI](https://circleci.com/gh/sillelien/dollar-core.png?style=badge)](https://circleci.com/gh/sillelien/dollar-core)
+Build Status: [![Circle CI](https://circleci.com/gh/Sillelien/dollar-core.svg?style=svg)](https://circleci.com/gh/Sillelien/dollar-core)
 
 [![Release](https://img.shields.io/github/release/sillelien/dollar-core.svg?label=maven)](https://jitpack.io/#sillelien/dollar-core)
 
