@@ -133,7 +133,7 @@ public class DollarMap extends AbstractDollar implements var {
             return DollarFactory.fromValue(toHumanString() + rhsFix.toHumanString(), errors(), rhsFix.errors());
         } else {
             LinkedHashMap<var, var> copy = copyMap();
-            copy.put(DollarFactory.fromValue(hash(rhsFix.$S().getBytes())), rhsFix);
+            copy.put(DollarFactory.fromValue("_"+copy.size()), rhsFix);
             return DollarFactory.wrap(new DollarMap(errors(), copy));
         }
     }
