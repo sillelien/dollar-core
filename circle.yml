@@ -35,6 +35,7 @@ deployment:
         - git checkout master
         - git pull
         - git merge staging -m "Auto merge"
+        - git push
         - git commit -a -m "Promotion from staging"
         - "git tag ${release} || :"
         - git push --tags
