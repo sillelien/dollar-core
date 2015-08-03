@@ -1,4 +1,4 @@
-The main API dollar-core can be used with:
+The API can be included into your maven/gradle/sbt config via the wonderful [Jitpack](https://jitpack.io/#sillelien/dollar-core):
 
 ```
         <dependency>
