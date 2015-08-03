@@ -4,7 +4,7 @@
 dollar
 ======
 
-[![Circle CI](https://circleci.com/gh/neilellis/dollar.png?style=badge)](https://circleci.com/gh/neilellis/dollar)
+[![Circle CI](https://circleci.com/gh/sillelien/dollar-core.png?style=badge)](https://circleci.com/gh/sillelien/dollar-core)
 
 Making Java dynamic and easy to use.
 
