@@ -17,8 +17,6 @@ Chat: [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/sill
 
 Waffle Stories: [![Stories in Ready](https://badge.waffle.io/sillelien/dollar-core.png?label=ready&title=Ready)](https://waffle.io/sillelien/dollar-core)
 
-My Stack: [![Stack Share](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/sillelien/dollar-corescript-stack)
-
 Dependencies: [![Dependency Status](https://www.versioneye.com/user/projects/54ae285534ff3e2204000002/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54ae285534ff3e2204000002)
 
 Please check out http://sillelien.github.io/dollar-core for latest details.
