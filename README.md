@@ -98,4 +98,3 @@ Waffle Stories: [![Stories in Ready](https://badge.waffle.io/sillelien/dollar-co
 
 Dependencies: [![Dependency Status](https://www.versioneye.com/user/projects/55bf9094653762001a002527/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55bf9094653762001a002527)
 
-Please check out http://sillelien.github.io/dollar-core for latest details.
