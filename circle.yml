@@ -50,6 +50,7 @@ deployment:
         - mvn versions:resolve-ranges
         - mvn versions:lock-snapshots
         - mvn -T 1C -Dmaven.test.skip=true -Drat.skip=true -DskipEnforcer -Dmaven.javadoc.skip=true -DgenerateReports=false package
+        - mvn -T 2C -Dmaven.test.skip=true -Drat.skip=true -DskipEnforcer -Dmaven.javadoc.skip=true -DgenerateReports=false deploy
 
 
   development:
