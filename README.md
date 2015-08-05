@@ -1,5 +1,3 @@
-The API can be included into your maven/gradle/sbt config via the wonderful [Jitpack](https://jitpack.io/#sillelien/dollar-core):
-
 You'll need this repository:
 
 ```
