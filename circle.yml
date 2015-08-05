@@ -14,6 +14,8 @@ general:
 dependencies:
   cache_directories:
     - ~/.gnupg
+  pre:
+    - cd ~ && git clone https://github.com/sillelien/build-utils.git && chmod a+x ~/build-utils/*.sh
 
 test:
   override:
