@@ -3,10 +3,10 @@ The API can be included into your maven/gradle/sbt config via the wonderful [Jit
 You'll need this repository:
 
 ```
-<repositories>
+  <repositories>
     <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
+        <id>s3-releases</id>
+        <url>http://sillelien-maven-repo.s3-website-eu-west-1.amazonaws.com/release</url>
     </repository>
 </repositories>
 ```
@@ -14,11 +14,11 @@ You'll need this repository:
 And the maven co-ordinates are:
 
 ```
-        <dependency>
-            <groupId>com.github.sillelien</groupId>
-            <artifactId>dollar-core</artifactId>
-            <version>0.1.7</version>
-        </dependency>
+    <dependency>
+        <groupId>com.github.sillelien</groupId>
+        <artifactId>dollar-core</artifactId>
+        <version>${RELEASE}</version>
+    </dependency>
 ```
 
 An example of a project using this is [Tutum API](https://github.com/Sillelien/tutum-api) which is very much a work in progress.
