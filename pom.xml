@@ -34,7 +34,7 @@
         <httpclient.version>4.3.4</httpclient.version>
         <jackson.version>2.6.0</jackson.version>
         <orientdb.version>1.7.6</orientdb.version>
-        <maven.version>3.2.1</maven.version>
+        <maven.version>3.2.5</maven.version>
         <slf4j.version>1.7.12</slf4j.version>
         <buildNumber>0</buildNumber>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -298,6 +298,31 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>1.4</version>
                 <executions>
@@ -308,12 +333,12 @@
                         </goals>
                         <configuration>
                             <rules>
-                                <DependencyConvergence/>
+                                <dependencyConvergence/>
                                 <!--<requireReleaseDeps>-->
                                 <!--<message>No Snapshots Allowed!</message>-->
                                 <!--</requireReleaseDeps>-->
                                 <requireMavenVersion>
-                                    <version>${maven.version}</version>
+                                    <version>[,${maven.version}]</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
                                     <version>${jdk.version}</version>
@@ -321,12 +346,18 @@
                                 <requireOS>
                                     <family>unix</family>
                                 </requireOS>
+                                <requirePluginVersions>
+                                    <message>Best Practice is to always define plugin versions!</message>
+                                    <banLatest>true</banLatest>
+                                    <banRelease>true</banRelease>
+                                    <banSnapshots>true</banSnapshots>
+                                    <phases>clean,deploy,site</phases>
+                                </requirePluginVersions>
                             </rules>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -464,5 +495,6 @@
             <url>s3://sillelien-maven-repo/snapshot</url>
         </snapshotRepository>
     </distributionManagement>
+
 
 </project>

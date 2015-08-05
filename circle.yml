@@ -1,7 +1,7 @@
 machine:
   environment:
     release: 0.1.${CIRCLE_BUILD_NUM}
-    MAVEN_OPTS: "-Xmx1g -DbuildNumber=${CIRCLE_BUILD_NUM} "
+    MAVEN_OPTS: "-Xmx1g -DbuildNumber=${CIRCLE_BUILD_NUM} -Dorg.xml.sax.driver='com.sun.org.apache.xerces.internal.parsers.SAXParser' "
   java:
     version: oraclejdk8
 
