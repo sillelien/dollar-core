@@ -19,7 +19,7 @@ And the maven co-ordinates are:
     </dependency>
 ```
 
-An example of a project using this is [Tutum API](https://github.com/Sillelien/tutum-api) which is very much a work in progress.
+An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is very much a work in progress.
 
 ## FAQ
 
@@ -101,7 +101,7 @@ With this in mind the following are Dollar's characteristics:
 
 
 ## Badges
-Build Status: [![Circle CI](https://circleci.com/gh/Sillelien/dollar-core.svg?style=svg)](https://circleci.com/gh/Sillelien/dollar-core)
+Build Status: [![Circle CI](https://circleci.com/gh/sillelien/dollar-core.svg?style=svg)](https://circleci.com/gh/sillelien/dollar-core)
 
 Jitpack Release: [![Release](https://img.shields.io/github/release/sillelien/dollar-core.svg?label=maven)](https://jitpack.io/#sillelien/dollar-core)
 
