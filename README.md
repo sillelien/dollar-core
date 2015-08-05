@@ -17,7 +17,7 @@ And the maven co-ordinates are:
     <dependency>
         <groupId>com.github.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>${RELEASE}</version>
+        <version>0.1.53</version>
     </dependency>
 ```
 
@@ -48,7 +48,7 @@ You can just use dollar to write dynamic JSON oriented (JSON is not a requiremen
         var profile = $("name", "Neil")
                 .$("age", age)
                 .$("gender", "male")
-                .$("projects", $array("snapito", "dollar"))
+                .$("projects", ("snapito", "dollar"))
                 .$("location",
                         $("city", "brighton")
                                 .$("postcode", "bn1 6jj")
@@ -61,7 +61,7 @@ or using a more builder format like this:
                 $("name", "Neil"),
                 $("age", new Date().getYear() + 1900 - 1970),
                 $("gender", "male"),
-                $("projects", $jsonArray("snapito", "dollar")),
+                $("projects", ("snapito", "dollar")),
                 $("location",
                         $("city", "brighton"),
                         $("postcode", "bn1 6jj"),
@@ -70,10 +70,10 @@ or using a more builder format like this:
 
 and these hold true:
 
-        assertEquals(age /11, (int)profile.$("$['age']/11").$int());
+        assertEquals(age /11, (int)profile.$("$['age']/11").());
         assertEquals("male", profile.$("$.gender").$());
         assertEquals(10, profile.$("5*2").$());
-        assertEquals(10, (int)$eval("10").$int());
+        assertEquals(10, (int)("10").());
         assertEquals($("{\"name\":\"Dave\"}").$("name").$$(),"Dave");
         assertEquals($().$("({name:'Dave'})").$("name").$$(), "Dave");
 
