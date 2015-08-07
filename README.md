@@ -15,15 +15,13 @@ And the maven co-ordinates are:
     <dependency>
         <groupId>com.github.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.1.65</version>
+        <version>0.1.69</version>
     </dependency>
 ```
 
 An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is very much a work in progress.
 
 ## FAQ
-
-[![Join the chat at https://gitter.im/sillelien/dollar-core](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sillelien/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ### Why Dollar ?
 
