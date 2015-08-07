@@ -23,6 +23,8 @@ An example of a project using this is [Tutum API](https://github.com/sillelien/t
 
 ## FAQ
 
+[![Join the chat at https://gitter.im/sillelien/dollar-core](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sillelien/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ### Why Dollar ?
 
 Once you've written some Dollar code you'll get the reason pretty quickly.
