@@ -160,6 +160,12 @@ public final class DollarInfinity extends AbstractDollar implements var {
         return ImmutableMap.of(DollarStatic.$("value"), this);
     }
 
+    @NotNull
+    @Override
+    public String $yaml() {
+        return "infinity: " + (positive ? "positive" : "negative");
+    }
+
     @Override
     public boolean infinite() {
         return false;
@@ -238,6 +244,12 @@ public final class DollarInfinity extends AbstractDollar implements var {
 
     @NotNull @Override public var $remove(var value) {
         return this;
+    }
+
+    @NotNull
+    @Override
+    public int size() {
+        return toNumber().intValue();
     }
 
     @Override

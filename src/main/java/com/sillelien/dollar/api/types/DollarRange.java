@@ -203,6 +203,13 @@ public class DollarRange extends AbstractDollar {
         return ImmutableMap.of();
     }
 
+    @NotNull
+    @Override
+    public String $yaml() {
+        DollarFactory.failure(ErrorType.INVALID_RANGE_OPERATION);
+        return "";
+    }
+
     @Override
     public boolean is(@NotNull Type... types) {
         for (Type type : types) {
@@ -294,6 +301,12 @@ public class DollarRange extends AbstractDollar {
 
     @NotNull @Override public var $remove(var value) {
         return DollarFactory.failure(ErrorType.INVALID_RANGE_OPERATION);
+    }
+
+    @NotNull
+    @Override
+    public int size() {
+        return diff().toInteger().intValue();
     }
 
     @Override

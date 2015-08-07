@@ -32,8 +32,10 @@ import java.util.*;
 
 public class DollarURI extends AbstractDollar {
 
-    @NotNull private final StateMachine<ResourceState, Signal> stateMachine;
-    @NotNull private final URI uri;
+    @NotNull
+    private final StateMachine<ResourceState, Signal> stateMachine;
+    @NotNull
+    private final URI uri;
     private URIHandler handler;
 
 
@@ -47,12 +49,24 @@ public class DollarURI extends AbstractDollar {
             throw new DollarException(e);
         }
         StateMachineConfig<ResourceState, Signal> stateMachineConfig = getDefaultStateMachineConfig();
-        stateMachineConfig.configure(ResourceState.RUNNING).onEntry(i -> {handler.start();});
-        stateMachineConfig.configure(ResourceState.RUNNING).onExit(i -> {handler.stop();});
-        stateMachineConfig.configure(ResourceState.INITIAL).onExit(i -> {handler.init();});
-        stateMachineConfig.configure(ResourceState.DESTROYED).onEntry(i -> {handler.destroy();});
-        stateMachineConfig.configure(ResourceState.PAUSED).onEntry(i -> {handler.pause();});
-        stateMachineConfig.configure(ResourceState.PAUSED).onExit(i -> {handler.unpause();});
+        stateMachineConfig.configure(ResourceState.RUNNING).onEntry(i -> {
+            handler.start();
+        });
+        stateMachineConfig.configure(ResourceState.RUNNING).onExit(i -> {
+            handler.stop();
+        });
+        stateMachineConfig.configure(ResourceState.INITIAL).onExit(i -> {
+            handler.init();
+        });
+        stateMachineConfig.configure(ResourceState.DESTROYED).onEntry(i -> {
+            handler.destroy();
+        });
+        stateMachineConfig.configure(ResourceState.PAUSED).onEntry(i -> {
+            handler.pause();
+        });
+        stateMachineConfig.configure(ResourceState.PAUSED).onExit(i -> {
+            handler.unpause();
+        });
         stateMachine = new StateMachine<>(ResourceState.INITIAL, stateMachineConfig);
 
     }
@@ -102,7 +116,8 @@ public class DollarURI extends AbstractDollar {
         return DollarFactory.failure(ErrorType.INVALID_URI_OPERATION);
     }
 
-    @Override public int sign() {
+    @Override
+    public int sign() {
         return 1;
     }
 
@@ -144,12 +159,15 @@ public class DollarURI extends AbstractDollar {
         }
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public String toHumanString() {
         return uri.toString();
     }
 
-    @NotNull @Override public String toDollarScript() {
+    @NotNull
+    @Override
+    public String toDollarScript() {
         return String.format("(\"%s\" as Uri)", org.apache.commons.lang.StringEscapeUtils.escapeJava(uri.toString()));
     }
 
@@ -202,7 +220,9 @@ public class DollarURI extends AbstractDollar {
         return super.$each(pipe);
     }
 
-    @NotNull @Override public StateMachine<ResourceState, Signal> getStateMachine() {
+    @NotNull
+    @Override
+    public StateMachine<ResourceState, Signal> getStateMachine() {
         return stateMachine;
     }
 
@@ -218,11 +238,13 @@ public class DollarURI extends AbstractDollar {
         return ImmutableList.copyOf(handler.all().$list());
     }
 
-    @Override public Type $type() {
+    @Override
+    public Type $type() {
         return Type.URI;
     }
 
-    @Override public boolean collection() {
+    @Override
+    public boolean collection() {
         return false;
     }
 
@@ -230,6 +252,12 @@ public class DollarURI extends AbstractDollar {
     @Override
     public ImmutableMap<var, var> $map() {
         return ImmutableMap.of();
+    }
+
+    @NotNull
+    @Override
+    public String $yaml() {
+        return "uri: \"" + uri + "\"";
     }
 
     @Override
@@ -253,11 +281,14 @@ public class DollarURI extends AbstractDollar {
         return ImmutableList.of();
     }
 
-    @NotNull @Override public ImmutableList<Object> toList() {
+    @NotNull
+    @Override
+    public ImmutableList<Object> toList() {
         return ImmutableList.of(uri);
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public Map<String, Object> toMap() {
         return Collections.emptyMap();
     }
@@ -269,27 +300,34 @@ public class DollarURI extends AbstractDollar {
         return handler.get(key);
     }
 
-    @NotNull @Override public var $append(@NotNull var value) {
+    @NotNull
+    @Override
+    public var $append(@NotNull var value) {
         return handler.append(DollarStatic.$(value));
     }
 
-    @NotNull public var $containsValue(@NotNull var value) {
+    @NotNull
+    public var $containsValue(@NotNull var value) {
         return DollarStatic.$(false);
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var $has(@NotNull var key) {
         ensureRunning();
         return DollarStatic.$(!handler.get(key).isVoid());
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var $size() {
         ensureRunning();
         return DollarStatic.$(handler.size());
     }
 
-    @NotNull @Override public var $prepend(@NotNull var value) {
+    @NotNull
+    @Override
+    public var $prepend(@NotNull var value) {
         return handler.prepend(DollarStatic.$(value));
     }
 
@@ -310,10 +348,18 @@ public class DollarURI extends AbstractDollar {
 
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var $remove(var key) {
         return DollarFactory.failure(ErrorType.INVALID_URI_OPERATION);
 
+    }
+
+    @NotNull
+    @Override
+    public int size() {
+        ensureRunning();
+        return handler.size();
     }
 
     @Override

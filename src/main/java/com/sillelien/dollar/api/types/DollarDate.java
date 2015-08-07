@@ -130,6 +130,12 @@ public class DollarDate extends AbstractDollarSingleValue<Instant> {
         return Type.DATE;
     }
 
+    @NotNull
+    @Override
+    public String $yaml() {
+        return "date: " + value;
+    }
+
     @Override
     public boolean is(@NotNull Type... types) {
         for (Type type : types) {

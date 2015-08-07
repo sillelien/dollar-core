@@ -147,6 +147,12 @@ public class DollarVoid extends AbstractDollar implements var {
         return ImmutableMap.of();
     }
 
+    @NotNull
+    @Override
+    public String $yaml() {
+        return "void: void";
+    }
+
     @Override
     public boolean is(@NotNull Type... types) {
         for (Type type : types) {
@@ -225,6 +231,12 @@ public class DollarVoid extends AbstractDollar implements var {
 
     @NotNull @Override public var $remove(var value) {
         return this;
+    }
+
+    @NotNull
+    @Override
+    public int size() {
+        return 0;
     }
 
     @NotNull

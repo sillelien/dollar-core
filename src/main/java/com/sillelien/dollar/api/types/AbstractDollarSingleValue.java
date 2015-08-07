@@ -75,6 +75,12 @@ public abstract class AbstractDollarSingleValue<T> extends AbstractDollar implem
         return DollarStatic.$(1);
     }
 
+    @NotNull
+    @Override
+    public int size() {
+        return 1;
+    }
+
     @NotNull @Override public var $prepend(@NotNull var value) {
         return DollarFactory.fromValue(Arrays.asList(value, this), errors(), value.errors());
     }

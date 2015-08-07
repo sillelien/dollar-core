@@ -26,6 +26,7 @@ import com.sillelien.dollar.api.json.JsonObject;
 import com.sillelien.dollar.api.var;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
+import org.yaml.snakeyaml.Yaml;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -67,14 +68,6 @@ public class DollarMap extends AbstractDollar implements var {
         map = mapToVarMap(o.toMap());
     }
 
-    @NotNull private LinkedHashMap<var, var> mapToVarMap(@NotNull Map<?, ?> stringObjectMap) {
-        LinkedHashMap<var, var> result = new LinkedHashMap<>();
-        for (Map.Entry<?, ?> entry : stringObjectMap.entrySet()) {
-            result.put(DollarFactory.fromValue(entry.getKey()), DollarFactory.fromValue(entry.getValue()));
-        }
-        return result;
-    }
-
     public DollarMap(@NotNull ImmutableList<Throwable> errors, @NotNull Map<?, ?> o) {
         super(errors);
         map = mapToVarMap(o);
@@ -85,17 +78,26 @@ public class DollarMap extends AbstractDollar implements var {
         this.map = deepClone(o);
     }
 
+    public DollarMap(@NotNull ImmutableList<Throwable> errors, @NotNull ImmutableJsonObject immutableJsonObject) {
+        super(errors);
+        this.map = mapToVarMap(immutableJsonObject.toMap());
+    }
+
+    @NotNull
+    private LinkedHashMap<var, var> mapToVarMap(@NotNull Map<?, ?> stringObjectMap) {
+        LinkedHashMap<var, var> result = new LinkedHashMap<>();
+        for (Map.Entry<?, ?> entry : stringObjectMap.entrySet()) {
+            result.put(DollarFactory.fromValue(entry.getKey()), DollarFactory.fromValue(entry.getValue()));
+        }
+        return result;
+    }
+
     @NotNull private LinkedHashMap<var, var> deepClone(@NotNull LinkedHashMap<var, var> o) {
         LinkedHashMap<var, var> result = new LinkedHashMap<>();
         for (Map.Entry<var, var> entry : o.entrySet()) {
             result.put(entry.getKey(), entry.getValue());
         }
         return result;
-    }
-
-    public DollarMap(@NotNull ImmutableList<Throwable> errors, @NotNull ImmutableJsonObject immutableJsonObject) {
-        super(errors);
-        this.map = mapToVarMap(immutableJsonObject.toMap());
     }
 
     @NotNull
@@ -275,6 +277,13 @@ public class DollarMap extends AbstractDollar implements var {
         return ImmutableMap.copyOf(result);
     }
 
+    @NotNull
+    @Override
+    public String $yaml() {
+        Yaml yaml = new Yaml();
+        return yaml.dump(map);
+    }
+
     @Override
     public boolean is(@NotNull Type... types) {
         for (Type type : types) {
@@ -373,6 +382,12 @@ public class DollarMap extends AbstractDollar implements var {
     @Override
     public var $remove(var value) {
         return DollarFactory.failure(ErrorType.INVALID_MAP_OPERATION);
+    }
+
+    @NotNull
+    @Override
+    public int size() {
+        return map.size();
     }
 
     @Override

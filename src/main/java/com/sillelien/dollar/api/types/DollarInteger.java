@@ -144,6 +144,12 @@ public class DollarInteger extends AbstractDollarSingleValue<Long> {
         return Type.INTEGER;
     }
 
+    @NotNull
+    @Override
+    public String $yaml() {
+        return "integer: " + value;
+    }
+
     @Override
     public boolean is(@NotNull Type... types) {
         for (Type type : types) {

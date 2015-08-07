@@ -35,6 +35,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -743,5 +744,10 @@ public class DollarFactory {
 
     @SafeVarargs @NotNull public static var newNull(Type type, ImmutableList<Throwable>... errors) {
         return new DollarNull(ImmutableList.copyOf(errors), type);
+    }
+
+    public static var fromYaml(String yamlString) {
+        Yaml yaml = new Yaml();
+        return wrap(fromValue(yaml.load(yamlString)));
     }
 }

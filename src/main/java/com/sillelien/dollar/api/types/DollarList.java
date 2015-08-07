@@ -29,6 +29,7 @@ import com.sillelien.dollar.api.plugin.Plugins;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
+import org.yaml.snakeyaml.Yaml;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -225,6 +226,13 @@ public class DollarList extends AbstractDollar {
         return null;
     }
 
+    @NotNull
+    @Override
+    public String $yaml() {
+        Yaml yaml = new Yaml();
+        return yaml.dump(list);
+    }
+
     @Override
     public boolean is(@NotNull Type... types) {
         for (Type type : types) {
@@ -384,6 +392,12 @@ public class DollarList extends AbstractDollar {
     public var $remove(var value) {
         List<var> newList = list.stream().filter(val -> !val.equals(value)).collect(Collectors.toList());
         return DollarFactory.fromValue(newList, errors());
+    }
+
+    @NotNull
+    @Override
+    public int size() {
+        return list.size();
     }
 
     @Override

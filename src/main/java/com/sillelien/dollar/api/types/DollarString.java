@@ -25,6 +25,7 @@ import com.sillelien.dollar.api.json.JsonArray;
 import com.sillelien.dollar.api.var;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.yaml.snakeyaml.Yaml;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -176,6 +177,13 @@ public class DollarString extends AbstractDollarSingleValue<String> {
 
     @Override public Type $type() {
         return Type.STRING;
+    }
+
+    @NotNull
+    @Override
+    public String $yaml() {
+        Yaml yaml = new Yaml();
+        return "string: " + yaml.dump(value);
     }
 
     @Override
