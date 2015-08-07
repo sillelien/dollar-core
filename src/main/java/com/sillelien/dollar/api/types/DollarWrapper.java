@@ -49,6 +49,12 @@ public class DollarWrapper implements var {
     }
 
     @NotNull
+    private static String sanitize(@NotNull String location) {
+        return location.replaceAll("[^\\w.]+", "_");
+
+    }
+
+    @NotNull
     @Override
     public var $abs() {
         return getValue().$abs();
@@ -252,6 +258,12 @@ public class DollarWrapper implements var {
         return getValue().$map();
     }
 
+    @NotNull
+    @Override
+    public String $yaml() {
+        return getValue().$yaml();
+    }
+
     @Override
     public boolean is(@NotNull Type... types) {
         return getValue().is(types);
@@ -442,12 +454,6 @@ public class DollarWrapper implements var {
     }
 
     @NotNull
-    private static String sanitize(@NotNull String location) {
-        return location.replaceAll("[^\\w.]+", "_");
-
-    }
-
-    @NotNull
     @Override
     public var $pipe(@NotNull String label, @NotNull Pipeable pipe) {
         return tracer.trace(this,
@@ -552,6 +558,12 @@ public class DollarWrapper implements var {
 
     @NotNull @Override public var $remove(var value) {
         return getValue().$remove(value);
+    }
+
+    @NotNull
+    @Override
+    public int size() {
+        return getValue().size();
     }
 
     @NotNull

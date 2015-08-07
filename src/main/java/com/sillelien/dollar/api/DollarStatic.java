@@ -22,7 +22,8 @@ import com.sillelien.dollar.api.json.JsonArray;
 import com.sillelien.dollar.api.json.JsonObject;
 import com.sillelien.dollar.api.monitor.DollarMonitor;
 import com.sillelien.dollar.api.monitor.SimpleLogStateTracer;
-import com.sillelien.dollar.api.types.*;
+import com.sillelien.dollar.api.types.DollarFactory;
+import com.sillelien.dollar.api.types.DollarFuture;
 import com.sillelien.dollar.api.uri.URI;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -699,6 +700,18 @@ public class DollarStatic {
      */
     @NotNull public static var $(Pipeable lambda) {
         return DollarFactory.fromValue(lambda);
+    }
+
+
+    /**
+     * Creates a var from YAML
+     *
+     * @param yaml the YAML
+     * @return a var
+     */
+    @NotNull
+    public static var $yaml(String yaml) {
+        return DollarFactory.fromYaml(yaml);
     }
 
     /**

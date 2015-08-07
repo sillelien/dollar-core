@@ -104,6 +104,17 @@ public interface TypeAware {
     @Guarded(NotNullGuard.class)
     @Guarded(AllVarMapGuard.class) ImmutableMap<var, var> $map();
 
+
+    /**
+     * $ map.
+     *
+     * @return the immutable map
+     */
+    @NotNull
+    @Guarded(NotNullGuard.class)
+    String $yaml();
+
+
     /**
      * Gets pair value.
      *

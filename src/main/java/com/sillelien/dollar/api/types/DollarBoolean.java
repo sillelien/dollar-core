@@ -107,6 +107,12 @@ public class DollarBoolean extends AbstractDollarSingleValue<Boolean> {
         return Type.BOOLEAN;
     }
 
+    @NotNull
+    @Override
+    public String $yaml() {
+        return "boolean: " + value;
+    }
+
     @Override
     public boolean is(@NotNull Type... types) {
         for (Type type : types) {

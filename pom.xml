@@ -42,7 +42,7 @@
 
     <description>Lightweight, dynamic programming on the JVM</description>
     <ciManagement>
-        <url>https://circleci.com/gh/neilellis/dollar/tree/master</url>
+        <url>https://circleci.com/gh/sillelian/dollar-core/tree/master</url>
     </ciManagement>
     <developers>
         <developer>
@@ -58,7 +58,7 @@
         </developer>
     </developers>
 
-    <url>http://neilellis.github.io/dollar/</url>
+    <url>http://sillien.github.io/dollar-core/</url>
 
     <licenses>
         <license>
@@ -69,9 +69,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/neilellis/dollar/blob/master/</url>
-        <connection>scm:git:git@github.com:neilellis/dollar.git</connection>
-        <developerConnection>scm:git:git@github.com:neilellis/dollar.git</developerConnection>
+        <url>https://github.com/sillelien/dollar-core/blob/master/</url>
+        <connection>scm:git:git@github.com:sillelien/dollar-core.git</connection>
+        <developerConnection>scm:git:git@github.com:sillelien/dollar-core.git</developerConnection>
     </scm>
 
 
@@ -129,6 +129,11 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.15</version>
         </dependency>
         <dependency>
             <groupId>com.github.oxo42</groupId>

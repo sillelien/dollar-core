@@ -128,6 +128,12 @@ public class DollarNull extends AbstractDollar implements var {
         return ImmutableMap.of(DollarStatic.$("value"), this);
     }
 
+    @NotNull
+    @Override
+    public String $yaml() {
+        return "null: " + type;
+    }
+
     @Override
     public boolean is(@NotNull Type... types) {
         if (Objects.equals(type, Type.ANY)) {
@@ -213,6 +219,12 @@ public class DollarNull extends AbstractDollar implements var {
 
     @NotNull @Override public var $remove(var value) {
         return this;
+    }
+
+    @NotNull
+    @Override
+    public int size() {
+        return 0;
     }
 
     @Override

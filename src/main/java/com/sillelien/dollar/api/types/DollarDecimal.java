@@ -127,6 +127,12 @@ public class DollarDecimal extends AbstractDollarSingleValue<Double> {
         return Type.DECIMAL;
     }
 
+    @NotNull
+    @Override
+    public String $yaml() {
+        return "decimal: " + value;
+    }
+
     @Override
     public boolean is(@NotNull Type... types) {
         for (Type type : types) {

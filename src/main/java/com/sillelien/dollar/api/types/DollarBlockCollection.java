@@ -220,6 +220,12 @@ public class DollarBlockCollection implements var {
     @Override @NotNull @Guarded(NotNullGuard.class) @Guarded(AllVarMapGuard.class)
     public ImmutableMap<var, var> $map() {return getValue().$map();}
 
+    @NotNull
+    @Override
+    public String $yaml() {
+        return getValue().$yaml();
+    }
+
     @NotNull @Override @Guarded(NotNullGuard.class) public var getPairValue() {return getValue().getPairValue();}
 
     @Override @Guarded(NotNullGuard.class) public boolean is(@NotNull Type... types) {return getValue().is(types);}
@@ -391,6 +397,12 @@ public class DollarBlockCollection implements var {
 
     @NotNull @Override public var $remove(var value) {
         return getValue().$remove(value);
+    }
+
+    @NotNull
+    @Override
+    public int size() {
+        return getValue().size();
     }
 
     @Override @NotNull @Guarded(ChainGuard.class) public var _copy() {return getValue()._copy();}

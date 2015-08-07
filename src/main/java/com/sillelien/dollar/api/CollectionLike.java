@@ -134,4 +134,8 @@ public interface CollectionLike {
      */
     @NotNull
     @Guarded(ChainGuard.class) var $remove(var valueToRemove);
+
+    @NotNull
+    @Guarded(ChainGuard.class)
+    int size();
 }
