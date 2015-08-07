@@ -37,10 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -760,5 +757,16 @@ public class DollarFactory {
     public static var fromYaml(String yamlString) {
         Yaml yaml = new Yaml();
         return wrap(fromValue(yaml.load(yamlString)));
+    }
+
+    public static var fromYaml(File yamlFile) {
+        Yaml yaml = new Yaml();
+        try (FileInputStream fileInputStream = new FileInputStream(yamlFile)) {
+            return wrap(fromValue(yaml.load(fileInputStream)));
+        } catch (FileNotFoundException e) {
+            return failure(e);
+        } catch (IOException e) {
+            return failure(e);
+        }
     }
 }

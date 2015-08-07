@@ -28,6 +28,7 @@ import com.sillelien.dollar.api.uri.URI;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -700,6 +701,29 @@ public class DollarStatic {
      */
     @NotNull public static var $(Pipeable lambda) {
         return DollarFactory.fromValue(lambda);
+    }
+
+
+    /**
+     * Creates a var from a YAML formatted string as a var
+     *
+     * @param yaml the YAML
+     * @return a var
+     */
+    @NotNull
+    public static var $yaml(var yaml) {
+        return DollarFactory.fromYaml(yaml.toString());
+    }
+
+    /**
+     * Creates a var from a YAML file
+     *
+     * @param yamlFile the YAML as a file
+     * @return a var
+     */
+    @NotNull
+    public static var $yaml(File yamlFile) {
+        return DollarFactory.fromYaml(yamlFile);
     }
 
 
