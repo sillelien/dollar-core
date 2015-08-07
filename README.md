@@ -15,7 +15,7 @@ And the maven co-ordinates are:
     <dependency>
         <groupId>com.github.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.1.69</version>
+        <version>0.1.71</version>
     </dependency>
 ```
 
