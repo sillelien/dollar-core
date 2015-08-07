@@ -37,6 +37,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -162,6 +164,15 @@ public class DollarFactory {
                     DollarStatic.class.getClassLoader(),
                     new Class<?>[]{var.class},
                     new DollarLambda((Pipeable) o)));
+        }
+        if (o instanceof File) {
+            try {
+                try (FileInputStream stream = new FileInputStream((File) o)) {
+                    return create(errors, stream);
+                }
+            } catch (IOException e) {
+                return failure(e);
+            }
         }
         if (o instanceof JsonArray) {
             return wrap(new DollarList(errors, (JsonArray) o));
