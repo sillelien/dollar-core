@@ -21,6 +21,114 @@ And the maven co-ordinates are:
 
 An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is very much a work in progress.
 
+
+## Factory Methods
+
+To use the factory methods to create `var` objects you just need to statically import DollarStatic.*
+
+### $(Object)
+
+This constructor will attempt to create a `var` object from whatever is passed in, the following are the types that Dollar recognizes and the implementation type created.
+
+* null - DollarVoid
+* Boolean - DollarBoolean
+* Pipeable - DollarLambda
+
+* Long - DollarInteger
+* Integer - DollarInteger
+* Short - DollarInteger
+
+* Double - DollarDecimal
+* BigDecimal - DollarDecimal
+* Float - DollarDecimal
+
+* File - DollarString
+* String - DollarString
+
+* String (Json Array) - DollarList
+* JsonArray - DollarList
+* JSONArray, ArrayNode - DollarList
+* ImmutableList - DollarList
+* List - DollarList
+* Collection - DollarList
+* Array - DollarList
+
+* String (Json Object) - DollarMap
+* MultiMap - DollarMap
+* JsonObject - DollarMap
+* JSONObject, ObjectNode - DollarMap
+* ImmutableJsonObject - DollarMap
+* Map - DollarMap
+
+* URI - DollarURI
+* Date, LocalDateTime, Instant - DollarDate
+* Range - DollarRange
+* InputStream - DollarStream
+
+Otherwise Dollar will attempt to convert the Java object to a JsonObject and then into a DollarMap.
+
+
+### $void()
+
+This creates a void `var` (the implementation class is DollarVoid). Voids, unlike nulls don't have any characteristics, including type. They litterally represent nothing.
+
+
+### $null(Type)
+
+This creates a null `var` which has a type of that specified in the factory method.
+
+
+### $range(from,to)
+
+This will create a Range `var`.
+
+
+### $uri(URI)
+
+This will create a URI `var`.
+
+
+### $uri(String)
+
+This will create a URI `var`.
+
+
+### $date(Date)
+
+This will create a date `var`.
+
+
+### $date(LocalDateTime)
+
+This will create a date `var`.
+
+
+### $string(String)
+
+This will create a string `var` object without any attempt to parse the string.
+
+
+### $list(List)
+
+This will parse a YAML file into a `var` object.
+
+
+### $yaml(File)
+
+This will parse a YAML file into a `var` object.
+
+
+### $yaml(String)
+
+This will parse a YAML string into a `var` object.
+
+
+### $(lambda)
+
+This will create a delayed evaluation `var` object.
+
+
+
 ## FAQ
 
 ### Why Dollar ?
