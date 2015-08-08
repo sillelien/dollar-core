@@ -31,39 +31,61 @@ To use the factory methods to create `var` objects you just need to statically i
 This constructor will attempt to create a `var` object from whatever is passed in, the following are the types that Dollar recognizes and the implementation type created.
 
 * null - DollarVoid
+
 * Boolean - DollarBoolean
+
 * Pipeable - DollarLambda
 
 * Long - DollarInteger
+
 * Integer - DollarInteger
+
 * Short - DollarInteger
 
 * Double - DollarDecimal
+
 * BigDecimal - DollarDecimal
+
 * Float - DollarDecimal
 
 * File - DollarString
+
 * String - DollarString
 
 * String (Json Array) - DollarList
+
 * JsonArray - DollarList
+
 * JSONArray, ArrayNode - DollarList
+
 * ImmutableList - DollarList
+
 * List - DollarList
+
 * Collection - DollarList
+
 * Array - DollarList
 
 * String (Json Object) - DollarMap
+
 * MultiMap - DollarMap
+
 * JsonObject - DollarMap
+
 * JSONObject, ObjectNode - DollarMap
+
 * ImmutableJsonObject - DollarMap
+
 * Map - DollarMap
 
 * URI - DollarURI
+
 * Date, LocalDateTime, Instant - DollarDate
+
 * Range - DollarRange
+
 * InputStream - DollarStream
+
 
 Otherwise Dollar will attempt to convert the Java object to a JsonObject and then into a DollarMap.
 
