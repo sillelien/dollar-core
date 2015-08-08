@@ -419,25 +419,7 @@ public class DollarStatic {
         return jsonObject;
     }
 
-    /**
-     * $ begin.
-     *
-     * @param value the value
-     */
-    public static void $begin(String value) {
-        threadContext.get().pushLabel(value);
-    }
 
-    /**
-     * The beginning of any Dollar Code should start with a DollarStatic.run/call method. This creates an identifier
-     * used to link context's together.
-     *
-     * @param call the lambda to run.
-     * @return the var
-     */
-    public static var $call(@NotNull Callable<var> call) {
-        return $call(threadContext.get().child(), call);
-    }
 
     /**
      * The beginning of any Dollar Code should start with a DollarStatic.run/call method. This creates an identifier
@@ -497,17 +479,6 @@ public class DollarStatic {
         threadContext.get().popLabel(value);
     }
 
-    /**
-     * $ eval.
-     *
-     * @param label the label
-     * @param js the js
-     * @return the var
-     */
-    @NotNull
-    public static var $eval(@NotNull String label, @NotNull String js) {
-        return $().$pipe(label, js);
-    }
 
     /**
      * $ eval.
