@@ -36,47 +36,15 @@ This constructor will attempt to create a `var` object from whatever is passed i
 
 * Pipeable - DollarLambda
 
-* Long - DollarInteger
+* Long, Integer, Short - DollarInteger
 
-* Integer - DollarInteger
+* Double, BigDecimal, Float - DollarDecimal
 
-* Short - DollarInteger
+* File, String, InputStream - DollarString
 
-* Double - DollarDecimal
+* String (Json Array), JsonArray, JSONArray, ArrayNode, ImmutableList, List, Collection, Array - DollarList
 
-* BigDecimal - DollarDecimal
-
-* Float - DollarDecimal
-
-* File - DollarString
-
-* String - DollarString
-
-* String (Json Array) - DollarList
-
-* JsonArray - DollarList
-
-* JSONArray, ArrayNode - DollarList
-
-* ImmutableList - DollarList
-
-* List - DollarList
-
-* Collection - DollarList
-
-* Array - DollarList
-
-* String (Json Object) - DollarMap
-
-* MultiMap - DollarMap
-
-* JsonObject - DollarMap
-
-* JSONObject, ObjectNode - DollarMap
-
-* ImmutableJsonObject - DollarMap
-
-* Map - DollarMap
+* String (Json Object), JsonObject, JSONObject, ObjectNode,  MultiMap, ImmutableJsonObject, Map - DollarMap
 
 * URI - DollarURI
 
