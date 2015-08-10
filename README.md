@@ -21,6 +21,8 @@ And the maven co-ordinates are:
 
 An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is very much a work in progress.
 
+${BLURB}
+
 ## Dollar Methods
 
 You will hopefully notice the pattern that any method that deals solely with var objects has a `$` symbol preceeding it. Methods that return or work with other Java objects should not have that symbol.
