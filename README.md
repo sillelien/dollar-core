@@ -15,13 +15,13 @@ And the maven co-ordinates are:
     <dependency>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.1.85</version>
+        <version>0.1.87</version>
     </dependency>
 ```
 
 An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is very much a work in progress.
 
-
+**If you use this library please consider giving us a star on [GitHub](http://github.com/sillelien/dollar-core) . Also if you can spare 30 secs of your time please let us know your priorities here https://sillelien.wufoo.com/forms/zv51vc704q9ary/  - thanks, that really helps!**
 
 ## Dollar Methods
 
