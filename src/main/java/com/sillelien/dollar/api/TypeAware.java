@@ -309,7 +309,9 @@ public interface TypeAware {
      * @return a list of strings
      */
     @Nullable
-    ImmutableList<String> toStrings();
+    default ImmutableList<String> toStrings() {
+        return strings();
+    }
 
     /**
      * Converts this to a list of value objects such as you would get from $(). Only really useful for collection
