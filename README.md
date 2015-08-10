@@ -13,7 +13,7 @@ And the maven co-ordinates are:
 
 ```
     <dependency>
-        <groupId>com.github.sillelien</groupId>
+        <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
         <version>${RELEASE}</version>
     </dependency>
