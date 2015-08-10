@@ -68,6 +68,15 @@ public interface TypeAware {
     Type $type();
 
     /**
+     * Returns the definitive type of this object, this will trigger execution in dynamic values.
+     *
+     * @return the type
+     */
+    default Type type() {
+        return $type();
+    }
+
+    /**
      * Is collection.
      *
      * @return the boolean
@@ -91,9 +100,22 @@ public interface TypeAware {
      * @return the pair key
      */
     @Guarded(NotNullGuard.class)
+    default var $pairKey() {
+        return getPairKey();
+    }
+
+    /**
+     * Gets pair key.
+     *
+     * @return the pair key
+     * @deprecated (use $pairKey())
+     */
+    @Deprecated
+    @Guarded(NotNullGuard.class)
     default var getPairKey() {
         return $map().keySet().iterator().next();
     }
+
 
     /**
      * $ map.
@@ -119,11 +141,24 @@ public interface TypeAware {
      * Gets pair value.
      *
      * @return the pair value
+     * @deprecated use $pairValue()
      */
     @NotNull
     @Guarded(NotNullGuard.class)
+    @Deprecated
     default var getPairValue() {
         return $map().values().iterator().next();
+    }
+
+    /**
+     * Gets pair value.
+     *
+     * @return the pair value
+     */
+    @NotNull
+    @Guarded(NotNullGuard.class)
+    default var $pairValue() {
+        return getPairValue();
     }
 
     /**
@@ -148,10 +183,12 @@ public interface TypeAware {
      * Is error.
      *
      * @return true if this object represents an error
+     * @deprecated use error()
      */
     default boolean isError() {
         return false;
     }
+
 
     /**
      * Returns true if this is a null value, the null value is <b>not</b> the same as a void value. A void value does
@@ -160,6 +197,7 @@ public interface TypeAware {
      * @return true if this is a null value
      */
     default boolean isNull() { return false;}
+
 
     /**
      * Is this object a void object? Void objects are a similar concept to nil in Objective-C, any operation on them
@@ -185,7 +223,7 @@ public interface TypeAware {
     /**
      * Is map.
      *
-     * @return ttrue if this is a map
+     * @return true if this is a map
      */
     default boolean map() {
         return false;
@@ -259,8 +297,21 @@ public interface TypeAware {
      * Returns this object as a list of string values or null if this is not applicable.
      *
      * @return a list of strings
+     * @deprecated use toStrings()
      */
+    @Deprecated
     @Nullable ImmutableList<String> strings();
+
+
+    /**
+     * Returns this object as a list of string values or null if this is not applicable.
+     *
+     * @return a list of strings
+     */
+    @Nullable
+    default ImmutableList<String> toStrings() {
+        return strings();
+    }
 
     /**
      * Converts this to a list of value objects such as you would get from $(). Only really useful for collection

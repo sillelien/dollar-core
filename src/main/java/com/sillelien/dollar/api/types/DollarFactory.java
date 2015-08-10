@@ -380,17 +380,53 @@ public class DollarFactory {
      * Failure var.
      *
      * @param errorType the failure type
-     * @param message the message
-     * @param quiet the quiet
+     * @param t the t
      * @return the var
      */
-    @NotNull public static var failure(ErrorType errorType, String message, boolean quiet) {
+    @NotNull
+    public static var failure(ErrorType errorType, @NotNull Throwable t) {
+        if (DollarStatic.getConfig().failFast()) {
+            throw new DollarFailureException(t, errorType);
+        } else {
+//            t.printStackTrace(System.err);
+            return wrap(new DollarError(ImmutableList.of(t), errorType, t.getMessage()));
+        }
+    }
+
+
+    /**
+     * Failure var.
+     *
+     * @param errorType the failure type
+     * @param message   the message
+     * @return the var
+     */
+    @NotNull
+    public static var failure(ErrorType errorType, String message) {
+        if (DollarStatic.getConfig().failFast()) {
+            throw new DollarFailureException(errorType, message);
+        } else {
+            return wrap(new DollarError(ImmutableList.of(new DollarException(message)), errorType, message));
+        }
+    }
+
+    /**
+     * Failure var.
+     *
+     * @param errorType the failure type
+     * @param message   the message
+     * @param quiet     the quiet
+     * @return the var
+     */
+    @NotNull
+    public static var failure(ErrorType errorType, String message, boolean quiet) {
         if (DollarStatic.getConfig().failFast() && !quiet) {
             throw new DollarFailureException(errorType, message);
         } else {
             return wrap(new DollarError(ImmutableList.of(new DollarException(message)), errorType, message));
         }
     }
+
 
 
     /**

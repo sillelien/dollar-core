@@ -21,6 +21,9 @@ And the maven co-ordinates are:
 
 An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is very much a work in progress.
 
+## Dollar Methods
+
+You will hopefully notice the pattern that any method that deals solely with var objects has a `$` symbol preceeding it. Methods that return or work with other Java objects should not have that symbol.
 
 ## Factory Methods
 
@@ -116,6 +119,222 @@ This will parse a YAML string into a `var` object.
 ### $(lambda)
 
 This will create a delayed evaluation `var` object.
+
+
+## Collection style methods on `var`
+
+### $(String) or $get(String)
+
+Returns a var object that corresponds to the string supplied. Usually this means a map member keyed by this value.
+
+### $append(var)
+
+Adds the supplied var to a copy of this object, usually that means adding a member to list. Note var objects are immutable.
+
+### $prepend(var)
+
+Inserts the supplied var at the beginning of a copy of this object, usually that means prepending a member to a list. Note var objects are immutable.
+
+### $contains(var) / $containsValue(var)
+
+Returns a Boolean var which will equate to `true` if the `var` supplied is contained within the current `var`.
+
+### $has(String) / $has(var)
+
+Returns true if the supplied key is within this `var`.
+
+### $size() / size()
+
+Returns the size as either a `var` or an int.
+
+### $(String, Object) $set(String, Object) $set(var, Object)
+
+Creates a new version of the var object with the child set to the value supplied. This is pretty much the same as jQuery.
+
+
+### $removeByKey(String) 
+
+Removes the `var` object identified with the supplied key from this `var` object.
+
+### remove(Object) $remove(var)
+
+Removes the object supplied from this object.
+
+## Other Methods on `var`
+
+
+### $mimeType 
+
+Returns a valid Mime Type for this object.
+
+## Type conversion/modification methods
+
+### $as(Type)
+
+Attempt to cast this type to the specificed Type.
+
+
+### $split()
+
+Convert this object into a single var list object.
+
+
+### $list()
+
+Convert this object into an immutable Java list of var objects.
+
+### $map()
+
+Convert this object into an immutable Java map of var objects.
+
+### $yaml()
+
+Convert this object into it's YAML string equivalent.
+
+### $pairKey()
+
+Treat this object as a Pair (single entry map) and get the Pair's key.
+
+### $pairValue()
+
+Treat this object as a Pair (single entry map) and get the Pair's value.
+
+### toList()
+
+Convert this to an immutable Java List.
+
+### toStrings()
+
+Convert this to an immutable list of Java strings.
+
+### toMap()
+
+Convert this to a Java Map.
+
+### toStream()
+
+Convert this to an Input Stream.
+
+## Type enquiry methods
+
+### type()
+
+Returns the definitive type of this object, this will trigger execution in dynamic values.
+
+### is(Type)
+
+Returns true if this object is of the supplied Type.
+
+### collection()
+
+Returns true if this object is a collection.
+
+### dynamic() 
+
+Returns true if this object is dynamically evaluated.
+
+### infinite()
+
+Returns true if this object is infinite in value.
+
+### isError()
+
+Returns true if this object represents an error.
+
+### isNull()
+
+Returns true if this object represents a typeable null value.
+
+### isVoid()
+
+Returns true if this object represents an untyped valueless void.
+
+### list()
+
+Returns true if this object is a list.
+
+### pair()
+
+Returns true if this is a pair (a single valued map).
+
+### map()
+
+Returns true if this is a map
+
+### string()
+
+Returns true if this is a string.
+
+### number()
+
+Returns true if this is a number (decimal|integer).
+
+### decimal()
+
+Returns true if this is a decimal.
+
+### range()
+
+Returns true if this is a range.
+
+### uri()
+
+Returns true if this is a URI.
+
+### singleValue()
+
+Returns true if this is a single value, note that void is neither a single value or a collection.
+
+## Error handling methods on `var`
+
+Error handling in Dollar can be either fail fast or fail slow. If it is fail fast then these methods will likely trigger the throwing of an exception. If it is fail slow then they instead will return error objects.
+
+### $error(String)
+
+Raise or return an error.
+
+### $error(Throwable)
+
+Raise or return an error.
+
+### $error(String, ErrorType)
+
+Raise or return an error of the specified typpe and associated message.
+
+### $error()
+
+Raise or return an error.
+
+### $invalid(String)
+
+Raise or return a validation error.
+
+### $errors() 
+
+Return this object's errors as a `var` object
+
+### errors()
+
+Returns this object's errors as an immutable list of exceptions.
+
+### errorTexts()
+
+Returns this object's errors as a list of Strings.
+
+### $fail(Consumer)
+
+If this object has Java exceptions associated with it, then execute the Consumer with those exceptions.
+
+### hasErrors()
+
+Returns true if this object has Java exceptions associated with it.
+
+
+### clearErrors()
+
+Return a copy of this object minus any associated exceptions.
+
+
 
 
 

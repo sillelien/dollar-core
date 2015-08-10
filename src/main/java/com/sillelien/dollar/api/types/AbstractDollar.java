@@ -49,6 +49,7 @@ public abstract class AbstractDollar implements var {
     @NotNull final
     ScriptEngine nashorn = new ScriptEngineManager().getEngineByName("nashorn");
     private final Logger logger = LoggerFactory.getLogger(getClass());
+
     private final
     @NotNull
     ImmutableList<Throwable> errors;
@@ -58,6 +59,29 @@ public abstract class AbstractDollar implements var {
 
     AbstractDollar(@NotNull ImmutableList<Throwable> errors) {
         this.errors = errors;
+    }
+
+    @NotNull
+    static StateMachineConfig<ResourceState, Signal> getDefaultStateMachineConfig() {
+        final StateMachineConfig<ResourceState, Signal> stateMachineConfig = new StateMachineConfig<>();
+        stateMachineConfig.configure(ResourceState.STOPPED)
+                .permitReentry(Signal.STOP)
+                .permit(Signal.START, ResourceState.RUNNING);
+        stateMachineConfig.configure(ResourceState.RUNNING)
+                .permit(Signal.STOP, ResourceState.STOPPED)
+                .permitReentry(Signal.START);
+        stateMachineConfig.configure(ResourceState.PAUSED)
+                .permit(Signal.STOP, ResourceState.STOPPED)
+                .permit(Signal.UNPAUSE, ResourceState.RUNNING)
+                .permitReentry(Signal.PAUSE);
+        stateMachineConfig.configure(ResourceState.DESTROYED).permitReentry(Signal.DESTROY);
+        stateMachineConfig.configure(ResourceState.INITIAL)
+                .permit(Signal.CREATE, ResourceState.STOPPED)
+                .permit(Signal.START, ResourceState.RUNNING)
+                .permit(Signal.PAUSE, ResourceState.PAUSED)
+                .permit(Signal.STOP, ResourceState.STOPPED)
+                .permit(Signal.DESTROY, ResourceState.DESTROYED);
+        return stateMachineConfig;
     }
 
     @NotNull @Override
@@ -90,7 +114,6 @@ public abstract class AbstractDollar implements var {
     public var $publish(var lhs) {
         return this;
     }
-
 
     @NotNull @Override
     public var $choose(@NotNull var map) {
@@ -154,28 +177,6 @@ public abstract class AbstractDollar implements var {
 
     @NotNull @Override public StateMachine<ResourceState, Signal> getStateMachine() {
         return new StateMachine<>(ResourceState.INITIAL, getDefaultStateMachineConfig());
-    }
-
-    @NotNull static StateMachineConfig<ResourceState, Signal> getDefaultStateMachineConfig() {
-        final StateMachineConfig<ResourceState, Signal> stateMachineConfig = new StateMachineConfig<>();
-        stateMachineConfig.configure(ResourceState.STOPPED)
-                          .permitReentry(Signal.STOP)
-                          .permit(Signal.START, ResourceState.RUNNING);
-        stateMachineConfig.configure(ResourceState.RUNNING)
-                          .permit(Signal.STOP, ResourceState.STOPPED)
-                          .permitReentry(Signal.START);
-        stateMachineConfig.configure(ResourceState.PAUSED)
-                          .permit(Signal.STOP, ResourceState.STOPPED)
-                          .permit(Signal.UNPAUSE, ResourceState.RUNNING)
-                          .permitReentry(Signal.PAUSE);
-        stateMachineConfig.configure(ResourceState.DESTROYED).permitReentry(Signal.DESTROY);
-        stateMachineConfig.configure(ResourceState.INITIAL)
-                          .permit(Signal.CREATE, ResourceState.STOPPED)
-                          .permit(Signal.START, ResourceState.RUNNING)
-                          .permit(Signal.PAUSE, ResourceState.PAUSED)
-                          .permit(Signal.STOP, ResourceState.STOPPED)
-                          .permit(Signal.DESTROY, ResourceState.DESTROYED);
-        return stateMachineConfig;
     }
 
     @NotNull @Override
@@ -516,14 +517,14 @@ public abstract class AbstractDollar implements var {
     @NotNull
     @Override
     public var $error(@NotNull String errorMessage, @NotNull ErrorType type) {
-        return _copy();
+        return DollarFactory.failure(type, errorMessage, true);
     }
 
 
     @NotNull
     @Override
     public var $error(@NotNull String errorMessage) {
-        return DollarFactory.failure(ErrorType.VALIDATION, errorMessage, true);
+        return DollarFactory.failure(ErrorType.VALIDATION, errorMessage);
     }
 
 
