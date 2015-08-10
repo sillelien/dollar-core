@@ -121,7 +121,7 @@ This will parse a YAML string into a `var` object.
 This will create a delayed evaluation `var` object.
 
 
-### Collection style methods on `var`
+## Collection style methods on `var`
 
 ### $(String) or $get(String)
 
@@ -285,6 +285,54 @@ Returns true if this is a URI.
 
 Returns true if this is a single value, note that void is neither a single value or a collection.
 
+## Error handling methods on `var`
+
+Error handling in Dollar can be either fail fast or fail slow. If it is fail fast then these methods will likely trigger the throwing of an exception. If it is fail slow then they instead will return error objects.
+
+### $error(String)
+
+Raise or return an error.
+
+### $error(Throwable)
+
+Raise or return an error.
+
+### $error(String, ErrorType)
+
+Raise or return an error of the specified typpe and associated message.
+
+### $error()
+
+Raise or return an error.
+
+### $invalid(String)
+
+Raise or return a validation error.
+
+### $errors() 
+
+Return this object's errors as a `var` object
+
+### errors()
+
+Returns this object's errors as an immutable list of exceptions.
+
+### errorTexts()
+
+Returns this object's errors as a list of Strings.
+
+### $fail(Consumer)
+
+If this object has Java exceptions associated with it, then execute the Consumer with those exceptions.
+
+### hasErrors()
+
+Returns true if this object has Java exceptions associated with it.
+
+
+### clearErrors()
+
+Return a copy of this object minus any associated exceptions.
 
 
 

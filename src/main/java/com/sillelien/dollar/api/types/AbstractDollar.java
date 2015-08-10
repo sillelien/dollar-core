@@ -517,14 +517,14 @@ public abstract class AbstractDollar implements var {
     @NotNull
     @Override
     public var $error(@NotNull String errorMessage, @NotNull ErrorType type) {
-        return _copy();
+        return DollarFactory.failure(type, errorMessage, true);
     }
 
 
     @NotNull
     @Override
     public var $error(@NotNull String errorMessage) {
-        return DollarFactory.failure(ErrorType.VALIDATION, errorMessage, true);
+        return DollarFactory.failure(ErrorType.VALIDATION, errorMessage);
     }
 
 
