@@ -1,6 +1,6 @@
 
 
-#The Dollar Core API ${STATE_PRE_ALPHA}
+#The Dollar Core API [![Pre Alpha](https://img.shields.io/badge/Status-Pre_Alpha-yellow.svg?style=flat)](http://github.com/sillelien/dollar-core)
 
 
 You'll need this repository:
