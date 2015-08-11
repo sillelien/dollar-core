@@ -22,7 +22,7 @@ And the maven co-ordinates are:
     <dependency>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>${RELEASE}</version>
+        <version>0.1.98</version>
     </dependency>
 ```
 
