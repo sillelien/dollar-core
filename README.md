@@ -1,4 +1,11 @@
+${HEADER}
+
+#The Dollar Core API ${STATE_PRE_ALPHA}
+
+
 You'll need this repository:
+
+
 
 ```
   <repositories>
@@ -19,7 +26,7 @@ And the maven co-ordinates are:
     </dependency>
 ```
 
-An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is very much a work in progress.
+An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is aslo very much a work in progress.
 
 **If you use this project please consider giving us a star on [GitHub](http://github.com/sillelien/dollar-core) . Also if you can spare 30 secs of your time please let us know your priorities here https://sillelien.wufoo.com/forms/zv51vc704q9ary/  - thanks, that really helps!**
 
