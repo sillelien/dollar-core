@@ -28,7 +28,17 @@ And the maven co-ordinates are:
 
 An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is aslo very much a work in progress.
 
-${BLURB}
+-------
+
+**If you use this project please consider giving us a star on [GitHub](http://github.com/sillelien/dollar-core). Also if you can spare 30 secs of your time please let us know your priorities here https://sillelien.wufoo.com/forms/zv51vc704q9ary/  - thanks, that really helps!**
+
+Please contact us through chat or through GitHub Issues.
+
+[![GitHub Issues](https://img.shields.io/github/issues/sillelien/dollar-core.svg)](https://github.com/sillelien/dollar-core/issues).
+
+[![Join the chat at https://gitter.im/sillelien/dollar-core](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sillelien/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+-------
 
 ## Dollar Methods
 
@@ -435,4 +445,8 @@ Waffle Stories: [![Stories in Ready](https://badge.waffle.io/sillelien/dollar-co
 
 Dependencies: [![Dependency Status](https://www.versioneye.com/user/projects/55bf9094653762001a002527/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55bf9094653762001a002527)
 
-${FOOTER}
+--------
+
+[![GitHub License](https://img.shields.io/github/license/sillelien/dollar-core.svg)](https://raw.githubusercontent.com/sillelien/dollar-core/master/LICENSE)
+
+(c) 2015 Sillelien all rights reserved. Please see [LICENSE](https://raw.githubusercontent.com/sillelien/dollar-core/master/LICENSE) for license details of this project. Please visit http://sillelien.com for help and commercial support or raise issues on [GitHub](https://github.com/sillelien/dollar-core/issues).
