@@ -9,7 +9,7 @@ general:
   branches:
     ignore:
       - gh-pages
-
+  
 
 dependencies:
   cache_directories:
