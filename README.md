@@ -1,4 +1,4 @@
-${HEADER}
+
 
 #The Dollar Core API ${STATE_PRE_ALPHA}
 
