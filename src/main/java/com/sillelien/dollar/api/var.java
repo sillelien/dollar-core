@@ -28,7 +28,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.stream.Stream;
 
-public interface var extends ErrorAware, TypeAware, PipeAware, Serializable,
+public interface var extends ErrorAware, TypeAware, PipeAware, Serializable, StringAware,
                              VarInternal, NumericAware, BooleanAware, ControlFlowAware,
                              URIAware, MetadataAware, Comparable<var>, LogAware, StateAware<var>,
                              CollectionLike {

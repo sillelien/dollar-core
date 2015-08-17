@@ -40,6 +40,46 @@ Please contact us through chat or through GitHub Issues.
 
 -------
 
+# Getting Started
+
+## Creating objects
+
+Let's start with our `Hello World` example.
+
+```java
+
+    $("Hello World");
+
+```
+
+What we've done here is create an object of type `var`. `var` objects have an underlying type, much like JavaScript objects, however you can apply many operations without concern for it's type. So let's assign a variable.
+
+```java
+
+    var myObject= $("Hello World");
+
+```
+
+`var` objects are immutable, any changes you make create a new `var` object. This is the *most important thing to remember*, you must use the results of a mutation to an object - the original object was not mutated. For example
+
+
+```java
+    var myObject= $("Hello World");
+    myObject.$append($("Goodbye"));
+    assert myObject.toString().equals("Hello World");
+```
+
+The original object is unchanged by the `$append()` call, so instead we do this:
+
+```java
+    var myObject= $("Hello World");
+    var newObject= myObject.$append($("Goodbye"));
+    assert ! newObject.toString().equals("Hello World");
+```
+
+
+# Reference
+
 ## Dollar Methods
 
 You will hopefully notice the pattern that any method that deals solely with var objects has a `$` symbol preceeding it. Methods that return or work with other Java objects should not have that symbol.
@@ -82,7 +122,7 @@ Otherwise Dollar will attempt to convert the Java object to a JsonObject and the
 
 ### $void()
 
-This creates a void `var` (the implementation class is DollarVoid). Voids, unlike nulls don't have any characteristics, including type. They litterally represent nothing.
+This creates a void `var` (the implementation class is DollarVoid). Voids, unlike nulls don't have any characteristics, including type. They literally represent nothing.
 
 
 ### $null(Type)
