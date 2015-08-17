@@ -1,6 +1,6 @@
 ${HEADER}
 
-#The Dollar Core API ${STATE_PRE_ALPHA}
+#The Dollar Core API ${STATE_ALPHA}
 
 
 You'll need this repository:
