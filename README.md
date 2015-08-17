@@ -22,7 +22,7 @@ And the maven co-ordinates are:
     <dependency>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.1.98</version>
+        <version>0.1.101</version>
     </dependency>
 ```
 
@@ -34,7 +34,7 @@ An example of a project using this is [Tutum API](https://github.com/sillelien/t
 
 Please contact us through chat or through GitHub Issues.
 
-[![GitHub Issues](https://img.shields.io/github/issues/sillelien/dollar-core.svg)](https://github.com/sillelien/dollar-core/issues).
+[![GitHub Issues](https://img.shields.io/github/issues/sillelien/dollar-core.svg)](https://github.com/sillelien/dollar-core/issues)
 
 [![Join the chat at https://gitter.im/sillelien/dollar-core](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sillelien/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
