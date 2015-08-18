@@ -19,10 +19,7 @@ import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.pegdown.ast.*;
 
-import javax.tools.DiagnosticCollector;
-import javax.tools.JavaCompiler;
-import javax.tools.StandardJavaFileManager;
-import javax.tools.ToolProvider;
+import javax.tools.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -30,6 +27,7 @@ import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.Locale;
 
 public class DocTestingVisitor implements Visitor {
     @Override
@@ -208,9 +206,10 @@ public class DocTestingVisitor implements Visitor {
     public void visit(@NotNull VerbatimNode node) {
         if ("java".equals(node.getType())) {
             try {
-                String name = "DocTemp";
+                String name = "DocTemp" + System.currentTimeMillis();
                 File javaFile = new File("/tmp/" + name + ".java");
                 File clazzFile = new File("/tmp/" + name + ".class");
+                clazzFile.getParentFile().mkdirs();
                 FileUtils.write(javaFile,
                         "import com.sillelien.dollar.api.*;\n" +
                                 "import static com.sillelien.dollar.api.DollarStatic.*;\n" +
@@ -224,9 +223,17 @@ public class DocTestingVisitor implements Visitor {
                 final StandardJavaFileManager jfm
                         = javac.getStandardFileManager(null, null, null);
                 JavaCompiler.CompilationTask task;
+                DiagnosticListener<JavaFileObject> diagnosticListener = new DiagnosticListener<JavaFileObject>() {
+
+                    @Override
+                    public void report(Diagnostic diagnostic) {
+                        System.out.println(diagnostic);
+                        throw new RuntimeException(diagnostic.getMessage(Locale.getDefault()));
+                    }
+                };
 
                 try (FileOutputStream fileOutputStream = FileUtils.openOutputStream(clazzFile)) {
-                    task = javac.getTask(new OutputStreamWriter(fileOutputStream), jfm, new DiagnosticCollector<>(), null, null,
+                    task = javac.getTask(new OutputStreamWriter(fileOutputStream), jfm, diagnosticListener, null, null,
                             jfm.getJavaFileObjects(javaFile));
                 }
                 task.call();

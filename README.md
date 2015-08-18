@@ -32,6 +32,11 @@ ${BLURB}
 
 # Getting Started
 
+Every example you see below is *Java* I emphasize that as it may not look familiar to you, that is intentional - I have done my best to make it clear that you are working with *untyped* objects, to avoid confusion.
+
+All static methods such as $() can be accessed by importing `import static com.sillelien.dollar.api.DollarStatic.*;`
+
+
 ## Creating objects
 
 Let's start with our `Hello World` example.
@@ -66,6 +71,39 @@ The original object is unchanged by the `$append()` call, so instead we do this:
     var newObject= myObject.$append($("Goodbye"));
     assert ! newObject.toString().equals("Hello World");
 ```
+
+## Creating Lists and Maps
+
+Creating a list is as simple as using the `$list()` static method which takes a list of any type of object
+
+```java
+    var myList=$list(1,2,3,"four");
+    var second=myList.$(1);
+    assert second.toInteger() == 2;
+```  
+
+If we place Pairs (Pairs are defined as simply a Map with a single entry) together using the $map() method we can also create maps
+
+```java
+    var map =$map(
+                    $("one",1),
+                    $("two",2)
+            );
+   assert map.toString().equals("{\"one\":1,\"two\":2}");            
+```  
+
+For shorthand we can also overload the $() method:
+
+```java
+    var map =$(
+                    $("one",1),
+                    $("two",2)
+            );
+   assert map.toString().equals("{\"one\":1,\"two\":2}");            
+```  
+
+## Working with Lists
+
 
 
 # Reference
