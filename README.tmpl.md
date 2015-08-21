@@ -151,12 +151,21 @@ To find the size of a list use `$size()` or `size()`
 
 ```
 
+And to see if it's empty:
+
+```java
+
+    var list= $list(0,1,2,3,4);
+    assert ! list.isEmpty();
+
+```
+
 
 ### Modifying a list
 
 
 
-To add to the list use either `$append()` to add at the end,  `$prepend()` to insert at the beginning or `$insert()` to insert at any position.
+To add to the list use either `$append()` to add at the end,  `$prepend()` to insert at the beginning or `$insert()` to insert at any position. *But remember `var` objects are immutable, so you must use the result of the method*.
 
 ```java
 
@@ -174,7 +183,22 @@ To add to the list use either `$append()` to add at the end,  `$prepend()` to in
 
 ```
 
+Items can be removed using `remove()` or `$remove()`
 
+```java
+
+    var list= $list("red", "green", "blue");
+
+    var removeList= list.$remove($("green"));
+    removeList.err();
+    assert removeList.equalsString("[ \"red\", \"blue\" ]");
+
+
+```
+
+### Working with maps
+
+*Coming Soon*
 
 
 # Reference

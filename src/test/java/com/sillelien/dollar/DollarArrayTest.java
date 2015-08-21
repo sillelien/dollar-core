@@ -38,14 +38,14 @@ public class DollarArrayTest {
     @Test
     public void testBasics() {
         assertEquals(list, $list("Neil").$plus($("Dimple")).$plus($("Charlie")));
-        assertEquals(list.remove("Neil"), $list("Dimple").$plus($("Charlie")));
-        assertEquals(list.remove("Dimple"), $list("Neil").$plus($("Charlie")));
-        assertEquals(list.remove("Charlie"), $list("Neil").$plus($("Dimple")));
+        assertEquals(list.$remove($("Neil")), $list("Dimple").$plus($("Charlie")));
+        assertEquals(list.$remove($("Dimple")), $list("Neil").$plus($("Charlie")));
+        assertEquals(list.$remove($("Charlie")), $list("Neil").$plus($("Dimple")));
         Object value = list.toJavaObject();
         assertTrue(value instanceof List);
         assertEquals("[ \"Neil\", \"Dimple\", \"Charlie\" ]", list.toString());
         assertEquals("[Neil, Dimple, Charlie]", value.toString());
-        assertTrue(list.$stream(false).anyMatch((i) -> i.equals("Neil")));
+        assertTrue(list.$stream(false).anyMatch((i) -> i.equalsString("Neil")));
     }
 
 
