@@ -32,12 +32,28 @@
         <kotlin.version>0.8.11</kotlin.version>
         <camel.version>2.14.0</camel.version>
         <httpclient.version>4.3.4</httpclient.version>
-        <jackson.version>2.6.0</jackson.version>
+        <jackson.version>2.6.1</jackson.version>
         <orientdb.version>1.7.6</orientdb.version>
         <maven.version>3.3.3</maven.version>
         <slf4j.version>1.7.12</slf4j.version>
         <buildNumber>0</buildNumber>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <rest-assured.version>2.5.0</rest-assured.version>
+        <findbugs-maven-plugin.version>3.0.1</findbugs-maven-plugin.version>
+        <junit.version>4.12</junit.version>
+        <commons-io.version>2.4</commons-io.version>
+        <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
+        <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+        <pegdown.version>1.4.2</pegdown.version>
+        <stateless4j.version>2.5.0</stateless4j.version>
+        <commons-logging.version>1.2</commons-logging.version>
+        <json.version>20140107</json.version>
+        <annotations.version>13.0</annotations.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <snakeyaml.version>1.15</snakeyaml.version>
+        <bcel.version>2.0.2</bcel.version>
+        <maven-project-info-reports-plugin.version>2.8</maven-project-info-reports-plugin.version>
+        <maven-site-plugin.version>3.4</maven-site-plugin.version>
     </properties>
 
     <description>Lightweight, dynamic programming on the JVM</description>
@@ -79,32 +95,32 @@
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
-            <version>1.2</version>
+            <version>${commons-logging.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.4</version>
+            <version>${commons-io.version}</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20140107</version>
+            <version>${json.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>13.0</version>
+            <version>${annotations.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
+            <version>${commons-lang.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.4</version>
+            <version>${commons-io.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -116,7 +132,7 @@
                     <artifactId>commons-logging</artifactId>
                 </exclusion>
             </exclusions>
-            <version>2.4.1</version>
+            <version>${rest-assured.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -133,12 +149,12 @@
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.15</version>
+            <version>${snakeyaml.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.oxo42</groupId>
             <artifactId>stateless4j</artifactId>
-            <version>2.5.0</version>
+            <version>${stateless4j.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>slf4j-jdk14</artifactId>
@@ -155,19 +171,19 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.pegdown</groupId>
             <artifactId>pegdown</artifactId>
-            <version>1.4.2</version>
+            <version>${pegdown.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -202,7 +218,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>${findbugs-maven-plugin.version}</version>
                     <configuration>
                         <effort>Default</effort>
                         <threshold>High</threshold>
@@ -214,12 +230,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>2.8</version>
+                    <version>${maven-project-info-reports-plugin.version}</version>
                     <dependencies>
                         <dependency>
                             <groupId>com.google.code.findbugs</groupId>
                             <artifactId>bcel</artifactId>
-                            <version>2.0.2</version>
+                            <version>${bcel.version}</version>
                         </dependency>
                         <dependency>
                             <groupId>org.apache.maven.shared</groupId>
@@ -237,7 +253,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.4</version>
+                    <version>${maven-site-plugin.version}</version>
                     <executions>
                         <execution>
                             <id>attach-descriptor</id>
@@ -275,27 +291,18 @@
 
                 <configuration>
                     <excludes>
-                        <param>org.sonatype.aether:aether-util:1.13.1</param>
-                        <param>org.sonatype.aether:aether:1.13.1</param>
-                        <param>commons-logging:commons-logging:1.2</param>
-                        <param>com.fasterxml.jackson.core:jackson-core:2.3.3</param>
-                        <param>com.fasterxml.jackson.core:jackson-databind:2.3.3</param>
-                        <param>com.jayway.restassured:rest-assured:2.3.3</param>
-                        <param>commons-codec:commons-codec:1.8</param>
-                        <param>commons-io:commons-io:2.4</param>
-                        <param>commons-lang:commons-lang:2.6</param>
-                        <param>io.dropwizard.metrics:metrics-core:3.1.0</param>
+                        <param>commons-logging:commons-logging:${commons-logging.version}</param>
+                        <param>com.fasterxml.jackson.core:jackson-core:${jackson.version}</param>
+                        <param>com.fasterxml.jackson.core:jackson-databind:${jackson.version}</param>
+                        <param>com.jayway.restassured:rest-assured:${rest-assured.version}</param>
+                        <param>commons-io:commons-io:${commons-io.version}</param>
+                        <param>commons-lang:commons-lang:${commons-lang.version}</param>
                         <param>com.sillelien:dollar-core:${project.version}</param>
-                        <param>org.apache.commons:commons-lang3:3.3.2</param>
-                        <param>org.apache.httpcomponents:httpasyncclient:4.0.1</param>
-                        <param>org.apache.httpcomponents:httpclient:4.3.4</param>
-                        <param>org.apache.httpcomponents:httpmime:4.3.4</param>
-                        <param>org.apache.maven.wagon:wagon-provider-api:2.4</param>
+                        <param>org.apache.httpcomponents:httpclient:${httpclient.version}</param>
+                        <param>org.apache.httpcomponents:httpmime:${httpclient.version}</param>
                         <param>org.apache.maven:maven-core:${maven.version}</param>
-                        <param>org.codehaus.plexus:plexus-utils:3.0.15</param>
-                        <param>org.json:json:20140107</param>
-                        <param>org.slf4j:slf4j-api:1.7.7</param>
-                        <param>org.sonatype.sisu:sisu-inject-plexus:2.3.0</param>
+                        <param>org.json:json:${json.version}</param>
+                        <param>org.slf4j:slf4j-api:${slf4j.version}</param>
                     </excludes>
                     <blacklist>
                         <param>agpl-3.0</param>
@@ -325,12 +332,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
+                <version>${maven-resources-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
+                <version>${maven-jar-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -453,7 +460,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>${findbugs-maven-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.rat</groupId>
