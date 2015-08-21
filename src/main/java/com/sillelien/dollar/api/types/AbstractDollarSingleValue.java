@@ -31,13 +31,18 @@ import java.util.Collections;
 import java.util.stream.Stream;
 
 public abstract class AbstractDollarSingleValue<T> extends AbstractDollar implements var {
-
     @NotNull
     final T value;
 
     AbstractDollarSingleValue(@NotNull ImmutableList<Throwable> errors, @NotNull T value) {
         super(errors);
         this.value = value;
+    }
+
+    @NotNull
+    @Override
+    public var $containsKey(@NotNull var value) {
+        return DollarStatic.$(false);
     }
 
     @NotNull @Override public var $get(@NotNull var rhs) {

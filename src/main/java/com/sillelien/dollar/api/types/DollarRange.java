@@ -264,6 +264,12 @@ public class DollarRange extends AbstractDollar {
                 range.upperEndpoint().compareTo(DollarStatic.$(value)) >= 0);
     }
 
+    @NotNull
+    @Override
+    public var $containsKey(@NotNull var value) {
+        return DollarFactory.failure(ErrorType.INVALID_RANGE_OPERATION);
+    }
+
     @NotNull @Override
     public var $has(@NotNull var key) {
         return DollarStatic.$(false);

@@ -313,6 +313,12 @@ public class DollarURI extends AbstractDollar {
 
     @NotNull
     @Override
+    public var $containsKey(@NotNull var value) {
+        return DollarStatic.$(false);
+    }
+
+    @NotNull
+    @Override
     public var $has(@NotNull var key) {
         ensureRunning();
         return DollarStatic.$(!handler.get(key).isVoid());
