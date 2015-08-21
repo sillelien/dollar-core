@@ -67,4 +67,8 @@ public interface URIHandler {
     default void unpause() {}
 
     default void unsubscribe(String subId) {}
+
+    default var insert(var $) {
+        return $void();
+    }
 }

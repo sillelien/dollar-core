@@ -333,6 +333,12 @@ public class DollarURI extends AbstractDollar {
 
     @NotNull
     @Override
+    public var $insert(@NotNull var value, int position) {
+        return handler.insert(DollarStatic.$(value));
+    }
+
+    @NotNull
+    @Override
     public var $removeByKey(@NotNull String key) {
         ensureRunning();
         return handler.remove(DollarStatic.$(key));

@@ -127,7 +127,23 @@ Dollar supports the basic list operations. To get a member at a position use `.$
     
 ```
 
-To add to the list use either `$append()` to add at the end or `$prepend()` to insert at the beginning.
+To add to the list use either `$append()` to add at the end,  `$prepend()` to insert at the beginning or `$insert()` to insert at any position.
+
+```java
+
+    var list= $list("red", "blue");
+
+    var insertList= list.$insert($("green"),1);
+    assert insertList.toString().equals("[ \"red\", \"green\", \"blue\" ]");
+
+    var appendList= list.$append($("green"));
+    assert appendList.toString().equals("[ \"red\", \"blue\", \"green\" ]");
+
+    var prependList= list.$prepend($("green"));
+    assert prependList.toString().equals("[ \"green\", \"red\", \"blue\" ]");
+
+
+```
  
 
 # Reference

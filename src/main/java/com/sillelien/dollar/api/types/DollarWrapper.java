@@ -185,11 +185,11 @@ public class DollarWrapper implements var {
     @Override
     public var $pop() {
         return tracer.trace(DollarVoid.INSTANCE,
-                            monitor.run("pop",
-                                        "dollar.persist.temp.pop",
-                                        "Popping value from ",
-                                        () -> getValue().$pop()),
-                            StateTracer.Operations.POP);
+                monitor.run("pop",
+                        "dollar.persist.temp.pop",
+                        "Popping value from ",
+                        () -> getValue().$pop()),
+                StateTracer.Operations.POP);
     }
 
     @Override
@@ -457,11 +457,11 @@ public class DollarWrapper implements var {
     @Override
     public var $pipe(@NotNull String label, @NotNull Pipeable pipe) {
         return tracer.trace(this,
-                            monitor.run("$pipe",
-                                        "dollar.pipe.pipeable." + sanitize(label), "",
-                                        () -> getValue().$pipe(label, pipe)),
-                            StateTracer.Operations.EVAL, label,
-                            pipe.getClass().getName());
+                monitor.run("$pipe",
+                        "dollar.pipe.pipeable." + sanitize(label), "",
+                        () -> getValue().$pipe(label, pipe)),
+                StateTracer.Operations.EVAL, label,
+                pipe.getClass().getName());
     }
 
     @NotNull
@@ -531,6 +531,13 @@ public class DollarWrapper implements var {
     @NotNull @Override public var $prepend(@NotNull var value) {
         return getValue().$prepend(value);
     }
+
+    @NotNull
+    @Override
+    public var $insert(@NotNull var value, int position) {
+        return getValue().$insert(value, position);
+    }
+
 
     @NotNull
     @Override

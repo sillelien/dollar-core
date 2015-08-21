@@ -262,7 +262,7 @@ public class DollarRange extends AbstractDollar {
     @Override
     public var $containsValue(@NotNull var value) {
         return DollarStatic.$(range.lowerEndpoint().compareTo(DollarStatic.$(value)) <= 0 &&
-                              range.upperEndpoint().compareTo(DollarStatic.$(value)) >= 0);
+                range.upperEndpoint().compareTo(DollarStatic.$(value)) >= 0);
     }
 
     @NotNull @Override
@@ -277,7 +277,13 @@ public class DollarRange extends AbstractDollar {
     }
 
     @NotNull @Override public var $prepend(@NotNull var value) {
-        return value.$append(value);
+        return $($list()).$prepend(value);
+    }
+
+    @NotNull
+    @Override
+    public var $insert(@NotNull var value, int position) {
+        return $($list()).$insert(value, position);
     }
 
     @NotNull

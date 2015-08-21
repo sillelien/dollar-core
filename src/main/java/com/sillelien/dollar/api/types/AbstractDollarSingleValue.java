@@ -86,6 +86,14 @@ public abstract class AbstractDollarSingleValue<T> extends AbstractDollar implem
     }
 
     @NotNull
+    @Override
+    public var $insert(@NotNull var value, int position) {
+        return DollarFactory.failure(ErrorType.INVALID_SINGLE_VALUE_OPERATION,
+                getClass().toString(), false);
+    }
+
+
+    @NotNull
     public var $removeByKey(@NotNull String value) {
         return DollarFactory.failure(ErrorType.INVALID_SINGLE_VALUE_OPERATION,
                                      getClass().toString(), false);
