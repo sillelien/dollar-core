@@ -34,10 +34,8 @@ public class DocTest {
 
     @Test
     public void test() throws IOException {
-        PegDownProcessor pegDownProcessor = new PegDownProcessor(Extensions.FENCED_CODE_BLOCKS);
         PegDownProcessor processor = new PegDownProcessor(Extensions.FENCED_CODE_BLOCKS);
         RootNode rootNode = processor.parseMarkdown(FileUtils.readFileToString(new File("README.tmpl.md")).toCharArray());
         rootNode.accept(new DocTestingVisitor());
-
     }
 }
