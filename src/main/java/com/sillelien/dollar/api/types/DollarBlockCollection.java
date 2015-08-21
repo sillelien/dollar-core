@@ -377,6 +377,14 @@ public class DollarBlockCollection implements var {
         return this.getValue().$containsValue(value);
     }
 
+    @NotNull
+    @Override
+    @Guarded(ChainGuard.class)
+    @Guarded(NotNullParametersGuard.class)
+    public var $containsKey(@NotNull var value) {
+        return this.getValue().$containsKey(value);
+    }
+
     @Override @NotNull @Guarded(NotNullParametersGuard.class) public var $has(@NotNull var key) {
         return getValue().$has(key);
     }

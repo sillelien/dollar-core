@@ -511,6 +511,12 @@ public class DollarWrapper implements var {
 
     @NotNull
     @Override
+    public var $containsKey(@NotNull var value) {
+        return getValue().$containsKey(value);
+    }
+
+    @NotNull
+    @Override
     public var $has(@NotNull var key) {
         return DollarStatic.$(getValue().$has(key));
     }

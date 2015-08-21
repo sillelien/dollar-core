@@ -184,6 +184,12 @@ public class DollarNull extends AbstractDollar implements var {
         return DollarStatic.$(false);
     }
 
+    @NotNull
+    @Override
+    public var $containsKey(@NotNull var value) {
+        return DollarStatic.$(false);
+    }
+
     @NotNull @Override
     public var $has(@NotNull var key) {
         return DollarStatic.$(false);

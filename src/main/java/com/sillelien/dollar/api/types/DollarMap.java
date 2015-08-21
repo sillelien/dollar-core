@@ -346,7 +346,13 @@ public class DollarMap extends AbstractDollar implements var {
     }
 
     @NotNull public var $containsValue(@NotNull var value) {
-        return DollarStatic.$(false);
+        return DollarStatic.$(map.containsValue(value));
+    }
+
+    @NotNull
+    @Override
+    public var $containsKey(@NotNull var value) {
+        return DollarStatic.$(map.containsKey(value));
     }
 
     @NotNull @Override

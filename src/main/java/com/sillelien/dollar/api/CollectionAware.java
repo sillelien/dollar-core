@@ -70,6 +70,53 @@ public interface CollectionAware {
     @NotNull
     @Guarded(NotNullParametersGuard.class) var $containsValue(@NotNull var value);
 
+    @Guarded(ChainGuard.class)
+    @NotNull
+    @Guarded(NotNullParametersGuard.class)
+    default var $containsValue(@NotNull Object value) {
+        return $containsValue(DollarStatic.$(value));
+    }
+
+    @Guarded(ChainGuard.class)
+    @NotNull
+    @Guarded(NotNullParametersGuard.class)
+    default boolean containsValue(@NotNull Object value) {
+        return $containsValue(DollarStatic.$(value)).isTrue();
+    }
+
+    @Guarded(ChainGuard.class)
+    @NotNull
+    @Guarded(NotNullParametersGuard.class)
+    default boolean containsValue(@NotNull var value) {
+        return $containsValue(value).isTrue();
+    }
+
+
+    @Guarded(ChainGuard.class)
+    @NotNull
+    @Guarded(NotNullParametersGuard.class)
+    var $containsKey(@NotNull var value);
+
+    @Guarded(ChainGuard.class)
+    @NotNull
+    @Guarded(NotNullParametersGuard.class)
+    default var $containsKey(@NotNull Object value) {
+        return $containsKey(DollarStatic.$(value));
+    }
+
+    @Guarded(ChainGuard.class)
+    @NotNull
+    @Guarded(NotNullParametersGuard.class)
+    default boolean containsKey(@NotNull Object value) {
+        return $containsKey(DollarStatic.$(value)).isTrue();
+    }
+
+    @Guarded(ChainGuard.class)
+    @NotNull
+    @Guarded(NotNullParametersGuard.class)
+    default boolean containsKey(@NotNull var value) {
+        return $containsKey(value).isTrue();
+    }
     /**
      * Convenience method for the Java API. Returns true if this object has the supplied key.
      *

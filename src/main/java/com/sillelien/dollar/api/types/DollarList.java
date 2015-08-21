@@ -347,6 +347,12 @@ public class DollarList extends AbstractDollar {
         return DollarStatic.$(list.contains(fix(value, false)));
     }
 
+    @NotNull
+    @Override
+    public var $containsKey(@NotNull var value) {
+        return DollarStatic.$(list.contains(fix(value, false)));
+    }
+
     @NotNull @Override
     public var $has(@NotNull var key) {
         return $containsValue(key);
