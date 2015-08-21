@@ -66,7 +66,7 @@ What we've done here is create an object of type `var`. `var` objects have an un
 
     var myObject= $("Hello World");
     myObject.$append($("Goodbye"));
-    assert myObject.toString().equals("Hello World");
+    assert myObject.equalsString("Hello World");
     
 ```
 
@@ -76,7 +76,7 @@ The original object is unchanged by the `$append()` call, so instead we do this:
 
     var myObject= $("Hello World");
     var newObject= myObject.$append($("Goodbye"));
-    assert ! newObject.toString().equals("Hello World");
+    assert ! newObject.equalsString("Hello World");
     
 ```
 
@@ -100,7 +100,7 @@ If we place Pairs (Pairs are defined as simply a Map with a single entry) togeth
                     $("one",1),
                     $("two",2)
             );
-   assert map.toString().equals("{\"one\":1,\"two\":2}");    
+   assert map.equalsString("{\"one\":1,\"two\":2}");
            
 ```  
 
@@ -112,20 +112,49 @@ For shorthand we can also overload the $() method:
                     $("one",1),
                     $("two",2)
             );
-   assert map.toString().equals("{\"one\":1,\"two\":2}");  
+   assert map.equalsString("{\"one\":1,\"two\":2}");
              
 ```  
 
 ## Working with Lists
+
+### Querying a list
 
 Dollar supports the basic list operations. To get a member at a position use `.$()` or `.$get()`, for example:
 
 ```java
 
     var list= $list(0,1,2,3,4);
+    assert list.$(3).I() == 3;
     assert list.$(3).toInteger() == 3;
     
 ```
+
+To see if a list contains a value use `$contains()`
+
+```java
+
+    var list= $list(0,1,2,3,4);
+    assert list.$contains($(3)).isTrue();
+    assert list.$contains(3).isTrue();
+    assert list.contains($(3));
+    assert list.contains(3);
+
+```
+
+To find the size of a list use `$size()` or `size()`
+
+```java
+    var list= $list(0,1,2,3,4);
+    assert list.$size().toInteger() == 5;
+    assert list.size() == 5;
+
+```
+
+
+### Modifying a list
+
+
 
 To add to the list use either `$append()` to add at the end,  `$prepend()` to insert at the beginning or `$insert()` to insert at any position.
 
@@ -144,7 +173,9 @@ To add to the list use either `$append()` to add at the end,  `$prepend()` to in
 
 
 ```
- 
+
+
+
 
 # Reference
 

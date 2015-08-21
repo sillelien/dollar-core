@@ -23,7 +23,7 @@ import com.sillelien.dollar.api.guard.NotNullParametersGuard;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public interface CollectionLike {
+public interface CollectionAware {
 
     @NotNull
     @Guarded(ChainGuard.class)
@@ -43,6 +43,27 @@ public interface CollectionLike {
     @Guarded(NotNullParametersGuard.class)
     default var $contains(@NotNull var value) {
         return $containsValue(value);
+    }
+
+    @NotNull
+    @Guarded(ChainGuard.class)
+    @Guarded(NotNullParametersGuard.class)
+    default var $contains(@NotNull Object value) {
+        return $containsValue($(value));
+    }
+
+    @NotNull
+    @Guarded(ChainGuard.class)
+    @Guarded(NotNullParametersGuard.class)
+    default boolean contains(@NotNull Object value) {
+        return $containsValue($(value)).isTrue();
+    }
+
+    @NotNull
+    @Guarded(ChainGuard.class)
+    @Guarded(NotNullParametersGuard.class)
+    default boolean contains(@NotNull var value) {
+        return $containsValue(value).isTrue();
     }
 
     @Guarded(ChainGuard.class)

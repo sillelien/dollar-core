@@ -28,8 +28,6 @@ import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -178,8 +176,8 @@ public class DollarVoid extends AbstractDollar implements var {
     }
 
     @NotNull @Override
-    public Map<String, Object> toMap() {
-        return Collections.emptyMap();
+    public ImmutableMap toMap() {
+        return ImmutableMap.emptyMap();
     }
 
     @NotNull

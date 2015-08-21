@@ -28,7 +28,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class DollarRange extends AbstractDollar {
@@ -241,7 +240,7 @@ public class DollarRange extends AbstractDollar {
     }
 
     @NotNull @Override
-    public Map<String, Object> toMap() {
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
         return null;
     }
 

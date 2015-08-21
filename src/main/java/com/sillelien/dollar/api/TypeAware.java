@@ -24,7 +24,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.InputStream;
-import java.util.Map;
 
 public interface TypeAware {
 
@@ -331,7 +330,8 @@ public interface TypeAware {
      * @return a nested Map or null if the operation doesn't make sense (i.e. on a single valued object or list)
      */
     @NotNull
-    @Guarded(NotNullGuard.class) <K, V> Map<K, V> toMap();
+    @Guarded(NotNullGuard.class)
+    <K extends Comparable<K>, V> ImmutableMap<K, V> toMap();
 
     /**
      * Convert this object into a stream.

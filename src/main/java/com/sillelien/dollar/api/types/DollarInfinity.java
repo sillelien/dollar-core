@@ -28,7 +28,6 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Map;
 
 import static com.sillelien.dollar.api.DollarStatic.$void;
 
@@ -191,8 +190,8 @@ public final class DollarInfinity extends AbstractDollar implements var {
     }
 
     @NotNull @Override
-    public Map<String, Object> toMap() {
-        return Collections.singletonMap("value", toNumber());
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+        return ImmutableMap.copyOf(Collections.singletonMap((K) "value", (V) toNumber()));
     }
 
     @NotNull

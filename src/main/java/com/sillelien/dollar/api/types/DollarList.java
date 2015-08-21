@@ -265,8 +265,8 @@ public class DollarList extends AbstractDollar {
     }
 
     @NotNull @Override
-    public Map<String, Object> toMap() {
-        return Collections.singletonMap("value", $list());
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+        return ImmutableMap.copyOf(Collections.singletonMap((K) "value", (V) $list()));
     }
 
     @NotNull

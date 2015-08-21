@@ -29,7 +29,6 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -254,7 +253,12 @@ public class DollarBlockCollection implements var {
         return ImmutableList.of(getValue().toJavaObject());
     }
 
-    @NotNull @Override @Guarded(NotNullGuard.class) public Map<?, ?> toMap() {return getValue().toMap();}
+    @NotNull
+    @Override
+    @Guarded(NotNullGuard.class)
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+        return getValue().toMap();
+    }
 
     @Override @Guarded(NotNullGuard.class) @NotNull public InputStream toStream() {return getValue().toStream();}
 

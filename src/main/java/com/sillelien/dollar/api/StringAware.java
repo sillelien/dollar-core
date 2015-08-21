@@ -16,4 +16,5 @@ public interface StringAware {
         return DollarFactory.fromStringValue(toString().trim());
     }
 
+
 }

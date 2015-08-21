@@ -46,6 +46,10 @@ import java.util.function.Function;
         return new ImmutableMap<>();
     }
 
+    public static <A extends Comparable<A>, B> ImmutableMap<A, B> emptyMap() {
+        return new ImmutableMap<>();
+    }
+
     public V compute(K key, @NotNull BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
         return map.compute(key, remappingFunction);
     }
@@ -106,8 +110,6 @@ import java.util.function.Function;
     public void forEach(@NotNull Consumer<? super Map.Entry<K, V>> action) {
         map.entrySet().forEach(action);
     }
-
-
 
     @Override
     public Spliterator<Map.Entry<K, V>> spliterator() {

@@ -28,7 +28,6 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -323,7 +322,7 @@ public class DollarWrapper implements var {
     }
 
     @NotNull @Override
-    public Map<?, ?> toMap() {
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
         return getValue().toMap();
     }
 

@@ -28,7 +28,6 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Map;
 import java.util.stream.Stream;
 
 public abstract class AbstractDollarSingleValue<T> extends AbstractDollar implements var {
@@ -160,8 +159,9 @@ public abstract class AbstractDollarSingleValue<T> extends AbstractDollar implem
         return ImmutableList.of(value);
     }
 
-    @NotNull public Map<Object, Object> toMap() {
-        return Collections.singletonMap("value", value);
+    @NotNull
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+        return ImmutableMap.copyOf(Collections.singletonMap((K) "value", (V) value));
     }
 
     @NotNull

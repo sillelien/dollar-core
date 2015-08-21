@@ -184,6 +184,17 @@ public interface NumericAware {
     @Nullable Double toDouble();
 
     /**
+     * toDouble double.
+     *
+     * @return the double
+     */
+    @Nullable
+    default Double D() {
+        return toDouble();
+    }
+
+
+    /**
      * Is positive.
      *
      * @return the boolean
@@ -199,6 +210,16 @@ public interface NumericAware {
      */
     @NotNull Integer toInteger();
 
+
+    /**
+     * toInteger integer.
+     *
+     * @return the integer
+     */
+    @NotNull
+    default Integer I() {
+        return toInteger();
+    }
     /**
      * toLong long.
      *
