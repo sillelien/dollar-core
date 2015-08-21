@@ -25,7 +25,7 @@ And the maven co-ordinates are:
     <dependency>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.2-119</version>
+        <version>0.2-123</version>
     </dependency>
     
 ```
@@ -137,7 +137,23 @@ Dollar supports the basic list operations. To get a member at a position use `.$
     
 ```
 
-To add to the list use either `$append()` to add at the end or `$prepend()` to insert at the beginning.
+To add to the list use either `$append()` to add at the end,  `$prepend()` to insert at the beginning or `$insert()` to insert at any position.
+
+```java
+
+    var list= $list("red", "blue");
+
+    var insertList= list.$insert($("green"),1);
+    assert insertList.toString().equals("[ \"red\", \"green\", \"blue\" ]");
+
+    var appendList= list.$append($("green"));
+    assert appendList.toString().equals("[ \"red\", \"blue\", \"green\" ]");
+
+    var prependList= list.$prepend($("green"));
+    assert prependList.toString().equals("[ \"green\", \"red\", \"blue\" ]");
+
+
+```
  
 
 # Reference
@@ -556,7 +572,9 @@ Dependencies: [![Dependency Status](https://www.versioneye.com/user/projects/55b
 This is an open source project, which means that we are giving our time to you for free. However like yourselves, we do have bills to pay. Please consider visiting some of these excellent services, they are not junk we can assure you, all services we would or do use ourselves.
 
 [Really Excellent Dedicated Servers from Limestone Networks](http://www.limestonenetworks.com/?utm_campaign=rwreferrer&utm_medium=affiliate&utm_source=RFR16798) - fantastic service, great price.
+
 [Low Cost and High Quality Cloud Hosting from Digital Ocean](https://www.digitalocean.com/?refcode=7b4639fc8194) - truly awesome service.
+
 [Excellent Single Page Website Creation and Hosting from Strikingly](http://strk.ly/?uc=kDaE2vgzc3F) - http://sillelien.com uses this.
 
 (c) 2015 Sillelien all rights reserved. Please see [LICENSE](https://raw.githubusercontent.com/sillelien/dollar-core/master/LICENSE) for license details of this project. Please visit http://sillelien.com for help and commercial support or raise issues on [GitHub](https://github.com/sillelien/dollar-core/issues).
