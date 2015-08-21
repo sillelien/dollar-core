@@ -26,12 +26,14 @@ import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public interface var extends ErrorAware, TypeAware, PipeAware, Serializable, StringAware,
                              VarInternal, NumericAware, BooleanAware, ControlFlowAware,
                              URIAware, MetadataAware, Comparable<var>, LogAware, StateAware<var>,
-                             CollectionLike {
+        CollectionAware {
 
 
     /**
@@ -210,4 +212,32 @@ public interface var extends ErrorAware, TypeAware, PipeAware, Serializable, Str
         }
     }
 
+
+    default boolean equalsString(String s) {
+        return toString().equals(s);
+    }
+
+
+    default boolean eq(String s) {
+        return toString().equals(s);
+    }
+
+    default boolean eq(Integer i) {
+        return toInteger().equals(i);
+    }
+
+    default boolean eq(Double d) {
+        return toInteger().equals(d);
+    }
+
+    default boolean eq(List l) {
+        return toList().mutable().equals(l);
+    }
+
+    default boolean eq(Map m) {
+        return toMap().equals(m);
+    }
+
+
 }
+

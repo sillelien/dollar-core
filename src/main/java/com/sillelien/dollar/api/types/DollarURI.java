@@ -289,8 +289,8 @@ public class DollarURI extends AbstractDollar {
 
     @NotNull
     @Override
-    public Map<String, Object> toMap() {
-        return Collections.emptyMap();
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+        return ImmutableMap.copyOf(Collections.<K, V>emptyMap());
     }
 
     @NotNull

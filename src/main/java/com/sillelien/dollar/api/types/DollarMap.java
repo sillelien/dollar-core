@@ -32,6 +32,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.sillelien.dollar.api.collections.ImmutableMap.copyOf;
+
 
 public class DollarMap extends AbstractDollar implements var {
 
@@ -218,8 +220,9 @@ public class DollarMap extends AbstractDollar implements var {
         return new JSONObject(varMapToMap());
     }
 
-    @NotNull private Map<Object, Object> varMapToMap() {
-        Map<Object, Object> result = new LinkedHashMap<>();
+    @NotNull
+    private <K extends Comparable<K>, V> Map<K, V> varMapToMap() {
+        Map<K, V> result = new LinkedHashMap<>();
         for (Map.Entry<var, var> entry : $map().entrySet()) {
             result.put(entry.getKey().toJavaObject(), entry.getValue().toJavaObject());
         }
@@ -274,7 +277,7 @@ public class DollarMap extends AbstractDollar implements var {
         for (Map.Entry<var, var> entry : map.entrySet()) {
             result.put(entry.getKey(), entry.getValue()._fix(false));
         }
-        return ImmutableMap.copyOf(result);
+        return copyOf(result);
     }
 
     @NotNull
@@ -302,9 +305,10 @@ public class DollarMap extends AbstractDollar implements var {
     @Override
     public ImmutableList<String> strings() {
         List<String> values = new ArrayList<>();
-        Map<Object, Object> map = toMap();
-        for (Map.Entry<Object, Object> entry : map.entrySet()) {
-            values.add(entry.getKey().toString());
+        ImmutableMap<String, Object> map = toMap();
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            assert entry.getKey() instanceof String;
+            values.add(entry.getKey());
             values.add(entry.getValue().toString());
         }
         return ImmutableList.copyOf(values);
@@ -319,8 +323,8 @@ public class DollarMap extends AbstractDollar implements var {
     }
 
     @NotNull @Override
-    public Map<Object, Object> toMap() {
-        return varMapToMap();
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+        return copyOf((Map<K, V>) varMapToMap());
     }
 
     @NotNull

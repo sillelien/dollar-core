@@ -26,7 +26,6 @@ import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 
 import java.util.Collections;
-import java.util.Map;
 import java.util.Objects;
 
 public class DollarNull extends AbstractDollar implements var {
@@ -166,8 +165,8 @@ public class DollarNull extends AbstractDollar implements var {
     }
 
     @NotNull @Override
-    public Map<String, Object> toMap() {
-        return Collections.singletonMap("value", null);
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+        return ImmutableMap.copyOf(Collections.singletonMap((K) "value", (V) null));
     }
 
     @NotNull
