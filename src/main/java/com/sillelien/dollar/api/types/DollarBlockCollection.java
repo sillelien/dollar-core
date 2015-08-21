@@ -385,6 +385,12 @@ public class DollarBlockCollection implements var {
         return getValue().$prepend(value);
     }
 
+    @NotNull
+    @Override
+    public var $insert(@NotNull var value, int position) {
+        return getValue().$insert(value, position);
+    }
+
     @Override @NotNull public var $removeByKey(@NotNull String key) {return getValue().$removeByKey(key);}
 
     @Override @NotNull public var $set(@NotNull String key, @Nullable Object value) {

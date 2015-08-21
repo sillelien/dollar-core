@@ -337,7 +337,7 @@ public class DollarMap extends AbstractDollar implements var {
 
     @NotNull @Override public var $append(@NotNull var value) {
         final LinkedHashMap<var, var> newMap = new LinkedHashMap<>($map().mutable());
-        newMap.put(value.getPairKey(), value.getPairValue());
+        newMap.put(value.$pairKey(), value.$pairValue());
         return DollarFactory.fromValue(newMap, errors(), value.errors());
     }
 
@@ -357,7 +357,23 @@ public class DollarMap extends AbstractDollar implements var {
 
     @NotNull @Override public var $prepend(@NotNull var value) {
         final LinkedHashMap<var, var> newMap = new LinkedHashMap<>();
-        newMap.put(value.getPairKey(), value.getPairValue());
+        newMap.put(value.$pairKey(), value.$pairValue());
+        newMap.putAll($map().mutable());
+        return DollarFactory.fromValue(newMap, errors(), value.errors());
+    }
+
+    @NotNull
+    @Override
+    public var $insert(@NotNull var value, int position) {
+        final LinkedHashMap<var, var> newMap = new LinkedHashMap<>();
+        int count = 0;
+        for (Map.Entry<var, var> entry : newMap.entrySet()) {
+            if (count == position) {
+                newMap.put(value.$pairKey(), value.$pairValue());
+            }
+            newMap.put(entry.getKey(), entry.getValue());
+
+        }
         newMap.putAll($map().mutable());
         return DollarFactory.fromValue(newMap, errors(), value.errors());
     }

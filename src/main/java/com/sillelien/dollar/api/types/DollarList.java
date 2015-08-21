@@ -360,14 +360,30 @@ public class DollarList extends AbstractDollar {
     @Guarded(NotNullGuard.class)
     @NotNull @Override public var $prepend(@NotNull var value) {
         final ArrayList newList = new ArrayList();
-        newList.addAll($list().mutable());
+
         if (value.list()) {
             newList.addAll(value.$list().mutable());
         } else {
             newList.add(value);
         }
+        newList.addAll($list().mutable());
         return DollarFactory.fromValue(newList, errors(), value.errors());
     }
+
+    @Guarded(NotNullGuard.class)
+    @NotNull
+    @Override
+    public var $insert(@NotNull var value, int position) {
+        final ArrayList newList = new ArrayList();
+        newList.addAll($list().mutable());
+        if (value.list()) {
+            newList.addAll(position, value.$list().mutable());
+        } else {
+            newList.add(position, value);
+        }
+        return DollarFactory.fromValue(newList, errors(), value.errors());
+    }
+
 
     @NotNull
     @Override

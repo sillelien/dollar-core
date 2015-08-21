@@ -226,6 +226,13 @@ public final class DollarInfinity extends AbstractDollar implements var {
 
     @NotNull
     @Override
+    public var $insert(@NotNull var value, int position) {
+        return this;
+    }
+
+
+    @NotNull
+    @Override
     public var $removeByKey(@NotNull String value) {
         return this;
     }

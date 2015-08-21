@@ -87,6 +87,10 @@ public interface CollectionLike {
     @NotNull
     @Guarded(NotNullGuard.class) var $prepend(@NotNull var value);
 
+    @NotNull
+    @Guarded(NotNullGuard.class)
+    var $insert(@NotNull var value, int position);
+
     /**
      * Remove by key. (Map like data only).
      *
