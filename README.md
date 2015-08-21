@@ -25,7 +25,7 @@ And the maven co-ordinates are:
     <dependency>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.2-129</version>
+        <version>0.2-132</version>
     </dependency>
     
 ```
@@ -175,7 +175,7 @@ And to see if it's empty:
 
 
 
-To add to the list use either `$append()` to add at the end,  `$prepend()` to insert at the beginning or `$insert()` to insert at any position. *But remember `var` objects are immutable, so you must use the result of the method*.
+To add to the list use either `$append()` to add at the end,  `$prepend()` to insert at the beginning or `$insert()` to insert at any position. **But remember `var` objects are immutable, so you must use the result of the method**.
 
 ```java
 
@@ -206,9 +206,58 @@ Items can be removed using `remove()` or `$remove()`
 
 ```
 
-### Working with maps
+## Working with maps
 
-*Coming Soon*
+To retrieve a value from a map, just use the `$()` method with a single value. If you prefer a more verbose syntax then just use `$get()` instead.
+
+```java
+
+    var map= $(
+                    $("name", "Neil"),
+                    $("address",
+                            $("street_number", 343),
+                            $("town", "Brighton")
+                    )
+             );
+
+     assert map.$("name").equalsString("Neil");
+     assert map.$("address").$("town").equalsString("Brighton");
+
+
+```
+
+To find out if the map has a key value then use `$containsKey()` or `containsKey()`..
+
+```java
+    var map= $(
+                    $("name", "Neil"),
+                    $("address",
+                            $("street_number", 343),
+                            $("town", "Brighton")
+                    )
+             );
+
+    assert map.$containsKey("name").isTrue();
+    assert map.containsKey("name");
+
+```
+
+Naturally you can also use the `$containsValue()` and `containsValue()` methods.
+
+```java
+    var map= $(
+                    $("name", "Neil"),
+                    $("address",
+                            $("street_number", 343),
+                            $("town", "Brighton")
+                    )
+             );
+
+    assert map.$containsValue("Neil").isTrue();
+    assert map.containsValue("Neil");
+
+```
+
 
 
 # Reference
