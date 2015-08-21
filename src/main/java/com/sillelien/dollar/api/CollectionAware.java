@@ -93,14 +93,27 @@ public interface CollectionAware {
     @Guarded(NotNullParametersGuard.class) var $has(@NotNull var key);
 
     /**
+     * Returns a boolean  which is true if this is empty.
+     *
+     * @return true if it is empty.
+     */
+    @NotNull
+    @Guarded(ChainGuard.class)
+    default boolean isEmpty() {
+        return size() == 0;
+    }
+
+    /**
      * Returns a boolean var which is true if this is empty.
      *
      * @return a true var if it is empty.
      */
     @NotNull
-    @Guarded(ChainGuard.class) default var $isEmpty() {
+    @Guarded(ChainGuard.class)
+    default var $isEmpty() {
         return DollarStatic.$($size().toInteger() == 0);
     }
+
 
     @NotNull
     @Guarded(ChainGuard.class) var $size();
@@ -145,9 +158,10 @@ public interface CollectionAware {
      *
      * @return a new object with the value removed.
      */
-    @NotNull
-    @Guarded(ChainGuard.class) default var remove(Object valueToRemove) {
-        return $remove(DollarStatic.$(valueToRemove));
+    @Nullable
+    @Guarded(ChainGuard.class)
+    default <R> R remove(Object valueToRemove) {
+        return $remove(DollarStatic.$(valueToRemove)).toJavaObject();
     }
 
     /**
