@@ -26,7 +26,7 @@ And this dependency:
     <dependency>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.2-147</version>
+        <version>0.2-150</version>
     </dependency>
     
 ```
@@ -227,7 +227,7 @@ To retrieve a value from a map, just use the `$()` method with a single value. I
 
 ```
 
-To find out if the map has a key value then use `$containsKey()` or `containsKey()`..
+To find out if the map has a key value then use `$has()`, `$containsKey()` or `containsKey()`..
 
 ```java
     var map= $(
@@ -240,6 +240,7 @@ To find out if the map has a key value then use `$containsKey()` or `containsKey
 
     assert map.$containsKey("name").isTrue();
     assert map.containsKey("name");
+    assert map.$has("name").isTrue();
 
 ```
 
@@ -259,6 +260,48 @@ Naturally you can also use the `$containsValue()` and `containsValue()` methods.
 
 ```
 
+
+### Modifying a map
+
+To add to the map you can use the `$(key,value)` or `$set()` methods.
+
+```java
+    var map= $(
+                    $("name", "Neil"),
+                    $("address",
+                            $("street_number", 343),
+                            $("town", "Brighton")
+                    )
+             );
+
+    var newMap= map.$("gender","male");
+    
+    assert newMap.$containsKey("gender").isTrue();
+    assert newMap.containsKey("gender");
+    assert newMap.$("gender").equalsString("male");
+
+```
+
+
+
+Items can be removed using `remove()` or `$remove()`
+
+```java
+
+    var map= $(
+                    $("name", "Neil"),
+                    $("address",
+                            $("street_number", 343),
+                            $("town", "Brighton")
+                    )
+             );
+
+    var newMap= map.$remove("name");
+    assert newMap.$containsValue("Neil").isFalse();
+    assert ! newMap.containsKey("name");
+
+
+```
 
 
 # Reference
@@ -636,9 +679,10 @@ This is an open source project, which means that we are giving our time to you f
 
 [Excellent Single Page Website Creation and Hosting from Strikingly](http://strk.ly/?uc=kDaE2vgzc3F) - http://sillelien.com uses this.
 
+#Copyright and License
+
 (c) 2015 Sillelien all rights reserved. Please see [LICENSE](https://raw.githubusercontent.com/sillelien/dollar-core/master/LICENSE) for license details of this project. Please visit http://sillelien.com for help and commercial support or raise issues on [GitHub](https://github.com/sillelien/dollar-core/issues).
 
-
 <div width="100%" align="right">
-<img src='https://da8lb468m8h1w.cloudfront.net/v2/cpanel/8398500-121258714_3-s1-v1.png?palette=1' >
+<img src='https://da8lb468m8h1w.cloudfront.net/v2/cpanel/8398500-121258714_5-s1-v1.png?palette=1' >
 </div>
