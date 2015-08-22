@@ -26,7 +26,7 @@ And this dependency:
     <dependency>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.2-150</version>
+        <version>0.2-153</version>
     </dependency>
     
 ```
@@ -171,6 +171,19 @@ And to see if it's empty:
 
 ```
 
+### Iteration and Streams
+
+
+
+```java
+
+    var list= DollarStatic.$list(0,1,2,3,4);
+    java.util.concurrent.atomic.AtomicInteger count= new java.util.concurrent.atomic.AtomicInteger();
+    list.$each((e)->{count.incrementAndGet();return e[0];});
+    assert count.intValue() == 5;
+
+```
+
 
 ### Modifying a list
 
@@ -206,6 +219,18 @@ Items can be removed using `remove()` or `$remove()`
 
 
 ```
+
+Lists can be converted to maps:
+
+```java
+
+    var list= $list("red", "green", "blue");
+    assert list.$map().$("0").equalsString("red");
+    assert list.toVarMap().get($(0)).equals("red");
+    
+
+```
+
 
 ## Working with maps
 
