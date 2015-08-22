@@ -2,8 +2,9 @@
 
 #The Dollar Core API [![Alpha](https://img.shields.io/badge/Status-Alpha-yellowgreen.svg?style=flat)](http://github.com/sillelien/dollar-core)
 
+Dollar helps you write dynamic JavaScript-like code from the safety of Java. It provides a new type `var` to use in your Java coding. `var` acts much in the same way as a JavaScript type, i.e. it is highly dynamic. There is a lot to the Dollar framework, of which this is the core project, so best to get started just understanding how you can write dynamic code in Java.
 
-You'll need this repository:
+To get started you'll need this repository:
 
 
 
@@ -18,19 +19,19 @@ You'll need this repository:
 
 ```
 
-And the maven co-ordinates are:
+And this dependency:
 
 ```xml
 
     <dependency>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.2-135</version>
+        <version>0.2-138</version>
     </dependency>
     
 ```
 
-An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is aslo very much a work in progress.
+An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is very much a work in progress.
 
 -------
 
@@ -46,9 +47,9 @@ Please contact us through chat or through GitHub Issues.
 
 # Getting Started
 
-Every example you see below is *Java* I emphasize that as it may not look familiar to you, that is intentional - I have done my best to make it clear that you are working with *untyped* objects, to avoid confusion.
+Every example you see below is *Java* I emphasize that as it may not look familiar to you, that is intentional - I have done my best to make it clear that you are working with **untyped** objects, to avoid confusion.
 
-All static methods such as $() can be accessed by importing `import static com.sillelien.dollar.api.DollarStatic.*;`
+All static methods such as `$()` can be accessed by importing `import static com.sillelien.dollar.api.DollarStatic.*;`
 
 
 ## Creating objects
