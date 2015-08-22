@@ -26,7 +26,7 @@ And this dependency:
     <dependency>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.2-141</version>
+        <version>0.2-144</version>
     </dependency>
     
 ```
@@ -639,5 +639,6 @@ This is an open source project, which means that we are giving our time to you f
 (c) 2015 Sillelien all rights reserved. Please see [LICENSE](https://raw.githubusercontent.com/sillelien/dollar-core/master/LICENSE) for license details of this project. Please visit http://sillelien.com for help and commercial support or raise issues on [GitHub](https://github.com/sillelien/dollar-core/issues).
 
 <div style="text-align:right;width:100%">
-<img src='https://da8lb468m8h1w.cloudfront.net/v2/cpanel/8398500-121258714_2-s1-v1.png?palette=1'>
+<img src='https://da8lb468m8h1w.cloudfront.net/v2/cpanel/8398500-121258714_3-s1-v1.png?palette=1'>
 </div>
+
