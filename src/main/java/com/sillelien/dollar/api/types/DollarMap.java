@@ -390,10 +390,10 @@ public class DollarMap extends AbstractDollar implements var {
 
     @NotNull
     @Override
-    public var $removeByKey(@NotNull String value) {
-        JsonObject jsonObject = toJsonObject().mutable();
-        jsonObject.removeField(value);
-        return DollarFactory.fromValue(jsonObject, errors());
+    public var $removeByKey(@NotNull String key) {
+        final LinkedHashMap<var, var> newMap = new LinkedHashMap<>(map);
+        newMap.remove(key);
+        return DollarFactory.fromValue(newMap, errors());
     }
 
     @NotNull
@@ -406,8 +406,10 @@ public class DollarMap extends AbstractDollar implements var {
 
     @NotNull
     @Override
-    public var $remove(var value) {
-        return DollarFactory.failure(ErrorType.INVALID_MAP_OPERATION);
+    public var $remove(var key) {
+        final LinkedHashMap<var, var> newMap = new LinkedHashMap<>(map);
+        newMap.remove(key);
+        return DollarFactory.fromValue(newMap, errors());
     }
 
     @NotNull

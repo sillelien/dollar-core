@@ -199,10 +199,23 @@ public interface CollectionAware {
     @Guarded(ChainGuard.class) var $set(@NotNull var key, @Nullable Object value);
 
     /**
-     * Convenience version of {@link #$remove(var)} for the Java API.
+     * Convenience version of {@link #$remove(var)}
      *
      * @param valueToRemove the value to be removed.
      *
+     * @return a new var with the value removed.
+     */
+    @Nullable
+    @Guarded(ChainGuard.class)
+    default var $remove(Object valueToRemove) {
+        return $remove(DollarStatic.$(valueToRemove));
+    }
+
+
+    /**
+     * Convenience version of {@link #$remove(var)} for the Java API.
+     *
+     * @param valueToRemove the value to be removed.
      * @return a new object with the value removed.
      */
     @Nullable
