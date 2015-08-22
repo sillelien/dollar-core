@@ -47,7 +47,7 @@ public interface TypeAware {
     @NotNull
     @Guarded(ChainGuard.class)
     default var $split() {
-        return DollarFactory.fromValue($list());
+        return DollarFactory.fromValue(toVarList());
     }
 
     /**
@@ -57,7 +57,21 @@ public interface TypeAware {
      */
     @Guarded(NotNullCollectionGuard.class)
     @Guarded(AllVarCollectionGuard.class)
-    @NotNull ImmutableList<var> $list();
+    @NotNull
+    ImmutableList<var> toVarList();
+
+    /**
+     * Converts this to a list of vars. Only really useful for collection types.
+     *
+     * @return a list of vars.
+     */
+    @Guarded(NotNullCollectionGuard.class)
+    @Guarded(AllVarCollectionGuard.class)
+    @NotNull
+    default var $list() {
+        return DollarFactory.fromList(toVarList());
+    }
+
 
     /**
      * Returns the definitive type of this object, this will trigger execution in dynamic values.
@@ -358,9 +372,8 @@ public interface TypeAware {
      *
      * @return true if this is a URI
      */
-    default boolean uri() {
-        return false;
-    }
+    boolean uri();
 
 
+    boolean queue();
 }

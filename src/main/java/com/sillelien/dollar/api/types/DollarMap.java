@@ -238,7 +238,7 @@ public class DollarMap extends AbstractDollar implements var {
         if (type.equals(Type.MAP)) {
             return this;
         } else if (type.equals(Type.LIST)) {
-            return DollarStatic.$($list());
+            return DollarStatic.$(toVarList());
         } else if (type.equals(Type.BOOLEAN)) {
             return DollarStatic.$(!map.isEmpty());
         } else if (type.equals(Type.STRING)) {
@@ -252,7 +252,7 @@ public class DollarMap extends AbstractDollar implements var {
 
     @NotNull
     @Override
-    public ImmutableList<var> $list() {
+    public ImmutableList<var> toVarList() {
         final List<var> entries =
                 map.entrySet()
                    .stream()

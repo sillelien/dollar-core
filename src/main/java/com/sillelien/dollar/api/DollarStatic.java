@@ -37,6 +37,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingDeque;
 
 public class DollarStatic {
 
@@ -539,6 +540,11 @@ public class DollarStatic {
 
     public static var $list(Object... values) {
         return DollarFactory.fromValue(values, ImmutableList.of());
+    }
+
+
+    public static var $blockingQueue() {
+        return DollarFactory.fromQueue(new LinkedBlockingDeque<>());
     }
 
     /**

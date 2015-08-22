@@ -43,6 +43,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingDeque;
 
 import static com.sillelien.dollar.api.DollarStatic.$void;
 
@@ -740,9 +741,9 @@ public class DollarFactory {
             infinityJsonObject.putString(TYPE_KEY, value.$type().name());
             infinityJsonObject.putValue(POSITIVE_KEY, value.positive());
             return infinityJsonObject;
-        } else if (i.equals(Type.LIST)) {
+        } else if (i.equals(Type.LIST) || i.equals(Type.QUEUE)) {
             final JsonArray array = new JsonArray();
-            ImmutableList<var> arrayList = value.$list();
+            ImmutableList<var> arrayList = value.toVarList();
             for (var v : arrayList) {
                 array.add(toJson(v));
             }
@@ -813,5 +814,20 @@ public class DollarFactory {
     @NotNull
     public static var fromMap(ImmutableMap<var, var> entries) {
         return wrap(new DollarMap(ImmutableList.of(), entries.mutable()));
+    }
+
+    @NotNull
+    public static var fromList(ImmutableList<var> vars) {
+        return wrap(new DollarList(ImmutableList.of(), vars));
+    }
+
+    @NotNull
+    public static var fromList(ArrayList<var> vars) {
+        return wrap(new DollarList(ImmutableList.of(), ImmutableList.copyOf(vars)));
+    }
+
+    @NotNull
+    public static var fromQueue(LinkedBlockingDeque<var> linkedBlockingDeque) {
+        return wrap(new DollarQueue(ImmutableList.of(), linkedBlockingDeque));
     }
 }

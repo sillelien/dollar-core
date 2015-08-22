@@ -141,7 +141,7 @@ public class DollarRange extends AbstractDollar {
     @Override
     public var $as(@NotNull Type type) {
         if (type.equals(Type.LIST)) {
-            return DollarStatic.$($list());
+            return DollarStatic.$(toVarList());
         } else if (type.equals(Type.MAP)) {
             return DollarStatic.$(toJavaMap());
         } else if (type.equals(Type.STRING)) {
@@ -171,7 +171,7 @@ public class DollarRange extends AbstractDollar {
 
     @NotNull
     @Override
-    public ImmutableList<var> $list() {
+    public ImmutableList<var> toVarList() {
         List<var> values = new ArrayList<>();
         var start = range.lowerEndpoint();
         var finish = range.upperEndpoint();
@@ -248,7 +248,7 @@ public class DollarRange extends AbstractDollar {
     @Override
     public var $get(@NotNull var key) {
         if (key.integer()) {
-            return DollarFactory.fromValue($list().get(key.toInteger()));
+            return DollarFactory.fromValue(toVarList().get(key.toInteger()));
         }
         return DollarFactory.failure(ErrorType.INVALID_RANGE_OPERATION);
     }
@@ -282,13 +282,13 @@ public class DollarRange extends AbstractDollar {
     }
 
     @NotNull @Override public var $prepend(@NotNull var value) {
-        return $($list()).$prepend(value);
+        return $(toVarList()).$prepend(value);
     }
 
     @NotNull
     @Override
     public var $insert(@NotNull var value, int position) {
-        return $($list()).$insert(value, position);
+        return $(toVarList()).$insert(value, position);
     }
 
     @NotNull

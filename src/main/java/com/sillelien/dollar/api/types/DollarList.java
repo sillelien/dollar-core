@@ -197,7 +197,7 @@ public class DollarList extends AbstractDollar {
 
     @NotNull
     @Override
-    public ImmutableList<var> $list() {
+    public ImmutableList<var> toVarList() {
         try {
             return ImmutableList.copyOf(
                     executor.submit(() -> $stream(false).map(v -> v._fix(false)).collect(
@@ -268,7 +268,7 @@ public class DollarList extends AbstractDollar {
 
     @NotNull @Override
     public <K extends Comparable<K>, V> ImmutableMap<K, V> toJavaMap() {
-        return ImmutableMap.copyOf(Collections.singletonMap((K) "value", (V) $list()));
+        return ImmutableMap.copyOf(Collections.singletonMap((K) "value", (V) toVarList()));
     }
 
     @NotNull
@@ -335,9 +335,9 @@ public class DollarList extends AbstractDollar {
     @Guarded(NotNullGuard.class)
     @NotNull @Override public var $append(@NotNull var value) {
 
-        final ArrayList<var> newList = new ArrayList<>($list().mutable());
+        final ArrayList<var> newList = new ArrayList<>(toVarList().mutable());
         if (value.list()) {
-            newList.addAll(value.$list().mutable());
+            newList.addAll(value.toVarList().mutable());
         } else {
             newList.add(value);
         }
@@ -370,11 +370,11 @@ public class DollarList extends AbstractDollar {
         final ArrayList newList = new ArrayList();
 
         if (value.list()) {
-            newList.addAll(value.$list().mutable());
+            newList.addAll(value.toVarList().mutable());
         } else {
             newList.add(value);
         }
-        newList.addAll($list().mutable());
+        newList.addAll(toVarList().mutable());
         return DollarFactory.fromValue(newList, errors(), value.errors());
     }
 
@@ -383,9 +383,9 @@ public class DollarList extends AbstractDollar {
     @Override
     public var $insert(@NotNull var value, int position) {
         final ArrayList newList = new ArrayList();
-        newList.addAll($list().mutable());
+        newList.addAll(toVarList().mutable());
         if (value.list()) {
-            newList.addAll(position, value.$list().mutable());
+            newList.addAll(position, value.toVarList().mutable());
         } else {
             newList.add(position, value);
         }
@@ -521,7 +521,7 @@ public class DollarList extends AbstractDollar {
         } else if (obj instanceof List) {
             return list.mutable().equals(obj);
         } else if (obj instanceof var) {
-            return list.mutable().equals(((var) obj).$list().mutable());
+            return list.mutable().equals(((var) obj).toVarList().mutable());
         }
         return false;
     }

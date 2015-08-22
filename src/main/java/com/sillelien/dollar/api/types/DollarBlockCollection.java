@@ -72,7 +72,7 @@ public class DollarBlockCollection implements var {
 
     @NotNull @Override public String toDollarScript() {
         StringBuilder builder = new StringBuilder("{");
-        for (var value : $list()) {
+        for (var value : toVarList()) {
             builder.append(value.toDollarScript()).append("\n");
         }
         builder.append("}");
@@ -204,7 +204,9 @@ public class DollarBlockCollection implements var {
     @Override @NotNull @Guarded(ChainGuard.class) public var $split() {return getValue().$split();}
 
     @Override @Guarded(NotNullCollectionGuard.class) @Guarded(AllVarCollectionGuard.class) @NotNull
-    public ImmutableList<var> $list() {return getValue().$list();}
+    public ImmutableList<var> toVarList() {
+        return getValue().toVarList();
+    }
 
     @Override public Type $type() {
         return getValue().$type();
@@ -265,6 +267,11 @@ public class DollarBlockCollection implements var {
     @Override @Guarded(NotNullGuard.class) @NotNull public InputStream toStream() {return getValue().toStream();}
 
     @Override public boolean uri() {return getValue().uri();}
+
+    @Override
+    public boolean queue() {
+        return getValue().queue();
+    }
 
     @Override @Guarded(NotNullGuard.class) @Guarded(ChainGuard.class) public var $choose(var map) {
         return getValue().$choose(map);

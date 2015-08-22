@@ -118,7 +118,7 @@ public abstract class AbstractDollarSingleValue<T> extends AbstractDollar implem
 
     @NotNull
     @Override
-    public ImmutableList<var> $list() {
+    public ImmutableList<var> toVarList() {
         return ImmutableList.of(this);
     }
 

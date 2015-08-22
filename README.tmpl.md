@@ -60,7 +60,7 @@ What we've done here is create an object of type `var`. `var` objects have an un
 
 ```
 
-`var` objects are immutable, any changes you make create a new `var` object. This is the *most important thing to remember*, you must use the results of a mutation to an object - the original object was not mutated. For example
+Most `var` objects are immutable, any changes you make create a new `var` object, the exceptions are queues and URIs, but more of them later. This is the *most important thing to remember*, you must use the results of a mutation to a data object - the original object was not mutated. For example
 
 
 ```java
@@ -179,7 +179,7 @@ And to see if it's empty:
 
 
 
-To add to the list use either `$append()` to add at the end,  `$prepend()` to insert at the beginning or `$insert()` to insert at any position. **But remember `var` objects are immutable, so you must use the result of the method**.
+To add to the list use either `$append()` to add at the end,  `$prepend()` to insert at the beginning or `$insert()` to insert at any position. **But remember data `var` objects are immutable, so you must use the result of the method**.
 
 ```java
 
@@ -210,7 +210,7 @@ Items can be removed using `remove()` or `$remove()`
 
 ```
 
-Lists can be converted to maps:
+Lists can be converted to maps using `$map`, the generated keys will be numeric position in the list of the value starting with index 0:
 
 ```java
 
@@ -316,6 +316,17 @@ Items can be removed using `remove()` or `$remove()`
     assert ! newMap.containsKey("name");
 
 
+```
+
+## Queues
+
+Queues are an important special case. They are important because they are the way that you should pass `var` objects between threads of execution. Queues can also be thought of as a special case of URIs.
+
+```
+    var queue = $blockingQueue();
+    queue.$push($("Hello World"));
+    assert queue.size() == 1;
+    
 ```
 
 

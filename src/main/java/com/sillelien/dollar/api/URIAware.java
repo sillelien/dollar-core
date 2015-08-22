@@ -20,6 +20,8 @@ import com.sillelien.dollar.api.guard.ChainGuard;
 import com.sillelien.dollar.api.guard.Guarded;
 import com.sillelien.dollar.api.guard.NotNullParametersGuard;
 
+import java.util.UUID;
+
 public interface URIAware {
 
     @Guarded(ChainGuard.class) var $all();
@@ -94,7 +96,7 @@ public interface URIAware {
 
     @Guarded(ChainGuard.class)
     @Guarded(NotNullParametersGuard.class) default var $subscribe(Pipeable subscription) {
-        return $listen(subscription, null);
+        return $listen(subscription, UUID.randomUUID().toString());
     }
 
     default var $listen(Pipeable pipeable, String id) {return DollarStatic.$void();}
