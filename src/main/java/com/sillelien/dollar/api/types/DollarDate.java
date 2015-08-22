@@ -132,7 +132,7 @@ public class DollarDate extends AbstractDollarSingleValue<Instant> {
 
     @NotNull
     @Override
-    public String $yaml() {
+    public String toYaml() {
         return "date: " + value;
     }
 

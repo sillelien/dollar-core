@@ -177,11 +177,14 @@ public class DollarFactory {
         if (o instanceof JsonObject) {
             return wrap(new DollarMap(errors, new ImmutableJsonObject((JsonObject) o)));
         }
-        if (o instanceof JSONObject || o instanceof ObjectNode || o instanceof com.fasterxml.jackson.databind.node.ObjectNode) {
+        if (o instanceof JSONObject || o instanceof ObjectNode) {
             return wrap(new DollarMap(errors, new JsonObject(o.toString())));
         }
-        if (o instanceof JSONArray || o instanceof ArrayNode || o instanceof com.fasterxml.jackson.databind.node.ArrayNode) {
+        if (o instanceof JSONArray || o instanceof ArrayNode) {
             return wrap(new DollarList(errors, new JsonArray(o.toString())));
+        }
+        if (o instanceof ImmutableMap) {
+            return wrap(new DollarMap(errors, ((ImmutableMap<?, ?>) o).mutable()));
         }
         if (o instanceof Map) {
             return wrap(new DollarMap(errors, (Map) o));
@@ -747,7 +750,7 @@ public class DollarFactory {
             return array;
         } else if (i.equals(Type.MAP)) {
             final JsonObject json = new JsonObject();
-            ImmutableMap<var, var> map = value.$map();
+            ImmutableMap<var, var> map = value.toVarMap();
             final Set<var> fieldNames = map.keySet();
             for (var fieldName : fieldNames) {
                 var v = map.get(fieldName);
@@ -790,6 +793,7 @@ public class DollarFactory {
         return new DollarNull(ImmutableList.copyOf(errors), type);
     }
 
+    @NotNull
     public static var fromYaml(String yamlString) {
         Yaml yaml = new Yaml();
         return wrap(fromValue(yaml.load(yamlString)));
@@ -804,5 +808,10 @@ public class DollarFactory {
         } catch (IOException e) {
             return failure(e);
         }
+    }
+
+    @NotNull
+    public static var fromMap(ImmutableMap<var, var> entries) {
+        return wrap(new DollarMap(ImmutableList.of(), entries.mutable()));
     }
 }

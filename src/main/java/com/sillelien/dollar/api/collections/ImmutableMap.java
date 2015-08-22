@@ -131,4 +131,13 @@ import java.util.function.Function;
     @NotNull public Collection<V> values() {
         return map.values();
     }
+
+    @NotNull
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ImmutableMap{");
+        sb.append("map=").append(map);
+        sb.append('}');
+        return sb.toString();
+    }
 }

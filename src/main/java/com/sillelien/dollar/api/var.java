@@ -235,7 +235,7 @@ public interface var extends ErrorAware, TypeAware, PipeAware, Serializable, Str
     }
 
     default boolean eq(Map m) {
-        return toMap().equals(m);
+        return toJavaMap().equals(m);
     }
 
 

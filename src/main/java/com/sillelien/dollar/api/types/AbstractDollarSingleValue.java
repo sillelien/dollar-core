@@ -128,7 +128,7 @@ public abstract class AbstractDollarSingleValue<T> extends AbstractDollar implem
 
     @NotNull
     @Override
-    public ImmutableMap<var, var> $map() {
+    public ImmutableMap<var, var> toVarMap() {
         return ImmutableMap.of($("value"), this);
     }
 
@@ -165,7 +165,7 @@ public abstract class AbstractDollarSingleValue<T> extends AbstractDollar implem
     }
 
     @NotNull
-    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toJavaMap() {
         return ImmutableMap.copyOf(Collections.singletonMap((K) "value", (V) value));
     }
 

@@ -129,7 +129,7 @@ public class DollarDecimal extends AbstractDollarSingleValue<Double> {
 
     @NotNull
     @Override
-    public String $yaml() {
+    public String toYaml() {
         return "decimal: " + value;
     }
 

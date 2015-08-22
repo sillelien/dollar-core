@@ -123,13 +123,13 @@ public class DollarNull extends AbstractDollar implements var {
 
     @NotNull
     @Override
-    public ImmutableMap<var, var> $map() {
+    public ImmutableMap<var, var> toVarMap() {
         return ImmutableMap.of(DollarStatic.$("value"), this);
     }
 
     @NotNull
     @Override
-    public String $yaml() {
+    public String toYaml() {
         return "null: " + type;
     }
 
@@ -165,7 +165,7 @@ public class DollarNull extends AbstractDollar implements var {
     }
 
     @NotNull @Override
-    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toJavaMap() {
         return ImmutableMap.copyOf(Collections.singletonMap((K) "value", (V) null));
     }
 

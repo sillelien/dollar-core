@@ -109,7 +109,7 @@ public class DollarBoolean extends AbstractDollarSingleValue<Boolean> {
 
     @NotNull
     @Override
-    public String $yaml() {
+    public String toYaml() {
         return "boolean: " + value;
     }
 

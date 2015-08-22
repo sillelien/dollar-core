@@ -181,7 +181,7 @@ public class DollarString extends AbstractDollarSingleValue<String> {
 
     @NotNull
     @Override
-    public String $yaml() {
+    public String toYaml() {
         Yaml yaml = new Yaml();
         return "string: " + yaml.dump(value);
     }

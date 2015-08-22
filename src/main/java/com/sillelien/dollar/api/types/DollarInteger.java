@@ -146,7 +146,7 @@ public class DollarInteger extends AbstractDollarSingleValue<Long> {
 
     @NotNull
     @Override
-    public String $yaml() {
+    public String toYaml() {
         return "integer: " + value;
     }
 
