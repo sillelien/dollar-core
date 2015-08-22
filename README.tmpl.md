@@ -217,7 +217,7 @@ To retrieve a value from a map, just use the `$()` method with a single value. I
 
 ```
 
-To find out if the map has a key value then use `$containsKey()` or `containsKey()`..
+To find out if the map has a key value then use `$has()`, `$containsKey()` or `containsKey()`..
 
 ```java
     var map= $(
@@ -230,6 +230,7 @@ To find out if the map has a key value then use `$containsKey()` or `containsKey
 
     assert map.$containsKey("name").isTrue();
     assert map.containsKey("name");
+    assert map.$has("name").isTrue();
 
 ```
 
@@ -249,6 +250,48 @@ Naturally you can also use the `$containsValue()` and `containsValue()` methods.
 
 ```
 
+
+### Modifying a map
+
+To add to the map you can use the `$(key,value)` or `$set()` methods.
+
+```java
+    var map= $(
+                    $("name", "Neil"),
+                    $("address",
+                            $("street_number", 343),
+                            $("town", "Brighton")
+                    )
+             );
+
+    var newMap= map.$("gender","male");
+    
+    assert newMap.$containsKey("gender").isTrue();
+    assert newMap.containsKey("gender");
+    assert newMap.$("gender").equalsString("male");
+
+```
+
+
+
+Items can be removed using `remove()` or `$remove()`
+
+```java
+
+    var map= $(
+                    $("name", "Neil"),
+                    $("address",
+                            $("street_number", 343),
+                            $("town", "Brighton")
+                    )
+             );
+
+    var newMap= map.$remove("name");
+    assert newMap.$containsValue("Neil").isFalse();
+    assert ! newMap.containsKey("name");
+
+
+```
 
 
 # Reference
