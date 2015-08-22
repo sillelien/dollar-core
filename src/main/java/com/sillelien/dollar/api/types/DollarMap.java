@@ -114,7 +114,7 @@ public class DollarMap extends AbstractDollar implements var {
         var rhsFix = rhs._fixDeep();
         if (rhsFix.map()) {
             LinkedHashMap<var, var> copy = copyMap();
-            for (Map.Entry<var, var> entry : rhsFix.$map().entrySet()) {
+            for (Map.Entry<var, var> entry : rhsFix.toVarMap().entrySet()) {
                 copy.remove(entry.getKey());
             }
             return DollarFactory.wrap(new DollarMap(errors(), copy));
@@ -131,7 +131,7 @@ public class DollarMap extends AbstractDollar implements var {
         var rhsFix = rhs._fixDeep();
         if (rhsFix.map()) {
             LinkedHashMap<var, var> copy = copyMap();
-            copy.putAll(rhsFix.$map().mutable());
+            copy.putAll(rhsFix.toVarMap().mutable());
             return DollarFactory.wrap(new DollarMap(errors(), copy));
         } else if (rhsFix.string()) {
             return DollarFactory.fromValue(toHumanString() + rhsFix.toHumanString(), errors(), rhsFix.errors());
@@ -223,7 +223,7 @@ public class DollarMap extends AbstractDollar implements var {
     @NotNull
     private <K extends Comparable<K>, V> Map<K, V> varMapToMap() {
         Map<K, V> result = new LinkedHashMap<>();
-        for (Map.Entry<var, var> entry : $map().entrySet()) {
+        for (Map.Entry<var, var> entry : toVarMap().entrySet()) {
             result.put(entry.getKey().toJavaObject(), entry.getValue().toJavaObject());
         }
         return result;
@@ -271,7 +271,7 @@ public class DollarMap extends AbstractDollar implements var {
 
     @NotNull
     @Override
-    public ImmutableMap<var, var> $map() {
+    public ImmutableMap<var, var> toVarMap() {
 
         LinkedHashMap<var, var> result = new LinkedHashMap<>();
         for (Map.Entry<var, var> entry : map.entrySet()) {
@@ -282,7 +282,7 @@ public class DollarMap extends AbstractDollar implements var {
 
     @NotNull
     @Override
-    public String $yaml() {
+    public String toYaml() {
         Yaml yaml = new Yaml();
         return yaml.dump(map);
     }
@@ -305,7 +305,7 @@ public class DollarMap extends AbstractDollar implements var {
     @Override
     public ImmutableList<String> strings() {
         List<String> values = new ArrayList<>();
-        ImmutableMap<String, Object> map = toMap();
+        ImmutableMap<String, Object> map = toJavaMap();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             assert entry.getKey() instanceof String;
             values.add(entry.getKey());
@@ -323,7 +323,7 @@ public class DollarMap extends AbstractDollar implements var {
     }
 
     @NotNull @Override
-    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toJavaMap() {
         return copyOf((Map<K, V>) varMapToMap());
     }
 
@@ -340,7 +340,7 @@ public class DollarMap extends AbstractDollar implements var {
     }
 
     @NotNull @Override public var $append(@NotNull var value) {
-        final LinkedHashMap<var, var> newMap = new LinkedHashMap<>($map().mutable());
+        final LinkedHashMap<var, var> newMap = new LinkedHashMap<>(toVarMap().mutable());
         newMap.put(value.$pairKey(), value.$pairValue());
         return DollarFactory.fromValue(newMap, errors(), value.errors());
     }
@@ -362,13 +362,13 @@ public class DollarMap extends AbstractDollar implements var {
 
     @NotNull @Override
     public var $size() {
-        return DollarStatic.$(toMap().size());
+        return DollarStatic.$(toJavaMap().size());
     }
 
     @NotNull @Override public var $prepend(@NotNull var value) {
         final LinkedHashMap<var, var> newMap = new LinkedHashMap<>();
         newMap.put(value.$pairKey(), value.$pairValue());
-        newMap.putAll($map().mutable());
+        newMap.putAll(toVarMap().mutable());
         return DollarFactory.fromValue(newMap, errors(), value.errors());
     }
 
@@ -384,7 +384,7 @@ public class DollarMap extends AbstractDollar implements var {
             newMap.put(entry.getKey(), entry.getValue());
 
         }
-        newMap.putAll($map().mutable());
+        newMap.putAll(toVarMap().mutable());
         return DollarFactory.fromValue(newMap, errors(), value.errors());
     }
 
@@ -433,6 +433,12 @@ public class DollarMap extends AbstractDollar implements var {
             v.$listen(i -> this, key);
         }
         return DollarStatic.$(key);
+    }
+
+    @NotNull
+    @Override
+    public var $map() {
+        return this;
     }
 
     @NotNull @Override

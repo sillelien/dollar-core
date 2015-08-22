@@ -217,12 +217,14 @@ public class DollarBlockCollection implements var {
     @Override @Guarded(NotNullGuard.class) public var getPairKey() {return getValue().getPairKey();}
 
     @Override @NotNull @Guarded(NotNullGuard.class) @Guarded(AllVarMapGuard.class)
-    public ImmutableMap<var, var> $map() {return getValue().$map();}
+    public ImmutableMap<var, var> toVarMap() {
+        return getValue().toVarMap();
+    }
 
     @NotNull
     @Override
-    public String $yaml() {
-        return getValue().$yaml();
+    public String toYaml() {
+        return getValue().toYaml();
     }
 
     @NotNull @Override @Guarded(NotNullGuard.class) public var getPairValue() {return getValue().getPairValue();}
@@ -256,8 +258,8 @@ public class DollarBlockCollection implements var {
     @NotNull
     @Override
     @Guarded(NotNullGuard.class)
-    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
-        return getValue().toMap();
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toJavaMap() {
+        return getValue().toJavaMap();
     }
 
     @Override @Guarded(NotNullGuard.class) @NotNull public InputStream toStream() {return getValue().toStream();}

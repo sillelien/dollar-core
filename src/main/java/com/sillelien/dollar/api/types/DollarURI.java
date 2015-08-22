@@ -250,13 +250,13 @@ public class DollarURI extends AbstractDollar {
 
     @NotNull
     @Override
-    public ImmutableMap<var, var> $map() {
+    public ImmutableMap<var, var> toVarMap() {
         return ImmutableMap.of();
     }
 
     @NotNull
     @Override
-    public String $yaml() {
+    public String toYaml() {
         return "uri: \"" + uri + "\"";
     }
 
@@ -289,7 +289,7 @@ public class DollarURI extends AbstractDollar {
 
     @NotNull
     @Override
-    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toJavaMap() {
         return ImmutableMap.copyOf(Collections.<K, V>emptyMap());
     }
 

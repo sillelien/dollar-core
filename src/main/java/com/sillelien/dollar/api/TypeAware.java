@@ -112,7 +112,29 @@ public interface TypeAware {
     @Deprecated
     @Guarded(NotNullGuard.class)
     default var getPairKey() {
-        return $map().keySet().iterator().next();
+        return toVarMap().keySet().iterator().next();
+    }
+
+
+    /**
+     * $ map.
+     *
+     * @return an immutable map
+     */
+    @NotNull
+    @Guarded(NotNullGuard.class)
+    @Guarded(AllVarMapGuard.class)
+    ImmutableMap<var, var> toVarMap();
+
+    /**
+     * $ map.
+     *
+     * @return the immutable map
+     */
+    @NotNull
+    @Guarded(NotNullGuard.class)
+    default var $map() {
+        return DollarFactory.fromMap(toVarMap());
     }
 
 
@@ -123,17 +145,7 @@ public interface TypeAware {
      */
     @NotNull
     @Guarded(NotNullGuard.class)
-    @Guarded(AllVarMapGuard.class) ImmutableMap<var, var> $map();
-
-
-    /**
-     * $ map.
-     *
-     * @return the immutable map
-     */
-    @NotNull
-    @Guarded(NotNullGuard.class)
-    String $yaml();
+    String toYaml();
 
 
     /**
@@ -146,7 +158,7 @@ public interface TypeAware {
     @Guarded(NotNullGuard.class)
     @Deprecated
     default var getPairValue() {
-        return $map().values().iterator().next();
+        return toVarMap().values().iterator().next();
     }
 
     /**
@@ -331,7 +343,7 @@ public interface TypeAware {
      */
     @NotNull
     @Guarded(NotNullGuard.class)
-    <K extends Comparable<K>, V> ImmutableMap<K, V> toMap();
+    <K extends Comparable<K>, V> ImmutableMap<K, V> toJavaMap();
 
     /**
      * Convert this object into a stream.

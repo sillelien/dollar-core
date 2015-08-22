@@ -143,7 +143,7 @@ public class DollarRange extends AbstractDollar {
         if (type.equals(Type.LIST)) {
             return DollarStatic.$($list());
         } else if (type.equals(Type.MAP)) {
-            return DollarStatic.$(toMap());
+            return DollarStatic.$(toJavaMap());
         } else if (type.equals(Type.STRING)) {
             return DollarFactory.fromStringValue(toHumanString());
         } else if (type.equals(Type.VOID)) {
@@ -197,14 +197,14 @@ public class DollarRange extends AbstractDollar {
 
     @NotNull
     @Override
-    public ImmutableMap<var, var> $map() {
+    public ImmutableMap<var, var> toVarMap() {
         DollarFactory.failure(ErrorType.INVALID_RANGE_OPERATION);
         return ImmutableMap.of();
     }
 
     @NotNull
     @Override
-    public String $yaml() {
+    public String toYaml() {
         DollarFactory.failure(ErrorType.INVALID_RANGE_OPERATION);
         return "";
     }
@@ -240,7 +240,7 @@ public class DollarRange extends AbstractDollar {
     }
 
     @NotNull @Override
-    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toJavaMap() {
         return null;
     }
 

@@ -141,13 +141,13 @@ public class DollarVoid extends AbstractDollar implements var {
 
     @NotNull
     @Override
-    public ImmutableMap<var, var> $map() {
+    public ImmutableMap<var, var> toVarMap() {
         return ImmutableMap.of();
     }
 
     @NotNull
     @Override
-    public String $yaml() {
+    public String toYaml() {
         return "void: void";
     }
 
@@ -176,7 +176,7 @@ public class DollarVoid extends AbstractDollar implements var {
     }
 
     @NotNull @Override
-    public ImmutableMap toMap() {
+    public ImmutableMap toJavaMap() {
         return ImmutableMap.emptyMap();
     }
 

@@ -253,14 +253,14 @@ public class DollarWrapper implements var {
 
     @NotNull
     @Override
-    public ImmutableMap<var, var> $map() {
-        return getValue().$map();
+    public ImmutableMap<var, var> toVarMap() {
+        return getValue().toVarMap();
     }
 
     @NotNull
     @Override
-    public String $yaml() {
-        return getValue().$yaml();
+    public String toYaml() {
+        return getValue().toYaml();
     }
 
     @Override
@@ -322,8 +322,8 @@ public class DollarWrapper implements var {
     }
 
     @NotNull @Override
-    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
-        return getValue().toMap();
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toJavaMap() {
+        return getValue().toJavaMap();
     }
 
     @NotNull @Override

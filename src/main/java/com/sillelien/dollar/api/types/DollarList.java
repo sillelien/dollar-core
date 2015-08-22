@@ -33,6 +33,7 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -182,7 +183,7 @@ public class DollarList extends AbstractDollar {
         if (type.equals(Type.LIST)) {
             return this;
         } else if (type.equals(Type.MAP)) {
-            return DollarStatic.$(toMap());
+            return DollarStatic.$(toJavaMap());
         } else if (type.equals(Type.STRING)) {
             return DollarFactory.fromStringValue(toHumanString());
         } else if (type.equals(Type.VOID)) {
@@ -222,13 +223,14 @@ public class DollarList extends AbstractDollar {
 
     @NotNull
     @Override
-    public ImmutableMap<var, var> $map() {
-        return null;
+    public ImmutableMap<var, var> toVarMap() {
+        AtomicInteger counter = new AtomicInteger();
+        return list.stream().map(var -> DollarStatic.$(String.valueOf(counter.getAndIncrement()), var)).collect(Collectors.reducing(CollectionAware::$append)).get().toVarMap();
     }
 
     @NotNull
     @Override
-    public String $yaml() {
+    public String toYaml() {
         Yaml yaml = new Yaml();
         return yaml.dump(list);
     }
@@ -265,7 +267,7 @@ public class DollarList extends AbstractDollar {
     }
 
     @NotNull @Override
-    public <K extends Comparable<K>, V> ImmutableMap<K, V> toMap() {
+    public <K extends Comparable<K>, V> ImmutableMap<K, V> toJavaMap() {
         return ImmutableMap.copyOf(Collections.singletonMap((K) "value", (V) $list()));
     }
 
