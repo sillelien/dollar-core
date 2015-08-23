@@ -146,7 +146,8 @@ public class DollarString extends AbstractDollarSingleValue<String> {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException nfe) {
-            return null;
+            DollarFactory.failure(nfe);
+            return 0;
         }
     }
 

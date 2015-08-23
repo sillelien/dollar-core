@@ -28,15 +28,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class DollarQueueTest {
-    private static var queue;
 
     @BeforeClass
     public static void setUp() {
-        queue = $blockingQueue();
+
     }
 
     @Test
     public void testBasics() {
+        var queue = $blockingQueue();
         assertTrue(queue.queue());
         queue.$push($("Hello World"));
         assertEquals(1, queue.size());
@@ -58,24 +58,12 @@ public class DollarQueueTest {
     }
 
     @Test
-    public void testListen() {
-        AtomicInteger integer = new AtomicInteger();
-        queue.$listen(in -> {
-            integer.incrementAndGet();
-            return in[0];
-        });
-        queue.$push($(1));
-        queue.$push($(2));
-        queue.$push($(3));
-        assertEquals(3, integer.get());
-    }
-
-
-    @Test
     public void testSubscribe() {
+        var queue = $blockingQueue();
         AtomicInteger integer = new AtomicInteger();
         queue.$subscribe(in -> {
             integer.incrementAndGet();
+            assertEquals((long) integer.get(), (long) in[0].toInteger());
             return in[0];
         });
         queue.$push($(1));
