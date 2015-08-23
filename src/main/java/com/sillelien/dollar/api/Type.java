@@ -83,6 +83,8 @@ public final class Type {
      */
     public static final Type ANY = new Type("ANY");
 
+    public static final Type QUEUE = new Type("QUEUE");
+
 
     @NotNull private final String name;
 

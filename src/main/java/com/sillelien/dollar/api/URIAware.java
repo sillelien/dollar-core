@@ -19,6 +19,10 @@ package com.sillelien.dollar.api;
 import com.sillelien.dollar.api.guard.ChainGuard;
 import com.sillelien.dollar.api.guard.Guarded;
 import com.sillelien.dollar.api.guard.NotNullParametersGuard;
+import com.sillelien.dollar.api.types.DollarFactory;
+import com.sillelien.dollar.api.types.ErrorType;
+
+import java.util.UUID;
 
 public interface URIAware {
 
@@ -94,14 +98,21 @@ public interface URIAware {
 
     @Guarded(ChainGuard.class)
     @Guarded(NotNullParametersGuard.class) default var $subscribe(Pipeable subscription) {
-        return $listen(subscription, null);
+        return $subscribe(subscription, UUID.randomUUID().toString());
     }
 
+    /**
+     * For Lambdas and reactive programming, do not use.
+     *
+     * @param pipeable
+     * @param id
+     * @return
+     */
     default var $listen(Pipeable pipeable, String id) {return DollarStatic.$void();}
 
     @Guarded(ChainGuard.class)
     @Guarded(NotNullParametersGuard.class) default var $subscribe(Pipeable subscription, String key) {
-        return $listen(subscription, key);
+        return DollarFactory.failure(ErrorType.INVALID_OPERATION);
     }
 
     /**

@@ -109,7 +109,7 @@ public class DollarNull extends AbstractDollar implements var {
 
     @NotNull
     @Override
-    public ImmutableList<var> $list() {
+    public ImmutableList<var> toVarList() {
         return ImmutableList.of();
     }
 

@@ -233,9 +233,9 @@ public class DollarURI extends AbstractDollar {
 
     @NotNull
     @Override
-    public ImmutableList<var> $list() {
+    public ImmutableList<var> toVarList() {
         ensureRunning();
-        return ImmutableList.copyOf(handler.all().$list());
+        return ImmutableList.copyOf(handler.all().toVarList());
     }
 
     @Override

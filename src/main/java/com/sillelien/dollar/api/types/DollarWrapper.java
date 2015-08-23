@@ -234,8 +234,8 @@ public class DollarWrapper implements var {
 
     @NotNull
     @Override
-    public ImmutableList<var> $list() {
-        return getValue().$list();
+    public ImmutableList<var> toVarList() {
+        return getValue().toVarList();
     }
 
     @Override public Type $type() {
@@ -334,6 +334,11 @@ public class DollarWrapper implements var {
     @Override
     public boolean uri() {
         return getValue().uri();
+    }
+
+    @Override
+    public boolean queue() {
+        return getValue().queue();
     }
 
     @Override

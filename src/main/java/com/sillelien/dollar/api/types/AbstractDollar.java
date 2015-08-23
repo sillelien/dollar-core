@@ -49,14 +49,11 @@ public abstract class AbstractDollar implements var {
     @NotNull final
     ScriptEngine nashorn = new ScriptEngineManager().getEngineByName("nashorn");
     private final Logger logger = LoggerFactory.getLogger(getClass());
-
     private final
     @NotNull
     ImmutableList<Throwable> errors;
     private final ConcurrentHashMap<String, String> meta = new ConcurrentHashMap<>();
     private String src;
-
-
     AbstractDollar(@NotNull ImmutableList<Throwable> errors) {
         this.errors = errors;
     }
@@ -82,6 +79,11 @@ public abstract class AbstractDollar implements var {
                 .permit(Signal.STOP, ResourceState.STOPPED)
                 .permit(Signal.DESTROY, ResourceState.DESTROYED);
         return stateMachineConfig;
+    }
+
+    @Override
+    public boolean queue() {
+        return false;
     }
 
     @NotNull @Override
@@ -123,7 +125,7 @@ public abstract class AbstractDollar implements var {
     @Override
     public var $each(@NotNull Pipeable pipe) {
         List<var> result = new LinkedList<>();
-        for (var v : $list()) {
+        for (var v : toVarList()) {
             var res = null;
             try {
                 res = pipe.pipe(v);
@@ -193,7 +195,7 @@ public abstract class AbstractDollar implements var {
     @NotNull
     @Override
     public Stream<var> $stream(boolean parallel) {
-        return $list().stream();
+        return toVarList().stream();
     }
 
     @NotNull
