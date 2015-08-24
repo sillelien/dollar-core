@@ -26,7 +26,7 @@ And this dependency:
     <dependency>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.2-157</version>
+        <version>0.2-160</version>
     </dependency>
     
 ```
@@ -329,6 +329,8 @@ Items can be removed using `remove()` or `$remove()`
 ```
 
 ## Queues
+
+**Note: Queues are not a stable feature yet**
 
 Queues are an important special case. They are important because they are the way that you should pass `var` objects between threads of execution. Queues can also be thought of as a special case of URIs.
 
