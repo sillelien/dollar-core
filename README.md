@@ -26,7 +26,7 @@ And this dependency:
     <dependency>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.2-rather-resplendent-stranger</version>
+        <version>rather-resplendent-stranger</version>
     </dependency>
     
 ```
