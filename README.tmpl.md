@@ -320,6 +320,8 @@ Items can be removed using `remove()` or `$remove()`
 
 ## Queues
 
+**Note: Queues are not a stable feature yet**
+
 Queues are an important special case. They are important because they are the way that you should pass `var` objects between threads of execution. Queues can also be thought of as a special case of URIs.
 
 ```
