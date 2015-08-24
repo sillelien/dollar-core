@@ -21,6 +21,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static com.sillelien.dollar.api.DollarStatic.$;
+import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class DollarMapTest {
@@ -35,6 +36,9 @@ public class DollarMapTest {
     @Test
     public void testBasics() {
         assertTrue(map.$has("color").isTrue());
+        assertTrue($(0).integer());
+        System.out.println(map.$get($(0)));
+        assertEquals($("color", "red"), map.$get($(0)));
     }
 
 }

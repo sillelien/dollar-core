@@ -350,11 +350,7 @@ public class DollarStatic {
      */
     @NotNull
     public static var $(@NotNull Object name, Object o) {
-        if (name instanceof var) {
-            return $map((var) name, (var) o);
-        } else {
-            return DollarFactory.fromValue().$set($(name), o);
-        }
+        return DollarFactory.fromPair(name, o);
     }
 
     /**
