@@ -75,9 +75,14 @@ public class DollarMap extends AbstractDollar implements var {
         map = mapToVarMap(o);
     }
 
-    private DollarMap(@NotNull ImmutableList<Throwable> errors, @NotNull LinkedHashMap<var, var> o) {
+    public DollarMap(@NotNull ImmutableList<Throwable> errors, @NotNull LinkedHashMap<var, var> o) {
         super(errors);
         this.map = deepClone(o);
+    }
+
+    public DollarMap(@NotNull ImmutableList<Throwable> errors, @NotNull ImmutableMap<var, var> o) {
+        super(errors);
+        this.map = mapToVarMap(o.mutable());
     }
 
     public DollarMap(@NotNull ImmutableList<Throwable> errors, @NotNull ImmutableJsonObject immutableJsonObject) {

@@ -830,4 +830,9 @@ public class DollarFactory {
     public static var fromQueue(LinkedBlockingDeque<var> linkedBlockingDeque) {
         return wrap(new DollarQueue(ImmutableList.of(), linkedBlockingDeque));
     }
+
+    public static var fromPair(Object k, Object v) {
+        ImmutableList<Throwable> empty = ImmutableList.of();
+        return wrap(new DollarMap(empty, ImmutableMap.of(create(empty, k), create(empty, v))));
+    }
 }
