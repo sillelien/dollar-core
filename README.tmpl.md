@@ -687,7 +687,7 @@ With this in mind the following are Dollar's characteristics:
 ## Badges
 Build Status: [![Circle CI](https://circleci.com/gh/dollar-org/dollar-core.svg?style=svg)](https://circleci.com/gh/dollar-org/dollar-core)
 
-Chat: [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/dollar-org/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Chat: [![Gitter](https://badges.gitter.im/Join+Chat.svg)](https://gitter.im/dollar-org/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Waffle Stories: [![Stories in Ready](https://badge.waffle.io/dollar-org/dollar-core.png?label=ready&title=Ready)](https://waffle.io/dollar-org/dollar-core)
 
