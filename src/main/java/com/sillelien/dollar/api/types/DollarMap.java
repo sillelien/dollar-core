@@ -25,7 +25,6 @@ import com.sillelien.dollar.api.json.ImmutableJsonObject;
 import com.sillelien.dollar.api.json.JsonObject;
 import com.sillelien.dollar.api.var;
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONObject;
 import org.yaml.snakeyaml.Yaml;
 
 import java.util.*;
@@ -219,11 +218,6 @@ public class DollarMap extends AbstractDollar implements var {
         return (R) varMapToMap();
     }
 
-    @NotNull
-    @Override
-    public JSONObject toOrgJson() {
-        return new JSONObject(varMapToMap());
-    }
 
     @NotNull
     private <K extends Comparable<K>, V> Map<K, V> varMapToMap() {

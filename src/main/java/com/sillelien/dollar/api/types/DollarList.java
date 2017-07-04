@@ -28,7 +28,6 @@ import com.sillelien.dollar.api.json.JsonObject;
 import com.sillelien.dollar.api.plugin.Plugins;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.json.JSONObject;
 import org.yaml.snakeyaml.Yaml;
 
 import java.util.*;
@@ -301,12 +300,6 @@ public class DollarList extends AbstractDollar {
     @Override
     public <R> R toJavaObject() {
         return (R) Collections.unmodifiableList(toList().mutable());
-    }
-
-    @NotNull
-    @Override
-    public JSONObject toOrgJson() {
-        return new JSONObject(toJsonObject().toMap());
     }
 
     @org.jetbrains.annotations.NotNull

@@ -23,7 +23,6 @@ import com.sillelien.dollar.api.json.JsonObject;
 import com.sillelien.dollar.api.types.DollarFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.List;
@@ -157,22 +156,6 @@ public interface var extends ErrorAware, TypeAware, PipeAware, Serializable, Str
      */
     @Nullable <R> R toJavaObject();
 
-    /**
-     * Returns this object as a org.json.JSONObject.
-     *
-     * NB: This conversion is very efficient.
-     *
-     * @return a JSONObject
-     */
-    @Nullable
-    default JSONObject toOrgJson() {
-        ImmutableJsonObject json = toJsonObject();
-        if (json != null) {
-            return new JSONObject(json.toMap());
-        } else {
-            return null;
-        }
-    }
 
     /**
      * Convert this to a Dollar {@link com.sillelien.dollar.api.json.JsonObject}

@@ -23,8 +23,6 @@ import com.sillelien.dollar.api.json.ImmutableJsonObject;
 import com.sillelien.dollar.api.json.JsonObject;
 import com.sillelien.dollar.api.var;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -148,11 +146,6 @@ public abstract class AbstractDollarSingleValue<T> extends AbstractDollar implem
         return value.toString();
     }
 
-    @Nullable
-    public JSONObject toOrgJson() {
-        return null;
-
-    }
 
     @NotNull public ImmutableJsonObject toJsonObject() {
         return new ImmutableJsonObject(new JsonObject());
