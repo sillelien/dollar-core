@@ -24,7 +24,6 @@ import com.sillelien.dollar.api.json.ImmutableJsonObject;
 import com.sillelien.dollar.api.monitor.DollarMonitor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.List;
@@ -769,13 +768,7 @@ public class DollarWrapper implements var {
         return getValue().toJavaObject();
     }
 
-    @Nullable
-    @Override
-    public JSONObject toOrgJson() {
-        return getValue().toOrgJson();
-    }
-
-    @NotNull @Override
+  @NotNull @Override
     public ImmutableJsonObject toJsonObject() {
         return getValue().toJsonObject();
     }

@@ -37,9 +37,9 @@
         <commons-lang.version>2.6</commons-lang.version>
         <commons-logging.version>1.2</commons-logging.version>
         <findbugs-maven-plugin.version>3.0.2</findbugs-maven-plugin.version>
-        <httpclient.version>4.3.4</httpclient.version>
+        <httpclient.version>4.5</httpclient.version>
         <jackson.version>2.6.1</jackson.version>
-        <json.version>20140107</json.version>
+        <json.version>20160212</json.version>
         <junit.version>4.12</junit.version>
         <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
         <maven-project-info-reports-plugin.version>2.8</maven-project-info-reports-plugin.version>
@@ -105,11 +105,11 @@
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>${json.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.json</groupId>-->
+            <!--<artifactId>json</artifactId>-->
+            <!--<version>${json.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
@@ -143,11 +143,13 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${jackson.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.yaml</groupId>

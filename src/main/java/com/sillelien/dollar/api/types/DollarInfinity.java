@@ -24,7 +24,6 @@ import com.sillelien.dollar.api.collections.Range;
 import com.sillelien.dollar.api.var;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -340,10 +339,5 @@ public final class DollarInfinity extends AbstractDollar implements var {
         return null;
     }
 
-    @NotNull
-    @Override
-    public JSONObject toOrgJson() {
-        return new JSONObject();
-    }
 
 }

@@ -33,8 +33,6 @@ import com.sillelien.dollar.api.script.SourceSegment;
 import com.sillelien.dollar.api.uri.URI;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
@@ -178,10 +176,10 @@ public class DollarFactory {
         if (o instanceof JsonObject) {
             return wrap(new DollarMap(errors, new ImmutableJsonObject((JsonObject) o)));
         }
-        if (o instanceof JSONObject || o instanceof ObjectNode) {
+        if (o.getClass().getSimpleName().equals("JSONObject")  || o instanceof ObjectNode) {
             return wrap(new DollarMap(errors, new JsonObject(o.toString())));
         }
-        if (o instanceof JSONArray || o instanceof ArrayNode) {
+        if (o.getClass().getSimpleName().equals("JSONObject")  || o instanceof ArrayNode) {
             return wrap(new DollarList(errors, new JsonArray(o.toString())));
         }
         if (o instanceof ImmutableMap) {

@@ -23,7 +23,6 @@ import com.sillelien.dollar.api.collections.ImmutableMap;
 import com.sillelien.dollar.api.var;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.json.JSONObject;
 
 import java.util.Collections;
 import java.util.Objects;
@@ -304,12 +303,6 @@ public class DollarNull extends AbstractDollar implements var {
     @Override
     public <R> R toJavaObject() {
         return null;
-    }
-
-    @NotNull
-    @Override
-    public JSONObject toOrgJson() {
-        return new JSONObject();
     }
 
     @NotNull

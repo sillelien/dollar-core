@@ -25,7 +25,6 @@ import com.sillelien.dollar.api.json.ImmutableJsonObject;
 import com.sillelien.dollar.api.json.JsonArray;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.List;
@@ -81,7 +80,6 @@ public class DollarBlockCollection implements var {
 
     @Override @Nullable public <R> R toJavaObject() {return getValue().toJavaObject();}
 
-    @Override @Nullable public JSONObject toOrgJson() {return getValue().toOrgJson();}
 
     @NotNull @Override public ImmutableJsonObject toJsonObject() {return getValue().toJsonObject();}
 
