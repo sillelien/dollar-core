@@ -26,23 +26,21 @@ And this dependency:
     <dependency>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-core</artifactId>
-        <version>0.2.209</version>
+        <version>0.2.212</version>
     </dependency>
     
 ```
 
-An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is very much a work in progress.
 
 -------
 
-**If you use this project please consider giving us a star on [GitHub](http://github.com/dollar-org/dollar-core). A
+** If you use this project please consider giving us a star on [GitHub](http://github.com/dollar-org/dollar-core). **
 
-Please contact us through chat or through GitHub Issues.
+Please contact me through Gitter (chat) or through GitHub Issues.
 
-[![GitHub Issues](https://img.shields.io/github/issues/dollar-org/dollar-core.svg)](https://github.com/dollar-org/dollar-core/issues)
+[![GitHub Issues](https://img.shields.io/github/issues/dollar-org/dollar-core.svg)](https://github.com/dollar-org/dollar-core/issues) [![Join the chat at https://gitter.im/dollar-org/dollar-core](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dollar-org/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[![Join the chat at https://gitter.im/dollar-org/dollar-core](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dollar-org/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
+For commercial support please <a href="mailto:hello@neilellis.me">contact me directly</a>.
 -------
 
 # Getting Started
@@ -705,8 +703,6 @@ Dependencies: [![Dependency Status](https://www.versioneye.com/user/projects/55b
 
 --------
 
-[![GitHub License](https://img.shields.io/github/license/dollar-org/dollar-core.svg)](https://raw.githubusercontent.com/dollar-org/dollar-core/master/LICENSE)
-
 # Referral Links
 
 This is an open source project, which means that we are giving our time to you for free. However like yourselves, we do have bills to pay. Please consider visiting some of these excellent services, they are not junk we can assure you, all services we would or do use ourselves.
@@ -717,7 +713,11 @@ This is an open source project, which means that we are giving our time to you f
 
 # Copyright and License
 
-(c) 2015-2017 Neil Ellis all rights reserved. Please see [LICENSE](https://raw.githubusercontent.com/dollar-org/dollar-core/master/LICENSE) for license details of this project. Please visit http://neilellis.me for help and commercial support or raise issues on [GitHub](https://github.com/dollar-org/dollar-core/issues).
+[![GitHub License](https://img.shields.io/github/license/dollar-org/dollar-core.svg)](https://raw.githubusercontent.com/dollar-org/dollar-core/master/LICENSE)
+
+(c) 2015-2017 Neil Ellis all rights reserved. Please see [LICENSE](https://raw.githubusercontent.com/dollar-org/dollar-core/master/LICENSE) for license details of this project. Please visit http://neilellis.me for help and raise issues on [GitHub](https://github.com/dollar-org/dollar-core/issues).
+
+For commercial support please <a href="mailto:hello@neilellis.me">contact me directly</a>.
 
 <div width="100%" align="right">
 <img>
