@@ -31,7 +31,6 @@ And this dependency:
     
 ```
 
-An example of a project using this is [Tutum API](https://github.com/sillelien/tutum-api) which is very much a work in progress.
 
 ${BLURB}
 
