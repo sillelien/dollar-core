@@ -1,6 +1,6 @@
 
 
-#The Dollar Core API [![Alpha](https://img.shields.io/badge/Status-Alpha-yellowgreen.svg?style=flat)](http://github.com/dollar-org/dollar-core)
+#The Dollar Core API [![Alpha](https://img.shields.io/badge/Status-Alpha-yellowgreen.svg?style=flat)](http://github.com/sillelien/dollar-core)
 
 
 You'll need this repository:
@@ -28,13 +28,13 @@ And the maven co-ordinates are:
 
 -------
 
-**If you use this project please consider giving us a star on [GitHub](http://github.com/dollar-org/dollar-core). Also if you can spare 30 secs of your time please let us know your priorities here https://sillelien.wufoo.com/forms/zv51vc704q9ary/  - thanks, that really helps!**
+**If you use this project please consider giving us a star on [GitHub](http://github.com/sillelien/dollar-core). Also if you can spare 30 secs of your time please let us know your priorities here https://sillelien.wufoo.com/forms/zv51vc704q9ary/  - thanks, that really helps!**
 
 Please contact us through chat or through GitHub Issues.
 
-[![GitHub Issues](https://img.shields.io/github/issues/sillelien/dollar-core.svg)](https://github.com/dollar-org/dollar-core/issues)
+[![GitHub Issues](https://img.shields.io/github/issues/sillelien/dollar-core.svg)](https://github.com/sillelien/dollar-core/issues)
 
-[![Join the chat at https://gitter.im/dollar-org/dollar-core](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dollar-org/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/sillelien/dollar-core](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sillelien/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 -------
 

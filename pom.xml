@@ -24,7 +24,7 @@
     <artifactId>dollar-core</artifactId>
     <packaging>jar</packaging>
     <name>Dollar Core</name>
-    <version>0-SNAPSHOT</version>
+    <version>LATEST</version>
 
 
     <properties>
@@ -58,7 +58,7 @@
     <description>Lightweight, dynamic programming on the JVM</description>
 
     <ciManagement>
-        <url>https://circleci.com/gh/dollar-org/dollar-core/tree/master</url>
+        <url>https://circleci.com/gh/sillelien/dollar-core/tree/master</url>
     </ciManagement>
 
     <developers>
@@ -74,7 +74,7 @@
         </developer>
     </developers>
 
-    <url>http://dollar-org.github.io/dollar-core/</url>
+    <url>http://sillelien.github.io/dollar-core/</url>
 
     <licenses>
         <license>
@@ -85,9 +85,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/dollar-org/dollar-core/blob/master/</url>
-        <connection>scm:git:git@github.com:dollar-org/dollar-core.git</connection>
-        <developerConnection>scm:git:git@github.com:dollar-org/dollar-core.git</developerConnection>
+        <url>https://github.com/sillelien/dollar-core/blob/master/</url>
+        <connection>scm:git:git@github.com:sillelien/dollar-core.git</connection>
+        <developerConnection>scm:git:git@github.com:sillelien/dollar-core.git</developerConnection>
     </scm>
 
     <inceptionYear>2014</inceptionYear>
