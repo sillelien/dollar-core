@@ -1,3 +1,5 @@
+
+
 ${HEADER}
 
 #The Dollar Core API ${STATE_ALPHA}
@@ -31,6 +33,7 @@ And this dependency:
     
 ```
 
+[![Dependency Status](https://www.versioneye.com/user/projects/55bf9093653762001700287e/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/55bf9093653762001700287e)
 
 ${BLURB}
 
