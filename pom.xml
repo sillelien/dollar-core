@@ -23,8 +23,8 @@
     <groupId>com.sillelien</groupId>
     <artifactId>dollar-core</artifactId>
     <packaging>jar</packaging>
-    <name>Dollar Core</name>
-    <version>0-SNAPSHOT</version>
+    <name>Dollar Core - API for writing dynamic Java</name>
+    <version>0</version>
 
 
     <properties>
