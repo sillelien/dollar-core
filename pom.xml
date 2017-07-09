@@ -510,27 +510,31 @@
                 </configuration>
             </plugin>
         </plugins>
-        <extensions>
-            <extension>
-                <groupId>org.springframework.build</groupId>
-                <artifactId>aws-maven</artifactId>
-                <version>5.0.0.RELEASE</version>
-            </extension>
-        </extensions>
     </build>
 
     <distributionManagement>
+        <site>
+            <id>http://sillelien.github.io/dollar-core</id>
+            <url>scm:git:git@github.com:sillelien/dollar-core.git</url>
+        </site>
         <repository>
-            <id>aws-release</id>
-            <name>AWS Release Repository</name>
-            <url>s3://dollar-repo/release</url>
+            <id>bintray-sillelien-maven</id>
+            <name>sillelien-maven</name>
+            <url>https://api.bintray.com/maven/sillelien/maven/dollar-core/;publish=1</url>
         </repository>
-        <snapshotRepository>
-            <id>aws-snapshot</id>
-            <name>AWS Snapshot Repository</name>
-            <url>s3://dollar-repo/snapshot</url>
-        </snapshotRepository>
     </distributionManagement>
+
+
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-sillelien-maven</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/sillelien/maven</url>
+        </repository>
+    </repositories>
 
 
 </project>
