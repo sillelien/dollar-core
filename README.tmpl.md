@@ -2,35 +2,34 @@
 
 ${HEADER}
 
-#The Dollar Core API ${STATE_ALPHA}
+#The Dollar Core API ${STATE_BETA}
 
 Dollar helps you write dynamic JavaScript-like code from the safety of Java. It provides a new type `var` to use in your Java coding. `var` acts much in the same way as a JavaScript type, i.e. it is highly dynamic. There is a lot to the Dollar framework, of which this is the core project, so best to get started just understanding how you can write dynamic code in Java.
 
 To get started you'll need this repository:
 
 
-
 ```xml
-
     <repositories>
         <repository>
-            <id>s3-releases</id>
-            <url>http://dollar-repo.s3-website-eu-west-1.amazonaws.com/release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-sillelien-maven</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/sillelien/maven</url>
         </repository>
     </repositories>
+```  
 
-```
-
-And this dependency:
+and this dependency
 
 ```xml
-
-    <dependency>
-        <groupId>com.sillelien</groupId>
-        <artifactId>dollar-core</artifactId>
-        <version>${RELEASE}</version>
-    </dependency>
-    
+        <dependency>
+            <groupId>com.sillelien</groupId>
+            <artifactId>dollar-core</artifactId>
+            <version>${RELEASE}</version>
+        </dependency>
 ```
 
 [![Dependency Status](https://www.versioneye.com/user/projects/55bf9093653762001700287e/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/55bf9093653762001700287e)
