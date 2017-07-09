@@ -24,7 +24,7 @@
     <artifactId>dollar-core</artifactId>
     <packaging>jar</packaging>
     <name>Dollar Core</name>
-    <version>LATEST</version>
+    <version>0-SNAPSHOT</version>
 
 
     <properties>
@@ -58,7 +58,7 @@
     <description>Lightweight, dynamic programming on the JVM</description>
 
     <ciManagement>
-        <url>https://circleci.com/gh/sillelien/dollar-core/tree/master</url>
+        <url>https://circleci.com/gh/dollar-org/dollar-core/tree/master</url>
     </ciManagement>
 
     <developers>
@@ -74,7 +74,7 @@
         </developer>
     </developers>
 
-    <url>http://sillelien.github.io/dollar-core/</url>
+    <url>http://dollar-org.github.io/dollar-core/</url>
 
     <licenses>
         <license>
@@ -85,9 +85,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/sillelien/dollar-core/blob/master/</url>
-        <connection>scm:git:git@github.com:sillelien/dollar-core.git</connection>
-        <developerConnection>scm:git:git@github.com:sillelien/dollar-core.git</developerConnection>
+        <url>https://github.com/dollar-org/dollar-core/blob/master/</url>
+        <connection>scm:git:git@github.com:dollar-org/dollar-core.git</connection>
+        <developerConnection>scm:git:git@github.com:dollar-org/dollar-core.git</developerConnection>
     </scm>
 
     <inceptionYear>2014</inceptionYear>
@@ -205,7 +205,7 @@
                     <version>3.11.4</version>
                     <configuration>
                         <apiKey>0c797be864338a3649f0</apiKey>
-                        <organisation>sillelien</organisation>
+                        <organisation>neilellis_orga</organisation>
                         <team>Owners</team>
                     </configuration>
                 </plugin>
@@ -510,15 +510,26 @@
                 </configuration>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.springframework.build</groupId>
+                <artifactId>aws-maven</artifactId>
+                <version>5.0.0.RELEASE</version>
+            </extension>
+        </extensions>
     </build>
-
 
     <distributionManagement>
         <repository>
-            <id>bintray-sillelien-maven</id>
-            <name>sillelien-maven</name>
-            <url>https://api.bintray.com/maven/sillelien/maven/dollar-core/;publish=1</url>
+            <id>aws-release</id>
+            <name>AWS Release Repository</name>
+            <url>s3://dollar-repo/release</url>
         </repository>
+        <snapshotRepository>
+            <id>aws-snapshot</id>
+            <name>AWS Snapshot Repository</name>
+            <url>s3://dollar-repo/snapshot</url>
+        </snapshotRepository>
     </distributionManagement>
 
 
