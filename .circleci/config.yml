@@ -8,7 +8,7 @@ jobs:
         MAVEN_OPTS: "-Xmx1g -DbuildNumber=${CIRCLE_BUILD_NUM} -Dorg.xml.sax.driver='com.sun.org.apache.xerces.internal.parsers.SAXParser' "
         TZ: "/usr/share/zoneinfo/Europe/London"
 
-      working_directory: ~/java-as-script
+      working_directory: ~/dollar-core
 
       branches:
         ignore:
