@@ -413,11 +413,12 @@
         </plugins>
     </build>
 
+
     <distributionManagement>
         <repository>
             <id>bintray-sillelien-maven</id>
             <name>sillelien-maven</name>
-            <url>https://api.bintray.com/maven/sillelien/maven/dollar-core/;publish=1</url>
+            <url>https://api.bintray.com/maven/sillelien/maven/dollar/;publish=1</url>
         </repository>
     </distributionManagement>
 
@@ -432,6 +433,7 @@
             <url>http://dl.bintray.com/sillelien/maven</url>
         </repository>
     </repositories>
+
 
 
 </project>
