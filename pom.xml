@@ -19,9 +19,11 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.sillelien</groupId>
-    <artifactId>dollar-core</artifactId>
+    <parent>
+        <groupId>com.sillelien</groupId>
+        <artifactId>dollar-parent</artifactId>
+        <version>0.3.7</version>
+    </parent><artifactId>dollar-core</artifactId>
     <packaging>jar</packaging>
     <name>Dollar Core - API for writing dynamic Java</name>
     <version>0</version>
@@ -197,108 +199,7 @@
     </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>com.versioneye</groupId>
-                    <artifactId>versioneye-maven-plugin</artifactId>
-                    <version>3.11.4</version>
-                    <configuration>
-                        <apiKey>0c797be864338a3649f0</apiKey>
-                        <organisation>neilellis_orga</organisation>
-                        <team>Owners</team>
-                    </configuration>
-                </plugin>
-                <!--Check for license headers-->
-                <plugin>
-                    <groupId>org.apache.rat</groupId>
-                    <artifactId>apache-rat-plugin</artifactId>
-                    <version>0.11</version>
-                    <configuration>
-                        <ignoreErrors>true</ignoreErrors>
-                        <useIdeaDefaultExcludes>true</useIdeaDefaultExcludes>
-                        <excludes>
-                            <exclude>src/test/**</exclude>
-                            <exclude>src/main/webapp/**</exclude>
-                            <exclude>dist/**</exclude>
-                            <exclude>dist-skel/**</exclude>
-                            <exclude>**/*.markdown</exclude>
-                            <exclude>**/*.ds</exclude>
-                            <exclude>**/*.md</exclude>
-                            <exclude>**/*.sh</exclude>
-                            <exclude>**/*.yml</exclude>
-                            <exclude>**/*.iml</exclude>
-                            <exclude>**/*.html</exclude>
-                            <exclude>key.txt</exclude>
-                        </excludes>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>${findbugs-maven-plugin.version}</version>
-                    <configuration>
-                        <effort>Default</effort>
-                        <threshold>High</threshold>
-                        <xmlOutput>true</xmlOutput>
-                        <!-- Optional directory to put findbugs xdoc xml report -->
-                        <xmlOutputDirectory>target/site</xmlOutputDirectory>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>${maven-project-info-reports-plugin.version}</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>com.google.code.findbugs</groupId>
-                            <artifactId>bcel</artifactId>
-                            <version>${bcel.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.apache.maven.shared</groupId>
-                            <artifactId>maven-shared-jar</artifactId>
-                            <version>1.1</version>
-                            <exclusions>
-                                <exclusion>
-                                    <groupId>org.apache.bcel</groupId>
-                                    <artifactId>bcel</artifactId>
-                                </exclusion>
-                            </exclusions>
-                        </dependency>
-                    </dependencies>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>${maven-site-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>attach-descriptor</id>
-                            <goals>
-                                <goal>attach-descriptor</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <locales>en</locales>
-                    </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.apache.maven.doxia</groupId>
-                            <artifactId>doxia-module-markdown</artifactId>
-                            <version>1.6</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.apache.maven.skins</groupId>
-                            <artifactId>maven-fluido-skin</artifactId>
-                            <version>1.4</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
 
-            </plugins>
-        </pluginManagement>
         <plugins>
 
 
@@ -513,10 +414,6 @@
     </build>
 
     <distributionManagement>
-        <site>
-            <id>http://sillelien.github.io/dollar-core</id>
-            <url>scm:git:git@github.com:sillelien/dollar-core.git</url>
-        </site>
         <repository>
             <id>bintray-sillelien-maven</id>
             <name>sillelien-maven</name>
