@@ -1,44 +1,48 @@
 
 
-#The Dollar Core API [![Alpha](https://img.shields.io/badge/Status-Alpha-yellowgreen.svg?style=flat)](http://github.com/dollar-org/dollar-core)
+Build: [![Circle CI](https://circleci.com/gh/sillelien/dollar-core.png?style=badge)](https://circleci.com/gh/sillelien/dollar-core)
+
+[ ![Download](https://api.bintray.com/packages/sillelien/maven/dollar-core/images/download.svg) ](https://bintray.com/sillelien/maven/dollar-core/_latestVersion)
+
+#The Dollar Core API [![Beta](https://img.shields.io/badge/Status-Beta-green.svg?style=flat)](http://github.com/sillelien/dollar-core)
 
 Dollar helps you write dynamic JavaScript-like code from the safety of Java. It provides a new type `var` to use in your Java coding. `var` acts much in the same way as a JavaScript type, i.e. it is highly dynamic. There is a lot to the Dollar framework, of which this is the core project, so best to get started just understanding how you can write dynamic code in Java.
 
 To get started you'll need this repository:
 
 
-
 ```xml
-
     <repositories>
         <repository>
-            <id>s3-releases</id>
-            <url>http://dollar-repo.s3-website-eu-west-1.amazonaws.com/release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-sillelien-maven</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/sillelien/maven</url>
         </repository>
     </repositories>
+```  
 
-```
-
-And this dependency:
+and this dependency
 
 ```xml
-
-    <dependency>
-        <groupId>com.sillelien</groupId>
-        <artifactId>dollar-core</artifactId>
-        <version>0.2.218</version>
-    </dependency>
-    
+        <dependency>
+            <groupId>com.sillelien</groupId>
+            <artifactId>dollar-core</artifactId>
+            <version>0.3.250</version>
+        </dependency>
 ```
 
+[![Dependency Status](https://www.versioneye.com/user/projects/55bf9093653762001700287e/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/55bf9093653762001700287e)
 
 -------
 
-** If you use this project please consider giving us a star on [GitHub](http://github.com/dollar-org/dollar-core). **
+** If you use this project please consider giving us a star on [GitHub](http://github.com/sillelien/dollar-core). **
 
 Please contact me through Gitter (chat) or through GitHub Issues.
 
-[![GitHub Issues](https://img.shields.io/github/issues/dollar-org/dollar-core.svg)](https://github.com/dollar-org/dollar-core/issues) [![Join the chat at https://gitter.im/dollar-org/dollar-core](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dollar-org/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![GitHub Issues](https://img.shields.io/github/issues/sillelien/dollar-core.svg)](https://github.com/sillelien/dollar-core/issues) [![Join the chat at https://gitter.im/sillelien/dollar-core](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sillelien/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 For commercial support please <a href="mailto:hello@neilellis.me">contact me directly</a>.
 -------
@@ -693,11 +697,11 @@ With this in mind the following are Dollar's characteristics:
 
 
 ## Badges
-Build Status: [![Circle CI](https://circleci.com/gh/dollar-org/dollar-core.svg?style=svg)](https://circleci.com/gh/dollar-org/dollar-core)
+Build Status: [![Circle CI](https://circleci.com/gh/sillelien/dollar-core.svg?style=svg)](https://circleci.com/gh/sillelien/dollar-core)
 
-Chat: [![Gitter](https://badges.gitter.im/Join+Chat.svg)](https://gitter.im/dollar-org/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Chat: [![Gitter](https://badges.gitter.im/Join+Chat.svg)](https://gitter.im/sillelien/dollar-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-Waffle Stories: [![Stories in Ready](https://badge.waffle.io/dollar-org/dollar-core.png?label=ready&title=Ready)](https://waffle.io/dollar-org/dollar-core)
+Waffle Stories: [![Stories in Ready](https://badge.waffle.io/sillelien/dollar-core.png?label=ready&title=Ready)](https://waffle.io/sillelien/dollar-core)
 
 Dependencies: [![Dependency Status](https://www.versioneye.com/user/projects/55bf9094653762001a002527/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55bf9094653762001a002527)
 
@@ -713,9 +717,9 @@ This is an open source project, which means that we are giving our time to you f
 
 # Copyright and License
 
-[![GitHub License](https://img.shields.io/github/license/dollar-org/dollar-core.svg)](https://raw.githubusercontent.com/dollar-org/dollar-core/master/LICENSE)
+[![GitHub License](https://img.shields.io/github/license/sillelien/dollar-core.svg)](https://raw.githubusercontent.com/sillelien/dollar-core/master/LICENSE)
 
-(c) 2015-2017 Neil Ellis all rights reserved. Please see [LICENSE](https://raw.githubusercontent.com/dollar-org/dollar-core/master/LICENSE) for license details of this project. Please visit http://neilellis.me for help and raise issues on [GitHub](https://github.com/dollar-org/dollar-core/issues).
+(c) 2014-2017 Neil Ellis all rights reserved. Please see [LICENSE](https://raw.githubusercontent.com/sillelien/dollar-core/master/LICENSE) for license details of this project. Please visit http://neilellis.me for help and raise issues on [GitHub](https://github.com/sillelien/dollar-core/issues).
 
 For commercial support please <a href="mailto:hello@neilellis.me">contact me directly</a>.
 
