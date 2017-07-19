@@ -25,10 +25,10 @@ jobs:
             name: dependencies
             command: |
               ~/build-utils/maven_make_deps.sh
+
         - save_cache:
             key: dependency-cache
             paths:
-                - ~/.gnupg
                 - ~/.m2
         - run:
             name: test
