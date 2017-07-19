@@ -1,10 +1,8 @@
-
-
 Build: [![Circle CI](https://circleci.com/gh/sillelien/dollar-core.png?style=badge)](https://circleci.com/gh/sillelien/dollar-core)
 
 [ ![Download](https://api.bintray.com/packages/sillelien/maven/dollar-core/images/download.svg) ](https://bintray.com/sillelien/maven/dollar-core/_latestVersion)
 
-#The Dollar Core API [![Beta](https://img.shields.io/badge/Status-Beta-green.svg?style=flat)](http://github.com/sillelien/dollar-core)
+# The Dollar Core API [![Beta](https://img.shields.io/badge/Status-Beta-green.svg?style=flat)](http://github.com/sillelien/dollar-core)
 
 Dollar helps you write dynamic JavaScript-like code from the safety of Java. It provides a new type `var` to use in your Java coding. `var` acts much in the same way as a JavaScript type, i.e. it is highly dynamic. There is a lot to the Dollar framework, of which this is the core project, so best to get started just understanding how you can write dynamic code in Java.
 
@@ -30,7 +28,7 @@ and this dependency
         <dependency>
             <groupId>com.sillelien</groupId>
             <artifactId>dollar-core</artifactId>
-            <version>0.3.252</version>
+            <version>0.3.259</version>
         </dependency>
 ```
 
