@@ -1,8 +1,6 @@
-
-
 ${HEADER}
 
-#The Dollar Core API ${STATE_BETA}
+# The Dollar Core API ${STATE_BETA}
 
 Dollar helps you write dynamic JavaScript-like code from the safety of Java. It provides a new type `var` to use in your Java coding. `var` acts much in the same way as a JavaScript type, i.e. it is highly dynamic. There is a lot to the Dollar framework, of which this is the core project, so best to get started just understanding how you can write dynamic code in Java.
 
