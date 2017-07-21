@@ -22,7 +22,7 @@
     <parent>
         <groupId>com.sillelien</groupId>
         <artifactId>dollar-parent</artifactId>
-        <version>0.3.17</version>
+        <version>0.3.25</version>
     </parent>
 
     <artifactId>dollar-core</artifactId>
@@ -104,7 +104,6 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
 
         <dependency>
@@ -173,8 +172,6 @@
             <plugin>
                 <groupId>org.complykit</groupId>
                 <artifactId>license-check-maven-plugin</artifactId>
-                <version>0.5.2</version>
-
                 <configuration>
                     <excludes>
                         <param>commons-logging:commons-logging:${commons-logging.version}</param>
@@ -203,32 +200,26 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>2.5</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
-                <version>2.4</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.7</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>${maven-resources-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>${maven-jar-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.4</version>
                 <executions>
                     <execution>
                         <id>enforce-versions</id>
@@ -265,7 +256,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
                 <configuration>
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>
@@ -274,7 +264,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
                 <configuration>
                     <!--<redirectTestOutputToFile>true</redirectTestOutputToFile>-->
                     <!--<jvm>${JAVA.EXE}</jvm>-->
@@ -300,7 +289,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
 
                 <executions>
                     <execution>
@@ -315,7 +303,6 @@
 
             <plugin>
                 <artifactId>maven-scm-plugin</artifactId>
-                <version>1.9.4</version>
                 <configuration>
                     <tag>${project.artifactId}-${project.version}</tag>
                 </configuration>
@@ -341,12 +328,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
-                <version>2.2</version>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>${findbugs-maven-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.rat</groupId>
@@ -365,7 +346,6 @@
             <plugin>
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
-                <version>1.1.6</version>
                 <configuration>
                     <targetClasses>
                         <param>com.sillelien.*</param>
