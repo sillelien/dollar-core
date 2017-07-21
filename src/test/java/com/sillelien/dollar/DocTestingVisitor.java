@@ -37,7 +37,7 @@ public class DocTestingVisitor implements Visitor {
 
     @Override
     public void visit(AnchorLinkNode node) {
-        
+
     }
 
 //    @Override

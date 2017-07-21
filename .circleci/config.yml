@@ -47,4 +47,5 @@ jobs:
               fi
               if [ "${CIRCLE_BRANCH}" == "master" ]; then
                       /home/circleci/build-utils/maven_deploy.sh
+                      /home/circleci/build-utils/trigger-circleci-build.sh dollar ${DOLLAR_BUILD_TOKEN}
               fi
