@@ -28,7 +28,7 @@ jobs:
         - run:
             name: dependencies
             command: |
-              ~/build-utils/maven_make_deps.sh
+              /home/circleci/build-utils/maven_make_deps.sh
 
         - save_cache:
             key: dependency-cache
@@ -43,8 +43,8 @@ jobs:
         - deploy:
             command: |
               if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                      ~/build-utils/promote_from_staging.sh
+                      /home/circleci/build-utils/promote_from_staging.sh
               fi
               if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                      ~/build-utils/maven_deploy.sh
+                      /home/circleci/build-utils/maven_deploy.sh
               fi
