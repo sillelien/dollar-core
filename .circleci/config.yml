@@ -26,20 +26,22 @@ jobs:
             name: init
             command: /home/circleci/.build-init.sh
 
-        - run:
-            name: dependencies
-            command: |
-              /home/circleci/build-utils/maven_make_deps.sh
+#        - run:
+#            name: dependencies
+#            command: |
+#              /home/circleci/build-utils/maven_make_deps.sh
+#
 
-        - save_cache:
-            key: dependency-cache
-            paths:
-                - ~/.m2
         - run:
             name: test
             command: |
                  mvn -q -T 1C -Drat.skip -Dsource.skip=true -DgenerateReports=false -Dmaven.javadoc.skip=true integration-test
             no_output_timeout: 600
+
+        - save_cache:
+            key: dependency-cache
+            paths:
+                - ~/.m2
 
         - deploy:
             command: |
