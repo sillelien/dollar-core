@@ -20,7 +20,7 @@ import com.sillelien.dollar.api.DollarException;
 import com.sillelien.dollar.api.var;
 
 public class ConstraintViolation extends DollarException {
-    public ConstraintViolation(ConstrainedVar constrainedVar, var constraint, String constraintFingerPrint) {
-        super("Constrained var " + constrainedVar + " did not match constraint fingerprint for " + constraint.toDollarScript());
+    public ConstraintViolation(var constrainedVar, var constraint, String constrainedFingerprint, String constraintFingerPrint) {
+        super("Constrained var fingerprint " + constrainedFingerprint + " did not match constraint fingerprint for " + constraint.toDollarScript());
     }
 }

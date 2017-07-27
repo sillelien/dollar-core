@@ -18,7 +18,12 @@ package com.sillelien.dollar.api;
 
 import com.sillelien.dollar.api.collections.ImmutableList;
 import com.sillelien.dollar.api.collections.ImmutableMap;
-import com.sillelien.dollar.api.guard.*;
+import com.sillelien.dollar.api.guard.AllVarCollectionGuard;
+import com.sillelien.dollar.api.guard.AllVarMapGuard;
+import com.sillelien.dollar.api.guard.ChainGuard;
+import com.sillelien.dollar.api.guard.Guarded;
+import com.sillelien.dollar.api.guard.NotNullCollectionGuard;
+import com.sillelien.dollar.api.guard.NotNullGuard;
 import com.sillelien.dollar.api.types.DollarFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -377,5 +382,7 @@ public interface TypeAware {
 
     boolean queue();
 
+
     var $constrain(var constraint, String constraintSource);
+
 }

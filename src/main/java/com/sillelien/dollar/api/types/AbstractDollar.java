@@ -88,7 +88,12 @@ public abstract class AbstractDollar implements var {
 
     @Override
     public var $constrain(var constraint, String constraintSource) {
-        return new ConstrainedVar(this,constraint,constraintSource);
+        if (constraintSource.equals(this.getMetaAttribute("constraintFingerprint"))) {
+            this.setMetaAttribute("constraintFingerprint",constraintSource);
+            return this;
+        } else {
+            throw new ConstraintViolation(this, constraint, this.getMetaAttribute("constraintFingerprint"),constraintSource);
+        }
     }
 
     @NotNull @Override
