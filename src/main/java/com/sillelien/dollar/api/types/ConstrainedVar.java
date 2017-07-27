@@ -24,20 +24,20 @@ public class ConstrainedVar extends DollarWrapper {
     @NotNull
     private final String constraintFingerPrint;
 
-    ConstrainedVar(@Nullable var value, @NotNull var constraint) {
+    ConstrainedVar(@Nullable var value, @NotNull var constraint, String constraintSource) {
         super(value);
-        this.constraintFingerPrint = constraint.toDollarScript();
+        this.constraintFingerPrint = constraintSource;
     }
 
-    ConstrainedVar(@Nullable var value, @NotNull String constraint) {
+    ConstrainedVar(@Nullable var value, @NotNull String constraintSource) {
         super(value);
-        this.constraintFingerPrint = constraint;
+        this.constraintFingerPrint = constraintSource;
     }
 
     @Override
-    public var $constrain(var constraint) {
-        if (constraint.toDollarScript().equals(constraintFingerPrint)) {
-            return super.$constrain(constraint);
+    public var $constrain(var constraint, String constraintSource) {
+        if (constraintSource.equals(constraintFingerPrint)) {
+            return super.$constrain(constraint,constraintSource);
         } else {
             throw new ConstraintViolation(this, constraint, constraintFingerPrint);
         }

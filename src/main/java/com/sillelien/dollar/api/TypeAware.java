@@ -377,5 +377,5 @@ public interface TypeAware {
 
     boolean queue();
 
-    var $constrain(var constraint);
+    var $constrain(var constraint, String constraintSource);
 }

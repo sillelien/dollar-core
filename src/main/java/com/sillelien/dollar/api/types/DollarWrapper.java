@@ -747,8 +747,8 @@ public class DollarWrapper implements var {
     }
 
     @Override
-    public var $constrain(var constraint) {
-        return getValue().$constrain(constraint);
+    public var $constrain(var constraint, String source) {
+        return getValue().$constrain(constraint,source);
     }
 
     @NotNull

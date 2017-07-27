@@ -87,8 +87,8 @@ public abstract class AbstractDollar implements var {
     }
 
     @Override
-    public var $constrain(var constraint) {
-        return new ConstrainedVar(this,constraint);
+    public var $constrain(var constraint, String constraintSource) {
+        return new ConstrainedVar(this,constraint,constraintSource);
     }
 
     @NotNull @Override
