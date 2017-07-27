@@ -16,11 +16,11 @@
 
 package com.sillelien.dollar.api.types;
 
-import com.sillelien.dollar.api.DollarException;
+import com.sillelien.dollar.api.exceptions.DollarFailureException;
 import com.sillelien.dollar.api.var;
 
-public class ConstraintViolation extends DollarException {
+public class ConstraintViolation extends DollarFailureException {
     public ConstraintViolation(var constrainedVar, var constraint, String constrainedFingerprint, String constraintFingerPrint) {
-        super("Constrained var fingerprint " + constrainedFingerprint + " did not match constraint fingerprint for " + constraint.toDollarScript());
+        super(ErrorType.ASSERTION,"Constrained var fingerprint " + constrainedFingerprint + " did not match constraint fingerprint for " + constraintFingerPrint);
     }
 }
