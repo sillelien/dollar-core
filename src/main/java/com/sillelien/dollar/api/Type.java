@@ -16,6 +16,7 @@
 
 package com.sillelien.dollar.api;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -113,10 +114,14 @@ public final class Type {
      * Instantiates a new Type.
      *
      */
-    public Type(@NotNull Type type, @NotNull String constraint) {
+    public Type(@NotNull Type type, @Nullable String constraint) {
 
         this.name = type.name;
-        this.constraint = constraint;
+        if(constraint != null) {
+            this.constraint = constraint;
+        } else {
+            this.constraint="";
+        }
     }
     /**
      * Instantiates a new Type.
@@ -136,6 +141,7 @@ public final class Type {
      *
      * @return the Type
      */
+    @NotNull
     public static Type valueOf(@NotNull String name) {
         String[] split = name.split(":");
         if(split.length==2) {
@@ -157,8 +163,9 @@ public final class Type {
 
     }
 
+    @Contract(pure = true)
     @NotNull @Override public String toString() {
-        return name+":"+constraint;
+        return constraint.isEmpty() ? name : (name + ":" + constraint);
     }
 
     /**
@@ -166,6 +173,7 @@ public final class Type {
      *
      * @return the string
      */
+    @Contract(pure = true)
     @NotNull public String name() {
         return name;
     }
