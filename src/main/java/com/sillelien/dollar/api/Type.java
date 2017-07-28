@@ -178,6 +178,17 @@ public final class Type {
         return name;
     }
 
+    /**
+     * Return the constraint portion of the Type
+     *
+     * @return the constraint
+     */
+    @Contract(pure = true)
+    @NotNull public String constraint() {
+        return constraint;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
