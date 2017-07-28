@@ -1,19 +1,20 @@
-package com.sillelien.dollar;
 /*
- * Copyright (c) 2014-2015 Neil Ellis
+ *    Copyright (c) 2014-2017 Neil Ellis
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *          http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
+
+package com.sillelien.dollar;
 
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
@@ -215,14 +216,15 @@ public class DocTestingVisitor implements Visitor {
                 File javaFile = new File("/tmp/" + name + ".java");
                 File clazzFile = new File("/tmp/" + name + ".class");
                 clazzFile.getParentFile().mkdirs();
+                String string = "import com.sillelien.dollar.api.*;\n"  +
+                        "import static com.sillelien.dollar.api.DollarStatic.*;\n" +
+                        "public class " + name + " implements java.lang.Runnable{\n" +
+                        "    public void run() {\n" +
+                        "        " + node.getText() + "\n" +
+                        "    }\n" +
+                        "}";
                 FileUtils.write(javaFile,
-                        "import com.sillelien.dollar.api.*;\n" +
-                                "import static com.sillelien.dollar.api.DollarStatic.*;\n" +
-                                "public class " + name + " implements java.lang.Runnable{\n" +
-                                "    public void run() {\n" +
-                                "        " + node.getText() + "\n" +
-                                "    }\n" +
-                                "}");
+                        string);
                 final JavaCompiler javac
                         = ToolProvider.getSystemJavaCompiler();
                 final StandardJavaFileManager jfm
@@ -251,12 +253,16 @@ public class DocTestingVisitor implements Visitor {
                     Class cls = cl.loadClass(name);
                     ((Runnable) cls.newInstance()).run();
                 } catch (MalformedURLException e) {
+                    System.err.println(string);
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
+                    System.err.println(string);
                     e.printStackTrace();
                 } catch (InstantiationException e) {
+                    System.err.println(string);
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
+                    System.err.println(string);
                     e.printStackTrace();
                 }
                 System.out.println("Parsed: " + node.getText());

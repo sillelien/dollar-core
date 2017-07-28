@@ -1,17 +1,17 @@
 /*
- * Copyright (c) 2014-2015 Neil Ellis
+ *    Copyright (c) 2014-2017 Neil Ellis
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *          http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 
 package com.sillelien.dollar.api.types;
@@ -84,19 +84,19 @@ public class DollarBoolean extends AbstractDollarSingleValue<Boolean> {
 
     @Override
     public var $as(@NotNull Type type) {
-        if (type.equals(Type.BOOLEAN)) {
+        if (type.is(Type._BOOLEAN)) {
             return this;
-        } else if (type.equals(Type.STRING)) {
+        } else if (type.is(Type._STRING)) {
             return DollarStatic.$(toHumanString());
-        } else if (type.equals(Type.LIST)) {
+        } else if (type.is(Type._LIST)) {
             return DollarStatic.$(Arrays.asList(this));
-        } else if (type.equals(Type.MAP)) {
+        } else if (type.is(Type._MAP)) {
             return DollarStatic.$("value", this);
-        } else if (type.equals(Type.DECIMAL)) {
+        } else if (type.is(Type._DECIMAL)) {
             return DollarStatic.$(value ? 1.0 : 0.0);
-        } else if (type.equals(Type.INTEGER)) {
+        } else if (type.is(Type._INTEGER)) {
             return DollarStatic.$(value ? 1 : 0);
-        } else if (type.equals(Type.VOID)) {
+        } else if (type.is(Type._VOID)) {
             return DollarStatic.$void();
         } else {
             return DollarFactory.failure(ErrorType.INVALID_CAST);
@@ -104,7 +104,7 @@ public class DollarBoolean extends AbstractDollarSingleValue<Boolean> {
     }
 
     @Override public Type $type() {
-        return Type.BOOLEAN;
+        return new Type(Type._BOOLEAN,$constraint());
     }
 
     @NotNull
@@ -116,7 +116,7 @@ public class DollarBoolean extends AbstractDollarSingleValue<Boolean> {
     @Override
     public boolean is(@NotNull Type... types) {
         for (Type type : types) {
-            if (type == Type.BOOLEAN) {
+            if (type.is(Type._BOOLEAN)) {
                 return true;
             }
         }

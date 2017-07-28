@@ -1,17 +1,17 @@
 /*
- * Copyright (c) 2014-2015 Neil Ellis
+ *    Copyright (c) 2014-2017 Neil Ellis
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *          http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 
 package com.sillelien.dollar.api.types;
@@ -144,15 +144,15 @@ public class DollarURI extends AbstractDollar {
 
     @Override
     public var $as(@NotNull Type type) {
-        if (type.equals(Type.STRING)) {
+        if (type.is(Type._STRING)) {
             return DollarStatic.$(toHumanString());
-        } else if (type.equals(Type.LIST)) {
+        } else if (type.is(Type._LIST)) {
             return $all();
-        } else if (type.equals(Type.MAP)) {
+        } else if (type.is(Type._MAP)) {
             return DollarStatic.$("value", this);
-        } else if (type.equals(Type.VOID)) {
+        } else if (type.is(Type._VOID)) {
             return DollarStatic.$void();
-        } else if (type.equals(Type.URI)) {
+        } else if (type.is(Type._URI)) {
             return this;
         } else {
             return DollarFactory.failure(ErrorType.INVALID_CAST);
@@ -240,7 +240,7 @@ public class DollarURI extends AbstractDollar {
 
     @Override
     public Type $type() {
-        return Type.URI;
+        return new Type(Type._URI,$constraint());
     }
 
     @Override
@@ -263,7 +263,7 @@ public class DollarURI extends AbstractDollar {
     @Override
     public boolean is(@NotNull Type... types) {
         for (Type type : types) {
-            if (Objects.equals(type, Type.URI)) {
+            if (type.is(Type._URI)) {
                 return true;
             }
         }

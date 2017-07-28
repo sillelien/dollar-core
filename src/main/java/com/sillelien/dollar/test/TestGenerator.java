@@ -1,19 +1,17 @@
 /*
- *   Copyright (c) 2014-2015 Neil Ellis
+ *    Copyright (c) 2014-2017 Neil Ellis
  *
- *   Licensed under the Apache License, Version 2.0 (the "License");
- *   you may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *          http://www.apache.org/licenses/LICENSE-2.0
  *
- *   Unless required by applicable law or agreed to in writing, software
- *   distributed under the License is distributed on an "AS IS" BASIS,
- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *   See the License for the specific language governing permissions and
- *   limitations under the License.
- *
- *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 
 package com.sillelien.dollar.test;
@@ -115,7 +113,7 @@ public class TestGenerator {
     }
 
     @NotNull public static List<var> emptyValues() {
-        return Arrays.asList(new DollarNull(Type.STRING), new DollarNull(Type.INTEGER), new DollarNull(Type.ANY),
+        return Arrays.asList(new DollarNull(Type._STRING), new DollarNull(Type._INTEGER), new DollarNull(Type._ANY),
                              new DollarVoid(), DollarFactory.failure(ErrorType.EXCEPTION,
                                                                      "Test Exception", true));
     }
@@ -166,7 +164,7 @@ public class TestGenerator {
     }
 
     @NotNull public static List<var> minimalEmptyValues() {
-        return Arrays.asList(new DollarNull(Type.ANY), new DollarVoid(), DollarFactory.failure(ErrorType.EXCEPTION,
+        return Arrays.asList(new DollarNull(Type._ANY), new DollarVoid(), DollarFactory.failure(ErrorType.EXCEPTION,
                                                                                                "Test Exception", true));
     }
 

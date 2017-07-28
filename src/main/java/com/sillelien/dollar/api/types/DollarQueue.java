@@ -1,3 +1,19 @@
+/*
+ *    Copyright (c) 2014-2017 Neil Ellis
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *          http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package com.sillelien.dollar.api.types;
 
 import com.sillelien.dollar.api.DollarStatic;
@@ -16,7 +32,6 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -307,9 +322,9 @@ public class DollarQueue extends AbstractDollar implements var {
     @NotNull
     @Guarded(NotNullGuard.class)
     public var $as(@NotNull Type type) {
-        if (type == Type.LIST) {
+        if (type.is(Type._LIST)) {
             return DollarStatic.$(queue.toArray());
-        } else if (type == Type.MAP) {
+        } else if (type.is(Type._MAP)) {
             return DollarStatic.$(queue.toArray()).$map();
         }
         return DollarFactory.failure(ErrorType.INVALID_CAST);
@@ -325,7 +340,7 @@ public class DollarQueue extends AbstractDollar implements var {
     @Override
     @NotNull
     public Type $type() {
-        return Type.QUEUE;
+        return new Type(Type._QUEUE,$constraint());
     }
 
     @NotNull
@@ -347,7 +362,7 @@ public class DollarQueue extends AbstractDollar implements var {
     @Guarded(NotNullGuard.class)
     public boolean is(@NotNull Type... types) {
         for (Type type : types) {
-            if (Objects.equals(type, Type.QUEUE)) {
+            if (type.is(Type._QUEUE)) {
                 return true;
             }
         }

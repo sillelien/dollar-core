@@ -85,6 +85,8 @@ public interface TypeAware {
      */
     Type $type();
 
+    default String $constraint(){return "";};
+
     /**
      * Returns the definitive type of this object, this will trigger execution in dynamic values.
      *

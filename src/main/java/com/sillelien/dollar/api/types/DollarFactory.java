@@ -1,17 +1,17 @@
 /*
- * Copyright (c) 2014-2015 Neil Ellis
+ *    Copyright (c) 2014-2017 Neil Ellis
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *          http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 
 package com.sillelien.dollar.api.types;
@@ -591,29 +591,29 @@ public class DollarFactory {
     @NotNull private static var fromJson(@NotNull JsonObject jsonObject) {
         final Type type;
         if (!jsonObject.containsField(TYPE_KEY)) {
-            type = Type.MAP;
+            type = Type._MAP;
         } else {
             type = Type.valueOf(jsonObject.getString(TYPE_KEY));
         }
 
-        if (type.equals(Type.VOID)) {
+        if (type.is(Type._VOID)) {
             return $void();
-        } else if (type.equals(Type.INTEGER)) {
+        } else if (type.is(Type._INTEGER)) {
             return fromValue(jsonObject.getLong(VALUE_KEY));
-        } else if (type.equals(Type.BOOLEAN)) {
+        } else if (type.is(Type._BOOLEAN)) {
             return fromValue(jsonObject.getBoolean(VALUE_KEY));
-        } else if (type.equals(Type.DATE)) {
+        } else if (type.is(Type._DATE)) {
             return wrap(new DollarDate(ImmutableList.of(), Instant.parse(jsonObject.getString(TEXT_KEY))));
-        } else if (type.equals(Type.DECIMAL)) {
+        } else if (type.is(Type._DECIMAL)) {
             return fromValue(jsonObject.getNumber(VALUE_KEY));
-        } else if (type.equals(Type.LIST)) {
+        } else if (type.is(Type._LIST)) {
             final JsonArray array = jsonObject.getArray(VALUE_KEY);
             ArrayList<Object> arrayList = new ArrayList<>();
             for (Object o : array) {
                 arrayList.add(fromJson(o));
             }
             return wrap(new DollarList(ImmutableList.of(), ImmutableList.copyOf(arrayList)));
-        } else if (type.equals(Type.MAP)) {
+        } else if (type.is(Type._MAP)) {
             final JsonObject json;
                 json = jsonObject;
             LinkedHashMap<String, Object> map = new LinkedHashMap<>();
@@ -624,19 +624,19 @@ public class DollarFactory {
                 }
             }
             return wrap(new DollarMap(ImmutableList.of(), map));
-        } else if (type.equals(Type.ERROR)) {
+        } else if (type.is(Type._ERROR)) {
             final String errorType = jsonObject.getString("errorType");
             final String errorMessage = jsonObject.getString("errorMessage");
             return wrap(new DollarError(ImmutableList.<Throwable>of(), ErrorType.valueOf(errorType), errorMessage));
-        } else if (type.equals(Type.RANGE)) {
+        } else if (type.is(Type._RANGE)) {
             final var lower = fromJson(jsonObject.get(LOWERBOUND_KEY));
             final var upper = fromJson(jsonObject.get(UPPERBOUND_KEY));
             return wrap(new DollarRange(ImmutableList.of(), lower, upper));
-        } else if (type.equals(Type.URI)) {
+        } else if (type.is(Type._URI)) {
             return wrap(new DollarURI(ImmutableList.of(), URI.parse(jsonObject.getString(VALUE_KEY))));
-        } else if (type.equals(Type.INFINITY)) {
+        } else if (type.is(Type._INFINITY)) {
             return wrap(new DollarInfinity(ImmutableList.of(), jsonObject.getBoolean(POSITIVE_KEY)));
-        } else if (type.equals(Type.STRING)) {
+        } else if (type.is(Type._STRING)) {
             if (!(jsonObject.get(VALUE_KEY) instanceof String)) {
                 System.out.println(jsonObject.get(VALUE_KEY));
             }
@@ -711,35 +711,35 @@ public class DollarFactory {
      */
     @Nullable public static Object toJson(@NotNull var value) {
         Type i = value.$type();
-        if (i.equals(Type.VOID) ||
-            i.equals(Type.INTEGER) ||
-            i.equals(Type.BOOLEAN) ||
-            i.equals(Type.DECIMAL) ||
-            i.equals(
-                    Type.STRING)) {
+        if (i.is(Type._VOID) ||
+            i.is(Type._INTEGER) ||
+            i.is(Type._BOOLEAN) ||
+            i.is(Type._DECIMAL) ||
+            i.is(
+                    Type._STRING)) {
             return value.toJavaObject();
-        } else if (i.equals(Type.DATE)) {
+        } else if (i.is(Type._DATE)) {
             final JsonObject jsonObject = new JsonObject();
             jsonObject.putString(TYPE_KEY, value.$type().name());
             jsonObject.putString(TEXT_KEY, value.$S());
             jsonObject.putNumber(MILLISECOND_KEY, (long) (value.toDouble() * 24 * 60 * 60 * 1000));
             return jsonObject;
-        } else if (i.equals(Type.URI)) {
+        } else if (i.is(Type._URI)) {
             final JsonObject uriJsonObject = new JsonObject();
             uriJsonObject.putString(TYPE_KEY, value.$type().name());
             uriJsonObject.putString(VALUE_KEY, value.$S());
             return uriJsonObject;
-        } else if (i.equals(Type.ERROR)) {
+        } else if (i.is(Type._ERROR)) {
             final JsonObject errorJsonObject = new JsonObject();
             errorJsonObject.putString(TYPE_KEY, value.$type().name());
             errorJsonObject.putValue(VALUE_KEY, value.toJsonType());
             return errorJsonObject;
-        } else if (i.equals(Type.INFINITY)) {
+        } else if (i.is(Type._INFINITY)) {
             final JsonObject infinityJsonObject = new JsonObject();
             infinityJsonObject.putString(TYPE_KEY, value.$type().name());
             infinityJsonObject.putValue(POSITIVE_KEY, value.positive());
             return infinityJsonObject;
-        } else if (i.equals(Type.LIST) || i.equals(Type.QUEUE)) {
+        } else if (i.is(Type._LIST) || i.is(Type._QUEUE)) {
             final JsonArray array = new JsonArray();
             ImmutableList<var> arrayList = value.toVarList();
             for (var v : arrayList) {
@@ -747,7 +747,7 @@ public class DollarFactory {
             }
 
             return array;
-        } else if (i.equals(Type.MAP)) {
+        } else if (i.is(Type._MAP)) {
             final JsonObject json = new JsonObject();
             ImmutableMap<var, var> map = value.toVarMap();
             final Set<var> fieldNames = map.keySet();
@@ -758,14 +758,14 @@ public class DollarFactory {
             final JsonObject containerObject = new JsonObject();
 //            json.putString(TYPE_KEY, value.$type().name());
             return json;
-        } else if (i.equals(Type.RANGE)) {
+        } else if (i.is(Type._RANGE)) {
             final JsonObject rangeObject = new JsonObject();
             rangeObject.putString(TYPE_KEY, value.$type().name());
             final Range range = value.toJavaObject();
             rangeObject.putValue(LOWERBOUND_KEY, toJson(range.lowerEndpoint()));
             rangeObject.putValue(UPPERBOUND_KEY, toJson(range.upperEndpoint()));
             return rangeObject;
-        } else if (i.equals(Type.ANY)) {
+        } else if (i.is(Type._ANY)) {
             return null;
         } else {
             throw new DollarException("Unrecognized type " + value.$type());
