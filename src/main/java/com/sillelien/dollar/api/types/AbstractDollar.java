@@ -18,11 +18,16 @@ package com.sillelien.dollar.api.types;
 
 import com.github.oxo42.stateless4j.StateMachine;
 import com.github.oxo42.stateless4j.StateMachineConfig;
-import com.sillelien.dollar.api.*;
+import com.sillelien.dollar.api.DollarException;
+import com.sillelien.dollar.api.DollarStatic;
+import com.sillelien.dollar.api.Pipeable;
+import com.sillelien.dollar.api.Signal;
+import com.sillelien.dollar.api.TypePrediction;
 import com.sillelien.dollar.api.collections.ImmutableList;
 import com.sillelien.dollar.api.json.JsonArray;
 import com.sillelien.dollar.api.json.JsonObject;
 import com.sillelien.dollar.api.types.prediction.SingleValueTypePrediction;
+import com.sillelien.dollar.api.var;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -46,7 +51,8 @@ import java.util.stream.Stream;
 public abstract class AbstractDollar implements var {
 
     private static
-    @NotNull final
+    @NotNull
+    final
     ScriptEngine nashorn = new ScriptEngineManager().getEngineByName("nashorn");
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final
@@ -54,6 +60,7 @@ public abstract class AbstractDollar implements var {
     ImmutableList<Throwable> errors;
     private final ConcurrentHashMap<String, String> meta = new ConcurrentHashMap<>();
     private String src;
+
     AbstractDollar(@NotNull ImmutableList<Throwable> errors) {
         this.errors = errors;
     }
@@ -87,20 +94,26 @@ public abstract class AbstractDollar implements var {
     }
 
     @Override
-    public var _constrain(var constraint, String constraintSource) {
-        if(constraint == null || constraintSource == null) {
+    public String _constraintFingerprint() {
+        return this.getMetaAttribute("constraintFingerprint");
+    }
+
+    @Override
+    public var _constrain(var constraint, String constraintFingerprint) {
+        if (constraint == null || constraintFingerprint == null) {
             return this;
         }
-        String constraintFingerprint = this.getMetaAttribute("constraintFingerprint");
-        if (constraintFingerprint == null || constraintSource.equals(constraintFingerprint)) {
-            this.setMetaAttribute("constraintFingerprint",constraintSource);
+        String thisConstraintFingerprint = _constraintFingerprint();
+        if (thisConstraintFingerprint == null || thisConstraintFingerprint.equals(constraintFingerprint)) {
+            this.setMetaAttribute("constraintFingerprint", constraintFingerprint);
             return this;
         } else {
-            throw new ConstraintViolation(this, constraint, constraintFingerprint,constraintSource);
+            throw new ConstraintViolation(this, constraint, constraintFingerprint, constraintFingerprint);
         }
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var $all() {
         return DollarStatic.$void();
     }
@@ -131,7 +144,8 @@ public abstract class AbstractDollar implements var {
         return this;
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var $choose(@NotNull var map) {
         return map.$($S());
     }
@@ -153,49 +167,67 @@ public abstract class AbstractDollar implements var {
         return resultvar;
     }
 
-    @NotNull @Override public var $create() {
+    @NotNull
+    @Override
+    public var $create() {
         getStateMachine().fire(Signal.CREATE);
         return this;
     }
 
-    @NotNull @Override public var $destroy() {
+    @NotNull
+    @Override
+    public var $destroy() {
         getStateMachine().fire(Signal.DESTROY);
         return this;
     }
 
-    @NotNull @Override public var $pause() {
+    @NotNull
+    @Override
+    public var $pause() {
         getStateMachine().fire(Signal.PAUSE);
         return this;
     }
 
-    @Override public void $signal(@NotNull Signal signal) {
+    @Override
+    public void $signal(@NotNull Signal signal) {
         getStateMachine().fire(signal);
     }
 
-    @NotNull @Override public var $start() {
+    @NotNull
+    @Override
+    public var $start() {
         getStateMachine().fire(Signal.START);
         return this;
     }
 
-    @NotNull @Override public var $state() {
+    @NotNull
+    @Override
+    public var $state() {
         return DollarStatic.$(getStateMachine().getState().toString());
     }
 
-    @NotNull @Override public var $stop() {
+    @NotNull
+    @Override
+    public var $stop() {
         getStateMachine().fire(Signal.STOP);
         return this;
     }
 
-    @NotNull @Override public var $unpause() {
+    @NotNull
+    @Override
+    public var $unpause() {
         getStateMachine().fire(Signal.UNPAUSE);
         return this;
     }
 
-    @NotNull @Override public StateMachine<ResourceState, Signal> getStateMachine() {
+    @NotNull
+    @Override
+    public StateMachine<ResourceState, Signal> getStateMachine() {
         return new StateMachine<>(ResourceState.INITIAL, getDefaultStateMachineConfig());
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var $default(@NotNull var v) {
         if (isVoid()) {
             return v;
@@ -203,7 +235,6 @@ public abstract class AbstractDollar implements var {
             return this;
         }
     }
-
 
 
     @NotNull
@@ -271,19 +302,27 @@ public abstract class AbstractDollar implements var {
         return DollarFactory.fromValue(toJavaObject(), ImmutableList.copyOf(errors(), errors));
     }
 
-    @NotNull final @Override public var _fix(boolean parallel) {
+    @NotNull
+    final @Override
+    public var _fix(boolean parallel) {
         return _fix(1, parallel);
     }
 
-    @NotNull @Override public var _fix(int depth, boolean parallel) {
+    @NotNull
+    @Override
+    public var _fix(int depth, boolean parallel) {
         return this;
     }
 
-    @NotNull @Override public final var _fixDeep(boolean parallel) {
+    @NotNull
+    @Override
+    public final var _fixDeep(boolean parallel) {
         return _fix(Integer.MAX_VALUE, parallel);
     }
 
-    @NotNull @Override public TypePrediction _predictType() {
+    @NotNull
+    @Override
+    public TypePrediction _predictType() {
         return new SingleValueTypePrediction($type());
     }
 
@@ -298,62 +337,72 @@ public abstract class AbstractDollar implements var {
         DollarFactory.failure(ErrorType.INVALID_OPERATION);
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var debug(@NotNull Object message) {
         logger.debug(message.toString());
         return this;
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var debug() {
         logger.debug(this.toString());
         return this;
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var debugf(String message, Object... values) {
         logger.debug(message, values);
         return this;
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var error(@NotNull Throwable exception) {
         logger.error(exception.getMessage(), exception);
         return this;
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var error(@NotNull Object message) {
         logger.error(message.toString());
         return this;
 
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var error() {
         logger.error(this.toString());
         return this;
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var errorf(String message, Object... values) {
         logger.error(message, values);
         return this;
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var info(@NotNull Object message) {
         logger.info(message.toString());
         return this;
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var info() {
         logger.info(this.toString());
         return this;
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var infof(String message, Object... values) {
         logger.info(message, values);
         return this;
@@ -389,7 +438,8 @@ public abstract class AbstractDollar implements var {
         return false;
     }
 
-    @Override public boolean pair() {
+    @Override
+    public boolean pair() {
         return false;
     }
 
@@ -403,7 +453,8 @@ public abstract class AbstractDollar implements var {
         return false;
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public InputStream toStream() {
         return new ByteArrayInputStream($serialized().getBytes());
     }
@@ -471,7 +522,8 @@ public abstract class AbstractDollar implements var {
         return toHumanString();
     }
 
-    @Nullable @Override
+    @Nullable
+    @Override
     public Double toDouble() {
         return 0.0;
     }
@@ -499,7 +551,7 @@ public abstract class AbstractDollar implements var {
                     errorJson.putString("stack", Arrays.toString(error.getStackTrace()));
                 } else {
                     errorJson.putString("hash",
-                                        hash(Arrays.toString(error.getStackTrace()).getBytes()));
+                            hash(Arrays.toString(error.getStackTrace()).getBytes()));
                 }
                 errorArray.addObject(errorJson);
             }
@@ -508,7 +560,8 @@ public abstract class AbstractDollar implements var {
         return DollarFactory.fromValue(json);
     }
 
-    @NotNull String hash(@NotNull byte[] bytes) {
+    @NotNull
+    String hash(@NotNull byte[] bytes) {
         MessageDigest md = null;
         try {
             md = MessageDigest.getInstance("SHA-256");
@@ -522,7 +575,9 @@ public abstract class AbstractDollar implements var {
 
         for (byte aDigest : digest) {
             String hex = Integer.toHexString(0xff & aDigest);
-            if (hex.length() == 1) { hexString.append('0'); }
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
             hexString.append(hex);
         }
 
@@ -551,7 +606,6 @@ public abstract class AbstractDollar implements var {
     }
 
 
-
     @NotNull
     @Override
     public var $error() {
@@ -559,12 +613,10 @@ public abstract class AbstractDollar implements var {
     }
 
 
-
     @Override
     public boolean hasErrors() {
         return !errors.isEmpty();
     }
-
 
 
     @NotNull
@@ -574,7 +626,6 @@ public abstract class AbstractDollar implements var {
     }
 
 
-
     @NotNull
     @Override
     public ImmutableList<Throwable> errors() {
@@ -582,7 +633,8 @@ public abstract class AbstractDollar implements var {
     }
 
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public var clearErrors() {
         return DollarFactory.fromValue(toJavaObject(), ImmutableList.of());
     }

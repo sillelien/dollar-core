@@ -210,6 +210,11 @@ public class DollarBlockCollection implements var {
         return getValue().$type();
     }
 
+    @Override
+    public String _constraintFingerprint() {
+        return getValue()._constraintFingerprint();
+    }
+
     @Override public boolean collection() {return true;}
 
     @Override public boolean dynamic() {return getValue().dynamic();}

@@ -85,7 +85,7 @@ public interface TypeAware {
      */
     Type $type();
 
-    default String $constraint(){return "";};
+     String _constraintFingerprint();
 
     /**
      * Returns the definitive type of this object, this will trigger execution in dynamic values.

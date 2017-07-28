@@ -127,7 +127,7 @@ public class DollarDate extends AbstractDollarSingleValue<Instant> {
     }
 
     @Override public Type $type() {
-        return new Type(Type._DATE,$constraint());
+        return new Type(Type._DATE, _constraintFingerprint());
     }
 
     @NotNull

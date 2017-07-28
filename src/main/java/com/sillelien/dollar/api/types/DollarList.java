@@ -213,7 +213,7 @@ public class DollarList extends AbstractDollar {
     }
 
     @Override public Type $type() {
-        return new Type(Type._LIST,$constraint());
+        return new Type(Type._LIST, _constraintFingerprint());
     }
 
     @Override public boolean collection() {

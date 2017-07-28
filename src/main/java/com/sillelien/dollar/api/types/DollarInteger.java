@@ -140,7 +140,7 @@ public class DollarInteger extends AbstractDollarSingleValue<Long> {
     }
 
     @Override public Type $type() {
-         return new Type(Type._INTEGER,$constraint());
+         return new Type(Type._INTEGER, _constraintFingerprint());
     }
 
     @NotNull

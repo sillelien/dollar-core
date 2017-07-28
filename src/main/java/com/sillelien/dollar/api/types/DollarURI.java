@@ -240,7 +240,7 @@ public class DollarURI extends AbstractDollar {
 
     @Override
     public Type $type() {
-        return new Type(Type._URI,$constraint());
+        return new Type(Type._URI, _constraintFingerprint());
     }
 
     @Override

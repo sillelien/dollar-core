@@ -104,7 +104,7 @@ public class DollarBoolean extends AbstractDollarSingleValue<Boolean> {
     }
 
     @Override public Type $type() {
-        return new Type(Type._BOOLEAN,$constraint());
+        return new Type(Type._BOOLEAN, _constraintFingerprint());
     }
 
     @NotNull

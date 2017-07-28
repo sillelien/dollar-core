@@ -261,7 +261,7 @@ public class DollarMap extends AbstractDollar implements var {
     }
 
     @Override public Type $type() {
-        return new Type(Type._MAP,$constraint());
+        return new Type(Type._MAP, _constraintFingerprint());
     }
 
     @Override public boolean collection() {

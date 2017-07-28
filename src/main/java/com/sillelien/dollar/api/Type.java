@@ -123,7 +123,11 @@ public final class Type {
      */
     public static Type valueOf(@NotNull String name) {
         String[] split = name.split(":");
-        return new Type(split[0],split[1]);
+        if(split.length==2) {
+            return new Type(split[0], split[1]);
+        } else {
+            return new Type(name);
+        }
     }
 
 

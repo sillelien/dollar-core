@@ -176,7 +176,7 @@ public class DollarString extends AbstractDollarSingleValue<String> {
     }
 
     @Override public Type $type() {
-        return new Type(Type._STRING,$constraint());
+        return new Type(Type._STRING, _constraintFingerprint());
     }
 
     @NotNull

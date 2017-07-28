@@ -187,7 +187,7 @@ public class DollarRange extends AbstractDollar {
     }
 
     @Override public Type $type() {
-        return new Type(Type._RANGE, $constraint());
+        return new Type(Type._RANGE, _constraintFingerprint());
     }
 
     @Override public boolean collection() {

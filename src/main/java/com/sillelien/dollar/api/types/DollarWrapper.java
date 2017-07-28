@@ -248,6 +248,11 @@ public class DollarWrapper implements var {
         return getValue().$type();
     }
 
+    @Override
+    public String _constraintFingerprint() {
+        return getValue()._constraintFingerprint();
+    }
+
     @Override public boolean collection() {
         return getValue().collection();
     }

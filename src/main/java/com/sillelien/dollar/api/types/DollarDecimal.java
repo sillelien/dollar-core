@@ -123,7 +123,7 @@ public class DollarDecimal extends AbstractDollarSingleValue<Double> {
     }
 
     @Override public Type $type() {
-        return new Type(Type._DECIMAL,$constraint());
+        return new Type(Type._DECIMAL, _constraintFingerprint());
     }
 
     @NotNull

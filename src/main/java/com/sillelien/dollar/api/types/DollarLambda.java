@@ -137,6 +137,8 @@ public class DollarLambda implements java.lang.reflect.InvocationHandler {
                 }
             } else if (method.getName().equals("_constrain")) {
                 return _constrain((var)proxy,(var)args[0], String.valueOf(args[1]));
+            } else if (method.getName().equals("_constraintFingerprint")) {
+                return  meta.get("constraintFingerprint");
             } else if (method.getName().equals("getMetaAttribute")) {
                 return meta.get(args[0].toString());
             } else if (method.getName().equals("setMetaAttribute")) {

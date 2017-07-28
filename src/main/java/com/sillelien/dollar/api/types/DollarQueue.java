@@ -340,7 +340,7 @@ public class DollarQueue extends AbstractDollar implements var {
     @Override
     @NotNull
     public Type $type() {
-        return new Type(Type._QUEUE,$constraint());
+        return new Type(Type._QUEUE, _constraintFingerprint());
     }
 
     @NotNull
