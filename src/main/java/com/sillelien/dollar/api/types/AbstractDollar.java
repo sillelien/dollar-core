@@ -87,7 +87,7 @@ public abstract class AbstractDollar implements var {
     }
 
     @Override
-    public var $constrain(var constraint, String constraintSource) {
+    public var _constrain(var constraint, String constraintSource) {
         if(constraint == null || constraintSource == null) {
             return this;
         }

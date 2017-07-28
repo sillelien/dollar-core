@@ -383,6 +383,6 @@ public interface TypeAware {
     boolean queue();
 
 
-    var $constrain(var constraint, String constraintSource);
+    var _constrain(var constraint, String constraintSource);
 
 }

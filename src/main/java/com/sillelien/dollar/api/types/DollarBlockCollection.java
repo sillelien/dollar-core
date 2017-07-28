@@ -516,7 +516,7 @@ public class DollarBlockCollection implements var {
     @NotNull @Guarded(NotNullGuard.class) @Override public String toString() {return getValue().toString();}
 
     @Override
-    public var $constrain(var constraint, String source) {
-        return getValue().$constrain(constraint, source);
+    public var _constrain(var constraint, String source) {
+        return getValue()._constrain(constraint, source);
     }
 }

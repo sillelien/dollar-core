@@ -1,17 +1,17 @@
 /*
- * Copyright (c) 2014-2015 Neil Ellis
+ *    Copyright (c) 2014-2017 Neil Ellis
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *          http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 
 package com.sillelien.dollar.api.types;
@@ -71,6 +71,20 @@ public class DollarLambda implements java.lang.reflect.InvocationHandler {
         this.lambda = lambda;
     }
 
+
+    public var _constrain(var source, var constraint, String constraintSource) {
+        if(constraint == null || constraintSource == null) {
+            return source;
+        }
+        String constraintFingerprint = meta.get("constraintFingerprint");
+        if (constraintFingerprint == null || constraintSource.equals(constraintFingerprint)) {
+            meta.put("constraintFingerprint",constraintSource);
+            return source;
+        } else {
+            throw new ConstraintViolation(source, constraint, constraintFingerprint,constraintSource);
+        }
+    }
+
     @Nullable @Override
     public Object invoke(@Nullable Object proxy, @NotNull Method method, Object[] args) throws Throwable {
         if (stack.get().size() > MAX_STACK_DEPTH) {
@@ -121,6 +135,8 @@ public class DollarLambda implements java.lang.reflect.InvocationHandler {
                 } else {
                     return proxy;
                 }
+            } else if (method.getName().equals("_constrain")) {
+                return _constrain((var)proxy,(var)args[0], String.valueOf(args[1]));
             } else if (method.getName().equals("getMetaAttribute")) {
                 return meta.get(args[0].toString());
             } else if (method.getName().equals("setMetaAttribute")) {
