@@ -104,8 +104,10 @@ public abstract class AbstractDollar implements var {
             return this;
         }
         String thisConstraintFingerprint = _constraintFingerprint();
-        if (thisConstraintFingerprint == null || thisConstraintFingerprint.equals(constraintFingerprint)) {
+        if (thisConstraintFingerprint == null) {
             this.setMetaAttribute("constraintFingerprint", constraintFingerprint);
+            return this;
+        } else if (thisConstraintFingerprint.equals(constraintFingerprint)) {
             return this;
         } else {
             throw new ConstraintViolation(this, constraint, constraintFingerprint, constraintFingerprint);
