@@ -468,7 +468,7 @@ public abstract class AbstractDollar implements var {
 
     @Override
     public String getMetaAttribute(@NotNull String key) {
-        return String.valueOf(meta.get(key));
+        return (String) meta.get(key);
     }
 
     @Override

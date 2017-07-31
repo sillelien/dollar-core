@@ -107,7 +107,11 @@ public final class Type {
     public Type(@NotNull String name, @NotNull String constraint) {
 
         this.name = name.toUpperCase();
-        this.constraint = constraint;
+        if(constraint != null) {
+            this.constraint = constraint;
+        } else {
+            this.constraint="";
+        }
     }
 
     /**
@@ -159,7 +163,7 @@ public final class Type {
     }
 
     public boolean is(@Nullable Type t) {
-        return name.equals(t != null ? t.name :null);
+        return name.equals(t != null ? t.name : null);
 
     }
 
