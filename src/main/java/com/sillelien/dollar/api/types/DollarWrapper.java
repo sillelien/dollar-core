@@ -689,8 +689,19 @@ public class DollarWrapper implements var {
     }
 
     @Override
+    public Object getMetaObject(String key) {
+        return getValue().getMetaObject(key);
+    }
+
+    @Override
     public void setMetaAttribute(String key, String value) {
         getValue().setMetaAttribute(key, value);
+    }
+
+    @Override
+    public void setMetaObject(String key, Object value) {
+        getValue().setMetaObject(key,value);
+
     }
 
     @Override

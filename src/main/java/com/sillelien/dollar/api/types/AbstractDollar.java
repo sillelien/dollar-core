@@ -58,7 +58,7 @@ public abstract class AbstractDollar implements var {
     private final
     @NotNull
     ImmutableList<Throwable> errors;
-    private final ConcurrentHashMap<String, String> meta = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Object> meta = new ConcurrentHashMap<>();
     private String src;
 
     AbstractDollar(@NotNull ImmutableList<Throwable> errors) {
@@ -468,7 +468,7 @@ public abstract class AbstractDollar implements var {
 
     @Override
     public String getMetaAttribute(@NotNull String key) {
-        return meta.get(key);
+        return String.valueOf(meta.get(key));
     }
 
     @Override
@@ -653,4 +653,13 @@ public abstract class AbstractDollar implements var {
         }
     }
 
+    @Override
+    public Object getMetaObject(String key) {
+        return  meta.get(key);
+    }
+
+    @Override
+    public void setMetaObject(String key, Object value) {
+            meta.put(key,value);
+    }
 }

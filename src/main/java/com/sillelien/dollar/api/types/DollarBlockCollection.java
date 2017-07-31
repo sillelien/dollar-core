@@ -524,4 +524,14 @@ public class DollarBlockCollection implements var {
     public var _constrain(var constraint, String source) {
         return getValue()._constrain(constraint, source);
     }
+
+    @Override
+    public Object getMetaObject(String key) {
+        return getValue().getMetaObject(key);
+    }
+
+    @Override
+    public void setMetaObject(String key, Object value) {
+         getValue().setMetaObject(key,value);
+    }
 }

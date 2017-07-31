@@ -144,6 +144,11 @@ public class DollarLambda implements java.lang.reflect.InvocationHandler {
             } else if (method.getName().equals("setMetaAttribute")) {
                 meta.put(String.valueOf(args[0]), String.valueOf(args[1]));
                 return null;
+            }  else if (method.getName().equals("getMetaObject")) {
+                return meta.get(args[0].toString());
+            } else if (method.getName().equals("setMetaObject")) {
+                meta.put(String.valueOf(args[0]), String.valueOf(args[1]));
+                return null;
             } else if (method.getName().equals("$listen")) {
                 String listenerId = UUID.randomUUID().toString();
                 if (args.length == 2) {
