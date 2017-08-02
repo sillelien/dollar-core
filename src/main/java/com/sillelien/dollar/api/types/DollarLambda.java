@@ -49,7 +49,7 @@ public class DollarLambda implements java.lang.reflect.InvocationHandler {
             return new ArrayList<>();
         }
     };
-    protected final ConcurrentHashMap<String, String> meta = new ConcurrentHashMap<>();
+    protected final ConcurrentHashMap<Object, Object> meta = new ConcurrentHashMap<>();
     protected final Pipeable lambda;
     private final var in;
     private final boolean fixable;
@@ -76,7 +76,7 @@ public class DollarLambda implements java.lang.reflect.InvocationHandler {
         if(constraint == null || constraintSource == null) {
             return source;
         }
-        String constraintFingerprint = meta.get("constraintFingerprint");
+        String constraintFingerprint = (String) meta.get("constraintFingerprint");
         if (constraintFingerprint == null || constraintSource.equals(constraintFingerprint)) {
             meta.put("constraintFingerprint",constraintSource);
             return source;
@@ -145,9 +145,9 @@ public class DollarLambda implements java.lang.reflect.InvocationHandler {
                 meta.put(String.valueOf(args[0]), String.valueOf(args[1]));
                 return null;
             }  else if (method.getName().equals("getMetaObject")) {
-                return meta.get(args[0].toString());
+                return meta.get(args[0]);
             } else if (method.getName().equals("setMetaObject")) {
-                meta.put(String.valueOf(args[0]), String.valueOf(args[1]));
+                meta.put(args[0], args[1]);
                 return null;
             } else if (method.getName().equals("$listen")) {
                 String listenerId = UUID.randomUUID().toString();
