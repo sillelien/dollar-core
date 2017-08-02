@@ -801,4 +801,14 @@ public class DollarWrapper implements var {
         return getValue().toJsonObject();
     }
 
+    @NotNull
+    @Override
+    public var _scope(Scope scope) {
+        return getValue()._scope(scope);
+    }
+
+    @Override
+    public Scope _scope() {
+        return getValue()._scope();
+    }
 }

@@ -534,4 +534,21 @@ public class DollarBlockCollection implements var {
     public void setMetaObject(String key, Object value) {
          getValue().setMetaObject(key,value);
     }
+
+    @NotNull
+    @Override
+    public var _scope(Scope scope) {
+        for (var child : value) {
+            if(child._scope() == null) {
+                child._scope(scope);
+            }
+        }
+        return         getValue()._scope(scope);
+
+    }
+
+    @Override
+    public Scope _scope() {
+        return getValue()._scope();
+    }
 }
