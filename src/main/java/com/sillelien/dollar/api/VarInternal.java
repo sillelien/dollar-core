@@ -91,4 +91,6 @@ public interface VarInternal {
 
 
     var _constrain(var constraint, String constraintSource);
+
+    String _constraintFingerprint();
 }
