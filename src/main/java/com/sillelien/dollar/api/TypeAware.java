@@ -385,6 +385,5 @@ public interface TypeAware {
     boolean queue();
 
 
-    var _constrain(var constraint, String constraintSource);
 
 }

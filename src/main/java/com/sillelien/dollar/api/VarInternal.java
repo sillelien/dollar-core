@@ -88,4 +88,7 @@ public interface VarInternal {
      * @return
      */
     Scope _scope();
+
+
+    var _constrain(var constraint, String constraintSource);
 }
