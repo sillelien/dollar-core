@@ -72,4 +72,5 @@ public interface Scope {
 
     void setParent(@Nullable Scope scope);
 
+    Scope getParent();
 }
