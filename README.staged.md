@@ -28,7 +28,7 @@ and this dependency
         <dependency>
             <groupId>com.sillelien</groupId>
             <artifactId>dollar-core</artifactId>
-            <version>0.3.352</version>
+            <version>0.3.355</version>
         </dependency>
 ```
 
