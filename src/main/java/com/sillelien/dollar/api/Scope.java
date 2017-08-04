@@ -75,4 +75,6 @@ public interface Scope {
     Scope getParent();
 
     boolean hasParent(Scope scope);
+
+    boolean isRoot();
 }
