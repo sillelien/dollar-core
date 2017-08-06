@@ -24,6 +24,7 @@ import java.util.Map;
 
 public interface Scope {
 
+    @NotNull
     var addErrorHandler(@NotNull var handler);
 
     void clear();
@@ -34,6 +35,7 @@ public interface Scope {
 
     @Nullable var getConstraint(@NotNull String key);
 
+    @Nullable
     String getConstraintSource(@NotNull String key);
 
 
@@ -54,9 +56,9 @@ public interface Scope {
 
     @NotNull var handleError(@NotNull Throwable t);
 
-    boolean has(String key);
+    boolean has(@NotNull String key);
 
-    boolean hasParameter(String key);
+    boolean hasParameter(@NotNull String key);
 
     void listen(@NotNull String key, @NotNull var listener);
 
@@ -65,16 +67,17 @@ public interface Scope {
     void notifyScope(@NotNull String key, @NotNull var value);
 
     @NotNull var set(@NotNull String key, @NotNull var value, boolean readonly, @Nullable var constraint,
-                     String constraintSource, boolean isVolatile,
-            boolean fixed, boolean pure);
+                     @Nullable String constraintSource, boolean isVolatile,
+                     boolean fixed, boolean pure);
 
     @NotNull var setParameter(@NotNull String key, @NotNull var value);
 
     void setParent(@Nullable Scope scope);
 
+    @Nullable
     Scope getParent();
 
-    boolean hasParent(Scope scope);
+    boolean hasParent(@Nullable Scope scope);
 
     boolean isRoot();
 }
