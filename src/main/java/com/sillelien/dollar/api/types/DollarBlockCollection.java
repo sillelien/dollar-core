@@ -48,7 +48,7 @@ public class DollarBlockCollection implements var {
         for (int i = 0; i < value.size() - 1; i++) {
             value.get(i)._fix(1,false);
         }
-        return value.get(value.size() - 1);
+        return value.get(value.size() - 1)._fix(1,false);
     }
 
     @Override @NotNull @Guarded(NotNullGuard.class) public String $S() {return getValue().$S();}
