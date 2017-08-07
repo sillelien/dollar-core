@@ -31,6 +31,8 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
+@Deprecated
+//Created by BlockOperator directly now
 public class DollarBlockCollection implements var {
     private final List<var> value;
     private volatile var cachedValue;
@@ -535,20 +537,4 @@ public class DollarBlockCollection implements var {
          getValue().setMetaObject(key,value);
     }
 
-    @NotNull
-    @Override
-    public var _scope(Scope scope) {
-        for (var child : value) {
-            if(child._scope() == null) {
-                child._scope(scope);
-            }
-        }
-        return         getValue()._scope(scope);
-
-    }
-
-    @Override
-    public Scope _scope() {
-        return getValue()._scope();
-    }
 }

@@ -145,12 +145,13 @@ public class DollarLambda implements java.lang.reflect.InvocationHandler {
                 meta.put(String.valueOf(args[0]), String.valueOf(args[1]));
                 return null;
             } else if (method.getName().equals("_scope")) {
-                if(args.length == 0) {
-                    return meta.get("scope");
-                } else {
-                    meta.put("scope",args[0]);
-                    return this;
-                }
+                throw new Exception("Deprectated (_scope)");
+//                if(args.length == 0) {
+//                    return meta.get("scope");
+//                } else {
+//                    meta.put("scope",args[0]);
+//                    return this;
+//                }
             } else if (method.getName().equals("setMetaAttribute")) {
                 meta.put(String.valueOf(args[0]), String.valueOf(args[1]));
                 return null;}  else if (method.getName().equals("getMetaObject")) {

@@ -21,7 +21,6 @@ import com.github.oxo42.stateless4j.StateMachineConfig;
 import com.sillelien.dollar.api.DollarException;
 import com.sillelien.dollar.api.DollarStatic;
 import com.sillelien.dollar.api.Pipeable;
-import com.sillelien.dollar.api.Scope;
 import com.sillelien.dollar.api.Signal;
 import com.sillelien.dollar.api.TypePrediction;
 import com.sillelien.dollar.api.collections.ImmutableList;
@@ -664,15 +663,4 @@ public abstract class AbstractDollar implements var {
             meta.put(key,value);
     }
 
-    @NotNull
-    @Override
-    public var _scope(Scope scope) {
-         setMetaObject("scope",scope);
-         return this;
-    }
-
-    @Override
-    public Scope _scope() {
-        return (Scope) getMetaObject("scope");
-    }
 }

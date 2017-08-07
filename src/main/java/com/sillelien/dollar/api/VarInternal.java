@@ -75,19 +75,6 @@ public interface VarInternal {
     @Guarded(ChainGuard.class)
     @NotNull var _unwrap();
 
-    /**
-     * Recursively set a scope.
-     * @param scope
-     */
-    @Guarded(ChainGuard.class)
-    @NotNull
-    var _scope(Scope scope);
-
-    /**
-     * Return the scope for this var.
-     * @return
-     */
-    Scope _scope();
 
 
     var _constrain(var constraint, String constraintSource);
