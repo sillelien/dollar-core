@@ -197,19 +197,7 @@ public class DollarList extends AbstractDollar {
     @NotNull
     @Override
     public ImmutableList<var> toVarList() {
-        try {
-            return ImmutableList.copyOf(
-                    executor.submit(() -> $stream(false).map(v -> v._fix(false)).collect(
-                            Collectors.toList())).get());
-        } catch (InterruptedException e) {
-            Thread.interrupted();
-            return ImmutableList.of(DollarFactory.failure(ErrorType.INTERRUPTED, e, false));
-
-        } catch (ExecutionException e) {
-            return ImmutableList.of(DollarFactory.failure(ErrorType.EXECUTION_FAILURE, e,
-                                                          false));
-
-        }
+            return ImmutableList.copyOf($stream(false).map(v -> v._fix(false)).collect(Collectors.toList()));
     }
 
     @Override public Type $type() {
