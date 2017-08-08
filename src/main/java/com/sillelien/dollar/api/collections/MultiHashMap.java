@@ -20,10 +20,18 @@ package com.sillelien.dollar.api.collections;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.AbstractCollection;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 
-public class MultiHashMap<K, V> extends HashMap<K, Collection<V>> implements MultiMap<K, V> {
+public class MultiHashMap<K, V> extends ConcurrentHashMap<K, Collection<V>> implements MultiMap<K,
+                                                                                                     V> {
 
     private static final long serialVersionUID = 1943563828307035349L;
     // backed values collection
@@ -192,7 +200,7 @@ public class MultiHashMap<K, V> extends HashMap<K, Collection<V>> implements Mul
      *
      * @return the cloned map
      */
-    @NotNull public Object clone() {
+    @NotNull public Object clone() throws CloneNotSupportedException {
         MultiHashMap cloned = (MultiHashMap) super.clone();
 
         // clone each Collection container
