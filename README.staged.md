@@ -28,7 +28,7 @@ and this dependency
         <dependency>
             <groupId>com.sillelien</groupId>
             <artifactId>dollar-core</artifactId>
-            <version>0.3.371</version>
+            <version>0.3.373</version>
         </dependency>
 ```
 
@@ -36,7 +36,7 @@ and this dependency
 
 -------
 
-** If you use this project please consider giving us a star on [GitHub](http://github.com/sillelien/dollar-core). **
+**If you use this project please consider giving us a star on [GitHub](http://github.com/sillelien/dollar-core).**
 
 Please contact me through Gitter (chat) or through GitHub Issues.
 
