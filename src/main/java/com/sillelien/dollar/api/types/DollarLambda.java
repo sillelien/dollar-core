@@ -34,6 +34,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class DollarLambda implements java.lang.reflect.InvocationHandler {
 
+    @Nullable
     private static final DollarExecutor executor = Plugins.sharedInstance(DollarExecutor.class);
 
     private static final int MAX_STACK_DEPTH = 100;
@@ -50,12 +51,14 @@ public class DollarLambda implements java.lang.reflect.InvocationHandler {
         }
     };
     protected final ConcurrentHashMap<Object, Object> meta = new ConcurrentHashMap<>();
+    @NotNull
     protected final Pipeable lambda;
+    @NotNull
     private final var in;
     private final boolean fixable;
     private final ConcurrentHashMap<String, Pipeable> listeners = new ConcurrentHashMap<>();
 
-    public DollarLambda(Pipeable lambda) {
+    public DollarLambda(@NotNull Pipeable lambda) {
         this(lambda, true);
     }
 
@@ -64,7 +67,7 @@ public class DollarLambda implements java.lang.reflect.InvocationHandler {
      * @param fixable can we fix the value of the lambda with the use of _fix(boolean) - if you're waiting for a future
      *                to complete then false is a good value.
      */
-    public DollarLambda(Pipeable lambda, boolean fixable) {
+    public DollarLambda(@NotNull Pipeable lambda, boolean fixable) {
         this.fixable = fixable;
 
         this.in = DollarStatic.$(false);
@@ -72,7 +75,7 @@ public class DollarLambda implements java.lang.reflect.InvocationHandler {
     }
 
 
-    public var _constrain(var source, var constraint, String constraintSource) {
+    public var _constrain(var source, @Nullable var constraint, @Nullable String constraintSource) {
         if(constraint == null || constraintSource == null) {
             return source;
         }
@@ -86,7 +89,7 @@ public class DollarLambda implements java.lang.reflect.InvocationHandler {
     }
 
     @Nullable @Override
-    public Object invoke(@Nullable Object proxy, @NotNull Method method, Object[] args) throws Throwable {
+    public Object invoke(@Nullable Object proxy, @NotNull Method method, @NotNull Object[] args) throws Throwable {
         if (stack.get().size() > MAX_STACK_DEPTH) {
             in.error("Stack consists of the following Lambda types: ");
             for (DollarLambda stackEntry : stack.get()) {

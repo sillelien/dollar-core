@@ -117,6 +117,7 @@ public class DollarInteger extends AbstractDollarSingleValue<Long> {
         return value;
     }
 
+    @NotNull
     @Override
     public var $as(@NotNull Type type) {
 
@@ -139,8 +140,9 @@ public class DollarInteger extends AbstractDollarSingleValue<Long> {
         }
     }
 
+    @NotNull
     @Override public Type $type() {
-         return new Type(Type._INTEGER, _constraintFingerprint());
+        return new Type(Type._INTEGER, _constraintFingerprint());
     }
 
     @NotNull

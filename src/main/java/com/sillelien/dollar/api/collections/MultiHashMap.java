@@ -117,7 +117,7 @@ public class MultiHashMap<K, V> extends ConcurrentHashMap<K, Collection<V>> impl
     }
 
     @NotNull @Override public Collection<V> getCollection(Object key) {
-        return (Collection) getOrDefault(key, new ArrayList<V>());
+        return getOrDefault(key, new ArrayList<V>());
     }
 
     @Nullable @Override public Iterator<V> iterator(Object key) {
@@ -142,7 +142,8 @@ public class MultiHashMap<K, V> extends ConcurrentHashMap<K, Collection<V>> impl
         }
     }
 
-    @Nullable public V putValue(K key, V value) {
+    @Nullable
+    public V putValue(@NotNull K key, V value) {
         // NOTE:: putValue is called during deserialization in JDK < 1.4 !!!!!!
         //        so we must have a readObject()
         Collection<V> coll = getCollection(key);
@@ -261,6 +262,7 @@ public class MultiHashMap<K, V> extends ConcurrentHashMap<K, Collection<V>> impl
      * Inner iterator to view the elements.
      */
     private class ValueIterator implements Iterator<V> {
+        @NotNull
         private final Iterator<Collection<V>> backedIterator;
         private Iterator<V> tempIterator;
 

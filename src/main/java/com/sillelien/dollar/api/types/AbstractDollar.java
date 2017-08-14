@@ -93,13 +93,9 @@ public abstract class AbstractDollar implements var {
         return false;
     }
 
+    @NotNull
     @Override
-    public String _constraintFingerprint() {
-        return this.getMetaAttribute("constraintFingerprint");
-    }
-
-    @Override
-    public var _constrain(var constraint, String constraintFingerprint) {
+    public var _constrain(@Nullable var constraint, @Nullable String constraintFingerprint) {
         if (constraint == null || constraintFingerprint == null) {
             return this;
         }
@@ -116,20 +112,29 @@ public abstract class AbstractDollar implements var {
 
     @NotNull
     @Override
+    public String _constraintFingerprint() {
+        return this.getMetaAttribute("constraintFingerprint");
+    }
+
+    @NotNull
+    @Override
     public var $all() {
         return DollarStatic.$void();
     }
 
+    @NotNull
     @Override
     public var $write(var value, boolean blocking, boolean mutating) {
         return this;
     }
 
+    @NotNull
     @Override
     public var $drain() {
         return DollarStatic.$void();
     }
 
+    @NotNull
     @Override
     public var $notify() {
 //        do nothing, not a reactive type
@@ -141,6 +146,7 @@ public abstract class AbstractDollar implements var {
         return this;
     }
 
+    @NotNull
     @Override
     public var $publish(var lhs) {
         return this;
@@ -466,6 +472,7 @@ public abstract class AbstractDollar implements var {
         return false;
     }
 
+    @NotNull
     @Override
     public String getMetaAttribute(@NotNull String key) {
         return (String) meta.get(key);
@@ -654,12 +661,12 @@ public abstract class AbstractDollar implements var {
     }
 
     @Override
-    public Object getMetaObject(String key) {
+    public Object getMetaObject(@NotNull String key) {
         return  meta.get(key);
     }
 
     @Override
-    public void setMetaObject(String key, Object value) {
+    public void setMetaObject(@NotNull String key, @NotNull Object value) {
             meta.put(key,value);
     }
 

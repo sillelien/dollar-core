@@ -1,17 +1,17 @@
 /*
- * Copyright (c) 2014-2015 Neil Ellis
+ *    Copyright (c) 2014-2017 Neil Ellis
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *          http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 
 package com.sillelien.dollar.api.json;
@@ -22,20 +22,25 @@ import com.sillelien.dollar.api.json.impl.Json;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.Base64;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @SuppressWarnings("SuspiciousMethodCalls") public class JsonObject extends JsonElement {
 
+  @NotNull
   final Map<String, Object> map;
 
   /**
    * Create a JSON object based on the specified Map
    */
-  public JsonObject(Map<String, Object> map) {
+  public JsonObject(@NotNull Map<String, Object> map) {
     this(map, true);
   }
 
-  JsonObject(Map<String, Object> map, boolean copy) {
+  JsonObject(@NotNull Map<String, Object> map, boolean copy) {
     this.map = copy ? convertMap(map) : map;
   }
 
@@ -304,6 +309,7 @@ import java.util.*;
   /**
    * @return the underlying Map for this JsonObject
    */
+  @NotNull
   public Map<String, Object> toMap() {
     return convertMap(map);
   }

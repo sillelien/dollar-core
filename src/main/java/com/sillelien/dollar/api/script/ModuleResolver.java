@@ -19,12 +19,14 @@ package com.sillelien.dollar.api.script;
 import com.sillelien.dollar.api.Pipeable;
 import com.sillelien.dollar.api.plugin.ExtensionPoint;
 import com.sillelien.dollar.api.plugin.NoOpProxy;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ServiceLoader;
 
 public interface ModuleResolver extends ExtensionPoint<ModuleResolver> {
 
-    public static ModuleResolver resolveModule(String scheme) {
+    @NotNull
+    static ModuleResolver resolveModule(String scheme) {
         final ServiceLoader<ModuleResolver> loader = ServiceLoader.load(ModuleResolver.class);
         for (ModuleResolver piper : loader) {
             if (piper.getScheme().equals(scheme)) {
@@ -35,7 +37,9 @@ public interface ModuleResolver extends ExtensionPoint<ModuleResolver> {
     }
 
 
+    @NotNull
     String getScheme();
 
+    @NotNull
     <T,P> Pipeable resolve(String uriWithoutScheme, T scope, P parser) throws Exception;
 }

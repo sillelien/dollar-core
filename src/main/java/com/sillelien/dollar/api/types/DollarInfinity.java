@@ -113,6 +113,7 @@ public final class DollarInfinity extends AbstractDollar implements var {
         return positive ? Double.MAX_VALUE : Double.MIN_VALUE;
     }
 
+    @NotNull
     @Override
     public var $as(@NotNull Type type) {
         if (type.is(Type._BOOLEAN)) {
@@ -144,6 +145,7 @@ public final class DollarInfinity extends AbstractDollar implements var {
         return ImmutableList.of(this);
     }
 
+    @NotNull
     @Override public Type $type() {
         return Type._INFINITY;
     }

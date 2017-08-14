@@ -137,6 +137,7 @@ public class DollarRange extends AbstractDollar {
 
     }
 
+    @NotNull
     @Override
     public var $as(@NotNull Type type) {
         if (type.is(Type._LIST)) {
@@ -186,6 +187,7 @@ public class DollarRange extends AbstractDollar {
         return ImmutableList.copyOf(values);
     }
 
+    @NotNull
     @Override public Type $type() {
         return new Type(Type._RANGE, _constraintFingerprint());
     }

@@ -101,6 +101,7 @@ public class DollarDecimal extends AbstractDollarSingleValue<Double> {
         return value;
     }
 
+    @NotNull
     @Override
     public var $as(@NotNull Type type) {
         if (type.is(Type._BOOLEAN)) {
@@ -122,6 +123,7 @@ public class DollarDecimal extends AbstractDollarSingleValue<Double> {
         }
     }
 
+    @NotNull
     @Override public Type $type() {
         return new Type(Type._DECIMAL, _constraintFingerprint());
     }

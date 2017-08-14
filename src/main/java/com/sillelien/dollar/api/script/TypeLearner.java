@@ -59,6 +59,7 @@ public interface TypeLearner extends ExtensionPoint<TypeLearner> {
 
     void learn(String name, SourceSegment source, List<var> inputs, Type type);
 
+    @NotNull
     TypePrediction predict(String name, SourceSegment source, List<var> inputs);
 
 }

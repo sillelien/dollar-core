@@ -22,7 +22,11 @@ import com.sillelien.dollar.api.collections.ImmutableList;
 import com.sillelien.dollar.api.var;
 import org.jetbrains.annotations.NotNull;
 
-import java.time.*;
+import java.time.DateTimeException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.temporal.ChronoField;
 import java.util.Arrays;
 import java.util.Objects;
@@ -105,6 +109,7 @@ public class DollarDate extends AbstractDollarSingleValue<Instant> {
         }
     }
 
+    @NotNull
     @Override
     public var $as(@NotNull Type type) {
         if (type.is(Type._BOOLEAN)) {
@@ -126,6 +131,7 @@ public class DollarDate extends AbstractDollarSingleValue<Instant> {
         }
     }
 
+    @NotNull
     @Override public Type $type() {
         return new Type(Type._DATE, _constraintFingerprint());
     }
@@ -166,7 +172,9 @@ public class DollarDate extends AbstractDollarSingleValue<Instant> {
 //                                       amount.errors());
 //    }
 
-    @NotNull @Override public var $set(@NotNull var key, Object v) {
+    @NotNull
+    @Override
+    public var $set(@NotNull var key, @NotNull Object v) {
         return DollarFactory.fromValue(
                 LocalDateTime.ofInstant(value, ZoneId.systemDefault())
                              .with(ChronoField.valueOf(key.toHumanString().toUpperCase()),

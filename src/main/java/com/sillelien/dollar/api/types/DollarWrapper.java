@@ -17,11 +17,17 @@
 package com.sillelien.dollar.api.types;
 
 import com.github.oxo42.stateless4j.StateMachine;
-import com.sillelien.dollar.api.*;
+import com.sillelien.dollar.api.DollarStatic;
+import com.sillelien.dollar.api.Pipeable;
+import com.sillelien.dollar.api.Signal;
+import com.sillelien.dollar.api.StateTracer;
+import com.sillelien.dollar.api.Type;
+import com.sillelien.dollar.api.TypePrediction;
 import com.sillelien.dollar.api.collections.ImmutableList;
 import com.sillelien.dollar.api.collections.ImmutableMap;
 import com.sillelien.dollar.api.json.ImmutableJsonObject;
 import com.sillelien.dollar.api.monitor.DollarMonitor;
+import com.sillelien.dollar.api.var;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,7 +42,7 @@ public class DollarWrapper implements var {
     private  StateTracer tracer;
     @Nullable private final var value;
 
-    public DollarWrapper(var value) {
+    public DollarWrapper(@Nullable var value) {
         this.value = value;
         if (value == null) {
             throw new NullPointerException();

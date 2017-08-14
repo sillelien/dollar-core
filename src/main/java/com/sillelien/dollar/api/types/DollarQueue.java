@@ -62,6 +62,7 @@ public class DollarQueue extends AbstractDollar implements var {
         }
     }
 
+    @NotNull
     @Guarded(NotNullParametersGuard.class)
     @Guarded(ChainGuard.class)
     public var $write(var value, boolean blocking, boolean mutating) {
@@ -87,6 +88,7 @@ public class DollarQueue extends AbstractDollar implements var {
         return $list();
     }
 
+    @NotNull
     @Override
     @Guarded(ChainGuard.class)
     public var $drain() {
@@ -97,6 +99,7 @@ public class DollarQueue extends AbstractDollar implements var {
         return DollarFactory.fromList(result);
     }
 
+    @NotNull
     @Override
     @Guarded(ChainGuard.class)
     @Guarded(NotNullParametersGuard.class)
@@ -111,6 +114,7 @@ public class DollarQueue extends AbstractDollar implements var {
         return this;
     }
 
+    @NotNull
     @Override
     @Guarded(NotNullGuard.class)
     @Guarded(ChainGuard.class)
@@ -130,7 +134,7 @@ public class DollarQueue extends AbstractDollar implements var {
     @Guarded(NotNullGuard.class)
     @Guarded(ChainGuard.class)
     @NotNull
-    public var $subscribe(Pipeable subscription, String key) {
+    public var $subscribe(@NotNull Pipeable subscription, @NotNull String key) {
         listeners.put(key, subscription);
         return this;
     }
@@ -312,6 +316,7 @@ public class DollarQueue extends AbstractDollar implements var {
         return DollarFactory.failure(ErrorType.INVALID_QUEUE_OPERATION);
     }
 
+    @NotNull
     @Override
     public Integer toInteger() {
         DollarFactory.failure(ErrorType.INVALID_QUEUE_OPERATION);

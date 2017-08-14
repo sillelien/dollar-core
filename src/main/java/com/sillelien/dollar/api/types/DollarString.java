@@ -150,6 +150,7 @@ public class DollarString extends AbstractDollarSingleValue<String> {
         }
     }
 
+    @NotNull
     @Override
     public var $as(@NotNull Type type) {
         if (type.is(Type._BOOLEAN)) {
@@ -175,6 +176,7 @@ public class DollarString extends AbstractDollarSingleValue<String> {
         }
     }
 
+    @NotNull
     @Override public Type $type() {
         return new Type(Type._STRING, _constraintFingerprint());
     }

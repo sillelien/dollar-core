@@ -18,17 +18,25 @@ package com.sillelien.dollar.api.types;
 
 import com.github.oxo42.stateless4j.StateMachine;
 import com.github.oxo42.stateless4j.StateMachineConfig;
-import com.sillelien.dollar.api.*;
+import com.sillelien.dollar.api.DollarException;
+import com.sillelien.dollar.api.DollarStatic;
+import com.sillelien.dollar.api.Pipeable;
+import com.sillelien.dollar.api.Signal;
+import com.sillelien.dollar.api.Type;
 import com.sillelien.dollar.api.collections.ImmutableList;
 import com.sillelien.dollar.api.collections.ImmutableMap;
 import com.sillelien.dollar.api.plugin.Plugins;
 import com.sillelien.dollar.api.uri.URI;
 import com.sillelien.dollar.api.uri.URIHandler;
+import com.sillelien.dollar.api.var;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.UUID;
 
 public class DollarURI extends AbstractDollar {
 
@@ -142,6 +150,7 @@ public class DollarURI extends AbstractDollar {
         }
     }
 
+    @NotNull
     @Override
     public var $as(@NotNull Type type) {
         if (type.is(Type._STRING)) {
@@ -185,34 +194,38 @@ public class DollarURI extends AbstractDollar {
         return handler.all();
     }
 
+    @NotNull
+    @Override
+    public Type $type() {
+        return new Type(Type._URI, _constraintFingerprint());
+    }
+
+    @NotNull
     @Override
     public var $write(var value, boolean blocking, boolean mutating) {
         ensureRunning();
         return handler.write(value, blocking, mutating);
     }
 
+    @NotNull
     @Override
     public var $drain() {
         ensureRunning();
         return handler.drain();
     }
 
+    @NotNull
     @Override
     public var $notify() {
         ensureRunning();
         return handler.write(this, false, false);
     }
 
+    @NotNull
     @Override
     public var $read(boolean blocking, boolean mutating) {
         ensureRunning();
         return handler.read(blocking, mutating);
-    }
-
-    @Override
-    public var $publish(var lhs) {
-        ensureRunning();
-        return handler.publish(lhs);
     }
 
     @Override
@@ -238,9 +251,11 @@ public class DollarURI extends AbstractDollar {
         return ImmutableList.copyOf(handler.all().toVarList());
     }
 
+    @NotNull
     @Override
-    public Type $type() {
-        return new Type(Type._URI, _constraintFingerprint());
+    public var $publish(var lhs) {
+        ensureRunning();
+        return handler.publish(lhs);
     }
 
     @Override
@@ -374,11 +389,13 @@ public class DollarURI extends AbstractDollar {
         return handler.size();
     }
 
+    @NotNull
     @Override
     public var $subscribe(@NotNull Pipeable pipe) {
         return $subscribe(pipe, null);
     }
 
+    @NotNull
     @Override
     public var $subscribe(@NotNull Pipeable pipe, @Nullable String id) {
         ensureRunning();

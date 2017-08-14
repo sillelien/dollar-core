@@ -100,6 +100,7 @@ public class DollarVoid extends AbstractDollar implements var {
         return 0;
     }
 
+    @NotNull
     @Override
     public var $as(@NotNull Type type) {
         if (type.is(Type._BOOLEAN)) {
@@ -129,6 +130,7 @@ public class DollarVoid extends AbstractDollar implements var {
         return ImmutableList.of();
     }
 
+    @NotNull
     @Override public Type $type() {
         return Type._VOID;
     }

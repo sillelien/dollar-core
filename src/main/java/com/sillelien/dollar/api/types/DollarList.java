@@ -16,7 +16,11 @@
 
 package com.sillelien.dollar.api.types;
 
-import com.sillelien.dollar.api.*;
+import com.sillelien.dollar.api.CollectionAware;
+import com.sillelien.dollar.api.DollarStatic;
+import com.sillelien.dollar.api.NumericAware;
+import com.sillelien.dollar.api.Pipeable;
+import com.sillelien.dollar.api.Type;
 import com.sillelien.dollar.api.collections.ImmutableList;
 import com.sillelien.dollar.api.collections.ImmutableMap;
 import com.sillelien.dollar.api.execution.DollarExecutor;
@@ -26,11 +30,15 @@ import com.sillelien.dollar.api.json.ImmutableJsonObject;
 import com.sillelien.dollar.api.json.JsonArray;
 import com.sillelien.dollar.api.json.JsonObject;
 import com.sillelien.dollar.api.plugin.Plugins;
+import com.sillelien.dollar.api.var;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.yaml.snakeyaml.Yaml;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -42,7 +50,9 @@ import static com.sillelien.dollar.api.DollarStatic.fix;
 public class DollarList extends AbstractDollar {
 
     public static final int MAX_LIST_MULTIPLIER = 1000;
+    @Nullable
     private static final DollarExecutor executor = Plugins.sharedInstance(DollarExecutor.class);
+    @NotNull
     private final ImmutableList<var> list;
 
     DollarList(@NotNull ImmutableList<Throwable> errors, @NotNull JsonArray array) {
@@ -168,7 +178,7 @@ public class DollarList extends AbstractDollar {
     @NotNull @Override
     public Integer toInteger() {
         return $stream(false).collect(Collectors.summingInt(
-                (java.util.function.ToIntFunction<NumericAware>) NumericAware::toInteger));
+                NumericAware::toInteger));
     }
 
     @NotNull
@@ -177,6 +187,7 @@ public class DollarList extends AbstractDollar {
         return 0;
     }
 
+    @NotNull
     @Override
     public var $as(@NotNull Type type) {
         if (type.is(Type._LIST)) {
@@ -200,6 +211,7 @@ public class DollarList extends AbstractDollar {
             return ImmutableList.copyOf($stream(false).map(v -> v._fix(false)).collect(Collectors.toList()));
     }
 
+    @NotNull
     @Override public Type $type() {
         return new Type(Type._LIST, _constraintFingerprint());
     }
@@ -382,7 +394,7 @@ public class DollarList extends AbstractDollar {
 
     @NotNull
     @Override
-    public var $set(@NotNull var key, Object value) {
+    public var $set(@NotNull var key, @NotNull Object value) {
         ArrayList<var> newVal = new ArrayList<>(list.mutable());
         if (key.integer()) {
             newVal.set(key.toInteger(), DollarFactory.fromValue(value));
@@ -405,6 +417,7 @@ public class DollarList extends AbstractDollar {
         return list.size();
     }
 
+    @NotNull
     @Override
     @Guarded(NotNullGuard.class)
     public var $listen(Pipeable pipe) {
@@ -413,6 +426,7 @@ public class DollarList extends AbstractDollar {
         return DollarStatic.$(key);
     }
 
+    @NotNull
     @Override
     public var $listen(Pipeable pipe, String key) {
         for (var v : list) {
@@ -466,7 +480,7 @@ public class DollarList extends AbstractDollar {
                 } catch (InterruptedException e) {
                     Thread.interrupted();
                     result =
-                            ImmutableList.<var>of(
+                            ImmutableList.of(
                                     DollarFactory.failure(ErrorType.INTERRUPTED, e,
                                                           false));
 

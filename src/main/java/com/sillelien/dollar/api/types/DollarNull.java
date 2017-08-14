@@ -100,8 +100,9 @@ public class DollarNull extends AbstractDollar implements var {
         return 0;
     }
 
+    @NotNull
     @Override
-    public var $as(Type type) {
+    public var $as(@NotNull Type type) {
         return DollarFactory.newNull(type);
 
     }

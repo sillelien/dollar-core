@@ -82,6 +82,7 @@ public class DollarBoolean extends AbstractDollarSingleValue<Boolean> {
         return value ? 1 : 0;
     }
 
+    @NotNull
     @Override
     public var $as(@NotNull Type type) {
         if (type.is(Type._BOOLEAN)) {
@@ -103,6 +104,7 @@ public class DollarBoolean extends AbstractDollarSingleValue<Boolean> {
         }
     }
 
+    @NotNull
     @Override public Type $type() {
         return new Type(Type._BOOLEAN, _constraintFingerprint());
     }

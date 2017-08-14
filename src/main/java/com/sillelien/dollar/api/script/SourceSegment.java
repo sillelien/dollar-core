@@ -16,6 +16,8 @@
 
 package com.sillelien.dollar.api.script;
 
+import org.jetbrains.annotations.NotNull;
+
 public interface SourceSegment {
 
     /**
@@ -23,6 +25,7 @@ public interface SourceSegment {
      *
      * @return the source
      */
+    @NotNull
     String getCompleteSource();
 
     /**
@@ -37,6 +40,7 @@ public interface SourceSegment {
      *
      * @return the short hash
      */
+    @NotNull
     String getShortHash();
 
     /**
@@ -44,6 +48,7 @@ public interface SourceSegment {
      *
      * @return the source file
      */
+    @NotNull
     String getSourceFile();
 
     /**
@@ -51,6 +56,7 @@ public interface SourceSegment {
      *
      * @return the source message
      */
+    @NotNull
     String getSourceMessage();
 
     /**
@@ -58,6 +64,7 @@ public interface SourceSegment {
      *
      * @return the source message
      */
+    @NotNull
     String getShortSourceMessage();
 
     /**
@@ -65,6 +72,7 @@ public interface SourceSegment {
      *
      * @return the source segment
      */
+    @NotNull
     String getSourceSegment();
 
     /**

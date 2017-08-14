@@ -27,7 +27,13 @@ import com.sillelien.dollar.api.var;
 import org.jetbrains.annotations.NotNull;
 import org.yaml.snakeyaml.Yaml;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -232,6 +238,7 @@ public class DollarMap extends AbstractDollar implements var {
         return deepClone(map);
     }
 
+    @NotNull
     @Override
     public var $as(@NotNull Type type) {
         if (type.is(Type._MAP)) {
@@ -260,6 +267,7 @@ public class DollarMap extends AbstractDollar implements var {
         return ImmutableList.copyOf(entries);
     }
 
+    @NotNull
     @Override public Type $type() {
         return new Type(Type._MAP, _constraintFingerprint());
     }
@@ -323,7 +331,7 @@ public class DollarMap extends AbstractDollar implements var {
 
     @NotNull @Override
     public <K extends Comparable<K>, V> ImmutableMap<K, V> toJavaMap() {
-        return copyOf((Map<K, V>) varMapToMap());
+        return copyOf(varMapToMap());
     }
 
     @NotNull
@@ -397,7 +405,7 @@ public class DollarMap extends AbstractDollar implements var {
 
     @NotNull
     @Override
-    public var $set(@NotNull var key, Object value) {
+    public var $set(@NotNull var key, @NotNull Object value) {
         LinkedHashMap<var, var> copyMap = copyMap();
         copyMap.put(key, DollarFactory.fromValue(value, errors()));
         return DollarFactory.wrap(new DollarMap(errors(), copyMap));
@@ -417,6 +425,7 @@ public class DollarMap extends AbstractDollar implements var {
         return map.size();
     }
 
+    @NotNull
     @Override
     public var $listen(Pipeable pipe) {
         String key = UUID.randomUUID().toString();
@@ -424,6 +433,7 @@ public class DollarMap extends AbstractDollar implements var {
         return DollarStatic.$(key);
     }
 
+    @NotNull
     @Override
     public var $listen(Pipeable pipe, String key) {
         for (var v : map.values()) {

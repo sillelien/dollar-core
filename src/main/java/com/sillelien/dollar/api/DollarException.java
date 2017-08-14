@@ -1,17 +1,17 @@
 /*
- * Copyright (c) 2014-2015 Neil Ellis
+ *    Copyright (c) 2014-2017 Neil Ellis
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *          http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 
 package com.sillelien.dollar.api;
@@ -24,9 +24,11 @@ import java.util.List;
 
 public class DollarException extends RuntimeException {
 
+    @NotNull
     public static final String
             STARS =
             "*******************************************************************************\n";
+    @NotNull
     private final List<SourceSegment> sourceList = new ArrayList<>();
 
     /**
@@ -34,7 +36,7 @@ public class DollarException extends RuntimeException {
      *
      * @param cause the cause of this exception
      */
-    public DollarException(Throwable cause) {
+    public DollarException(@NotNull Throwable cause) {
         super(cause);
     }
 
@@ -43,7 +45,7 @@ public class DollarException extends RuntimeException {
      *
      * @param message the error message associated with this exception
      */
-    public DollarException(String message) {
+    public DollarException(@NotNull String message) {
         super(message);
     }
 
@@ -53,7 +55,7 @@ public class DollarException extends RuntimeException {
      * @param cause   the cause of this exception
      * @param message the error message associated with this exception
      */
-    public DollarException(Throwable cause, String message) {
+    public DollarException(@NotNull Throwable cause, @NotNull String message) {
         super(message, cause);
     }
 
@@ -69,6 +71,7 @@ public class DollarException extends RuntimeException {
         sourceList.add(source);
     }
 
+    @NotNull
     @Override public String getMessage() {
         if (sourceList.size() == 0) {
             return super.getMessage();

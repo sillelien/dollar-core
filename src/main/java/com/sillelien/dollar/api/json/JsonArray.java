@@ -1,17 +1,17 @@
 /*
- * Copyright (c) 2014-2015 Neil Ellis
+ *    Copyright (c) 2014-2017 Neil Ellis
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *          http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 
 package com.sillelien.dollar.api.json;
@@ -24,17 +24,23 @@ import com.sillelien.dollar.api.json.impl.Json;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class JsonArray extends JsonElement implements Iterable<Object> {
 
+  @NotNull
   final List list;
 
-  public JsonArray(List list) {
+  public JsonArray(@NotNull List list) {
     this(list, true);
   }
 
-  protected JsonArray(List list, boolean copy) {
+  protected JsonArray(@NotNull List list, boolean copy) {
     this.list = copy ? convertList(list) : list;
   }
 
@@ -200,6 +206,7 @@ public class JsonArray extends JsonElement implements Iterable<Object> {
     return convertList(list).toArray();
   }
 
+  @NotNull
   public List toList() {
     return convertList(list);
   }

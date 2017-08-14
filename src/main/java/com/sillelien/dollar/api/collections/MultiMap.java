@@ -1,22 +1,23 @@
 /*
- * Copyright (c) 2014-2015 Neil Ellis
+ *    Copyright (c) 2014-2017 Neil Ellis
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *          http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 
 package com.sillelien.dollar.api.collections;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -55,6 +56,7 @@ public interface MultiMap<K, V> extends Cloneable, Serializable {
      */
     boolean containsValue(Object key, Object value);
 
+    @NotNull
     Iterable<? extends Map.Entry<K, Collection<V>>> entries();
 
     /**
@@ -78,6 +80,7 @@ public interface MultiMap<K, V> extends Cloneable, Serializable {
      *
      * @since Commons Collections 3.1
      */
+    @Nullable
     Iterator<V> iterator(Object key);
 
     /**
@@ -101,6 +104,7 @@ public interface MultiMap<K, V> extends Cloneable, Serializable {
      *
      * @return the value added if the map changed and null if the map did not change
      */
+    @Nullable
     V putValue(K key, V value);
 
     /**

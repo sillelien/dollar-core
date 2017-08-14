@@ -59,6 +59,7 @@ public class DollarError extends DollarVoid {
         this.errorMessage = errorMessage;
     }
 
+    @NotNull
     @Override public Type $type() {
         return Type._ERROR;
     }

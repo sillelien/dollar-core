@@ -83,7 +83,7 @@ public class DollarStatic {
      * @return the var
      */
     @NotNull
-    public static var $range(var from, var to) {
+    public static var $range(@NotNull var from, @NotNull var to) {
         return DollarFactory.fromRange(from, to);
     }
 
@@ -138,7 +138,7 @@ public class DollarStatic {
     }
 
     @NotNull
-    public static var $null(Type type) {
+    public static var $null(@NotNull Type type) {
         return DollarFactory.newNull(type);
     }
 
@@ -258,7 +258,7 @@ public class DollarStatic {
      * @return the var
      */
     @NotNull
-    public static var $uri(URI uri) {
+    public static var $uri(@NotNull URI uri) {
         return DollarFactory.fromValue(uri);
     }
 
@@ -280,7 +280,7 @@ public class DollarStatic {
      * @return the var
      */
     @NotNull
-    public static var $date(Date date) {
+    public static var $date(@NotNull Date date) {
         return DollarFactory.fromValue(date);
     }
 
@@ -291,7 +291,7 @@ public class DollarStatic {
      * @return the var
      */
     @NotNull
-    public static var $date(LocalDateTime date) {
+    public static var $date(@NotNull LocalDateTime date) {
         return DollarFactory.fromValue(date);
     }
 
@@ -366,11 +366,12 @@ public class DollarStatic {
      * @return the var
      */
     @NotNull
-    public static var $(JsonObject json) {
+    public static var $(@NotNull JsonObject json) {
         return DollarFactory.fromValue(json, ImmutableList.of());
     }
 
-    public static var $json(String json) {
+    @NotNull
+    public static var $json(@NotNull String json) {
         if (json.matches("^\\s*\\{.*")) {
             return $(new JsonObject(json));
         } else if (json.matches("^\\s*\\[.*")) {
@@ -386,7 +387,7 @@ public class DollarStatic {
         }
     }
 
-    public static var $string(String s) {
+    public static var $string(@NotNull String s) {
         return DollarFactory.fromStringValue(s);
     }
 
@@ -540,7 +541,7 @@ public class DollarStatic {
      */
     @NotNull
 
-    public static var $list(Object... values) {
+    public static var $list(@NotNull Object... values) {
         return DollarFactory.fromValue(values, ImmutableList.of());
     }
 
@@ -690,7 +691,7 @@ public class DollarStatic {
      * @return the var
      */
     @NotNull
-    public static var $(Pipeable lambda) {
+    public static var $(@NotNull Pipeable lambda) {
         return DollarFactory.fromValue(lambda);
     }
 
@@ -702,7 +703,7 @@ public class DollarStatic {
      * @return a var
      */
     @NotNull
-    public static var $yaml(var yaml) {
+    public static var $yaml(@NotNull var yaml) {
         return DollarFactory.fromYaml(yaml.toString());
     }
 
@@ -713,7 +714,7 @@ public class DollarStatic {
      * @return a var
      */
     @NotNull
-    public static var $yaml(File yamlFile) {
+    public static var $yaml(@NotNull File yamlFile) {
         return DollarFactory.fromYaml(yamlFile);
     }
 
@@ -725,7 +726,7 @@ public class DollarStatic {
      * @return a var
      */
     @NotNull
-    public static var $yaml(String yaml) {
+    public static var $yaml(@NotNull String yaml) {
         return DollarFactory.fromYaml(yaml);
     }
 
