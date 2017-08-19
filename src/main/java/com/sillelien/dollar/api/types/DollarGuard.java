@@ -37,7 +37,7 @@ public class DollarGuard implements java.lang.reflect.InvocationHandler {
     }
 
     @Override
-    public Object invoke(Object proxy, @NotNull Method method, @NotNull Object[] args) throws Throwable {
+    public Object invoke(Object proxy, @NotNull Method method, Object[] args) throws Throwable {
         try {
             String name = method.getName();
 
@@ -95,9 +95,9 @@ public class DollarGuard implements java.lang.reflect.InvocationHandler {
     }
 
     Object invokeWithGuards(@NotNull Method method, Object[] args, @NotNull Guarded[] guards) throws
-                                                                                              InstantiationException,
-                                                                                              IllegalAccessException,
-                                                                                              InvocationTargetException {
+            InstantiationException,
+                    IllegalAccessException,
+                    InvocationTargetException {
         for (Guarded guard : guards) {
             guard.value().newInstance().preCondition(in, method, args);
         }

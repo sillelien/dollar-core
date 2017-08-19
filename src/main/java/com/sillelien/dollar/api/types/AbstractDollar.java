@@ -101,7 +101,7 @@ public abstract class AbstractDollar implements var {
         }
         String thisConstraintFingerprint = _constraintFingerprint();
         if (thisConstraintFingerprint == null) {
-            this.setMetaAttribute("constraintFingerprint", constraintFingerprint);
+            setMetaAttribute("constraintFingerprint", constraintFingerprint);
             return this;
         } else if (thisConstraintFingerprint.equals(constraintFingerprint)) {
             return this;
@@ -110,10 +110,10 @@ public abstract class AbstractDollar implements var {
         }
     }
 
-    @NotNull
+
     @Override
     public String _constraintFingerprint() {
-        return this.getMetaAttribute("constraintFingerprint");
+        return getMetaAttribute("constraintFingerprint");
     }
 
     @NotNull
@@ -272,7 +272,7 @@ public abstract class AbstractDollar implements var {
         SimpleScriptContext context = new SimpleScriptContext();
         Object value;
         try {
-            nashorn.eval("var $=" + toJsonObject().toString() + ";", context);
+            nashorn.eval("var $=" + toJsonObject() + ";", context);
             value = nashorn.eval(js, context);
         } catch (Exception e) {
             return DollarStatic.handleError(e, this);
@@ -283,7 +283,7 @@ public abstract class AbstractDollar implements var {
     @NotNull
     @Override
     public var $pipe(@NotNull Class<? extends Pipeable> clazz) {
-        DollarStatic.threadContext.get().setPassValue(this._copy());
+        DollarStatic.threadContext.get().setPassValue(_copy());
         Pipeable script = null;
         try {
             script = clazz.newInstance();
@@ -355,7 +355,7 @@ public abstract class AbstractDollar implements var {
     @NotNull
     @Override
     public var debug() {
-        logger.debug(this.toString());
+        logger.debug(toString());
         return this;
     }
 
@@ -384,7 +384,7 @@ public abstract class AbstractDollar implements var {
     @NotNull
     @Override
     public var error() {
-        logger.error(this.toString());
+        logger.error(toString());
         return this;
     }
 
@@ -405,7 +405,7 @@ public abstract class AbstractDollar implements var {
     @NotNull
     @Override
     public var info() {
-        logger.info(this.toString());
+        logger.info(toString());
         return this;
     }
 
@@ -472,7 +472,7 @@ public abstract class AbstractDollar implements var {
         return false;
     }
 
-    @NotNull
+
     @Override
     public String getMetaAttribute(@NotNull String key) {
         return (String) meta.get(key);
@@ -560,7 +560,7 @@ public abstract class AbstractDollar implements var {
                     errorJson.putString("stack", Arrays.toString(error.getStackTrace()));
                 } else {
                     errorJson.putString("hash",
-                            hash(Arrays.toString(error.getStackTrace()).getBytes()));
+                                        hash(Arrays.toString(error.getStackTrace()).getBytes()));
                 }
                 errorArray.addObject(errorJson);
             }
@@ -662,12 +662,12 @@ public abstract class AbstractDollar implements var {
 
     @Override
     public Object getMetaObject(@NotNull String key) {
-        return  meta.get(key);
+        return meta.get(key);
     }
 
     @Override
     public void setMetaObject(@NotNull String key, @NotNull Object value) {
-            meta.put(key,value);
+        meta.put(key, value);
     }
 
 }
